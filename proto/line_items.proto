@@ -1,0 +1,29 @@
+syntax = "proto3";
+option go_package = "orders";
+
+import "google/protobuf/empty.proto";
+
+service LineItems {
+  rpc Create(LineItem) returns (LineItem);
+  rpc Update(LineItem) returns (LineItem);
+  rpc Upsert(LineItem) returns (LineItem);
+  rpc Delete(LineItemId) returns (google.protobuf.Empty);
+  rpc Get(LineItemId) returns (LineItem);
+}
+
+message LineItemId { 
+  int64 domain_id = 1;
+  int64 id = 2;
+}
+
+message LineItem {
+  int64 domain_id = 1;
+  int64 id = 2;
+  int64 quantity = 11;
+  int64 fulfillable_quantity = 12;
+  bool requires_shipping = 13;
+  string name = 14;
+  string title = 15;
+  string sku = 16;
+  string fulfillment_service = 17;
+}

@@ -1,0 +1,333 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "OrdersAPI",
+    "version": "1.0",
+    "contact": {
+      "name": "carbon-backend-team",
+      "url": "https://github.com/meshifyiot/proto-orders-api",
+      "email": "dev@meshify.com"
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "address1": {
+          "type": "string"
+        },
+        "address2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "province_code": {
+          "type": "string"
+        },
+        "province": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        },
+        "country_code": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "Customer": {
+      "type": "object",
+      "properties": {
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "email": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "default_address": {
+          "$ref": "#/definitions/Address"
+        }
+      }
+    },
+    "Domain": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "fqdn": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Fulfillment": {
+      "type": "object",
+      "properties": {
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "order_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string"
+        },
+        "tracking_company": {
+          "type": "string"
+        },
+        "tracking_number": {
+          "type": "string"
+        },
+        "tracking_url": {
+          "type": "string"
+        },
+        "line_item_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "LineItem": {
+      "type": "object",
+      "properties": {
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "quantity": {
+          "type": "string",
+          "format": "int64"
+        },
+        "fulfillable_quantity": {
+          "type": "string",
+          "format": "int64"
+        },
+        "requires_shipping": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "sku": {
+          "type": "string"
+        },
+        "fulfillment_service": {
+          "type": "string"
+        }
+      }
+    },
+    "Order": {
+      "type": "object",
+      "properties": {
+        "domain_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "order_number": {
+          "type": "string",
+          "format": "int64",
+          "title": "Customer facing order ID"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "processed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "closed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cancelled_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "email": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string",
+          "format": "int64"
+        },
+        "note": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "cancel_reason": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "app_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "processing_method": {
+          "type": "string"
+        },
+        "source_name": {
+          "type": "string"
+        },
+        "contact_email": {
+          "type": "string"
+        },
+        "order_status_url": {
+          "type": "string"
+        },
+        "customer_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "billing_address": {
+          "$ref": "#/definitions/Address"
+        },
+        "shipping_address": {
+          "$ref": "#/definitions/Address"
+        },
+        "line_item_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "Tenant": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

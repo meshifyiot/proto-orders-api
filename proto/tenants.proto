@@ -1,0 +1,23 @@
+syntax = "proto3";
+option go_package = "orders";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "proto/domains.proto";
+
+service Tenants {
+  rpc Create(Tenant) returns (Tenant);
+  rpc Update(Tenant) returns (Tenant);
+  rpc Delete(TenantId) returns (google.protobuf.Empty);
+  rpc Get(TenantId) returns (Tenant);
+  rpc GetByFQDN(DomainFqdn) returns (Tenant);
+}
+
+message TenantId { int64 id = 1; }
+
+message Tenant {
+  int64 id = 1;
+  string name = 2;
+  google.protobuf.Timestamp created_at = 3;
+  google.protobuf.Timestamp updated_at = 4;
+}
