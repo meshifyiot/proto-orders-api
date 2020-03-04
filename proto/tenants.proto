@@ -3,7 +3,7 @@ option go_package = "orders";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
-import "proto/domains.proto";
+import "domains.proto";
 
 service Tenants {
   rpc Create(Tenant) returns (Tenant);
