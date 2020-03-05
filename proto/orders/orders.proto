@@ -4,7 +4,7 @@ option go_package = "orders";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 import "protoc-gen-swagger/options/annotations.proto";
-import "addresses.proto";
+import "orders/addresses.proto";
 
 option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
   info: {

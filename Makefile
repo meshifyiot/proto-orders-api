@@ -1,14 +1,19 @@
-generate: generate_protoc generate_typescript
+.PHONY: all cleanup go swagger typescript 
 
-generate_protoc:
-	pushd proto && \
-	protoc -I/usr/local/include -I. \
-		-I${GOPATH}/src \
-		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
-		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway \
-		--go_out=plugins=grpc:../go/orders \
-		--swagger_out=logtostderr=true,allow_merge=true,merge_file_name=api:../swagger \
-		*.proto
+all:
+	docker-compose up
+	cleanup
 
-generate_typescript:
-	./scripts/generate_typescript.sh
+go:
+	docker-compose run orders-api-go
+
+swagger:
+	docker-compose run orders-api-swagger
+
+typescript:
+	@echo "Note: Typescript generated based on swagger documentation."
+	docker-compose run orders-api-typescript
+	./typescript/cleanup.sh
+
+cleanup:
+	./typescript/cleanup.sh

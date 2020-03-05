@@ -5,10 +5,10 @@ Be warned: this is en experimental repo.
 ## Workflow
 
 * Make changes to *.proto
-* Generate doc, clients and stubs: `make run generate`
+* Generate doc, clients and stubs: `make all`
 * Push to github
 * Enjoy!
  
-## Dependency
+## Prerequisites
 
-To run generate `protoc` and `docker` is required.
+[Docker Compose](https://docs.docker.com/compose/install/)

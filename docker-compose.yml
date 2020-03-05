@@ -1,0 +1,21 @@
+version: "2"
+services:
+  orders-api-go:
+    build:
+      context: .
+      dockerfile: Dockerfile-protoc
+    command: bash -c "cd go && make all"
+    volumes:
+      - ./:/orders-api
+  orders-api-swagger:
+    build:
+      context: .
+      dockerfile: Dockerfile-protoc
+    command: bash -c "cd swagger && make all"
+    volumes:
+      - ./:/orders-api
+  orders-api-typescript:
+    image: swaggerapi/swagger-codegen-cli
+    command: generate -i /orders-api/swagger/orders/orders-api.swagger.json -l typescript-fetch -o /orders-api/typescript/orders
+    volumes:
+      - ./:/orders-api

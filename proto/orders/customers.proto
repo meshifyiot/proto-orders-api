@@ -3,7 +3,7 @@ option go_package = "orders";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
-import "addresses.proto";
+import "orders/addresses.proto";
 
 service Customers {
   rpc Create(Customer) returns (Customer);
