@@ -1,9 +1,10 @@
-.PHONY: all cleanup go swagger typescript 
+.PHONY: all build go swagger typescript clean
 
-all:
-	docker-compose up
-	cleanup
+all: go swagger typescript
 
+build:
+	docker-compose build
+	
 go:
 	docker-compose run orders-api-go
 
@@ -11,9 +12,11 @@ swagger:
 	docker-compose run orders-api-swagger
 
 typescript:
-	@echo "Note: Typescript generated based on swagger documentation."
+	@echo "\n[Generate Typescript (based on swagger documentation)...]"
 	docker-compose run orders-api-typescript
 	./typescript/cleanup.sh
 
-cleanup:
-	./typescript/cleanup.sh
+clean:
+	rm -rf go/orders/*.go
+	rm -rf swagger/orders/*.json
+	rm -rf typescript/orders/*

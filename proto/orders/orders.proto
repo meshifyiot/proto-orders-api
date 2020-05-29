@@ -1,67 +1,317 @@
 syntax = "proto3";
 option go_package = "orders";
 
-import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
 import "protoc-gen-swagger/options/annotations.proto";
-import "orders/addresses.proto";
+import "orders/core.proto";
 
 option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
-  info: {
-		title: "OrdersAPI";
-		version: "1.0";
-		contact: {
-			name: "carbon-backend-team";
-			url: "https://github.com/meshifyiot/proto-orders-api";
-			email: "dev@meshify.com";
-		};
-	};
-  schemes: HTTPS;
-  consumes: "application/json";
-	produces: "application/json";
+  info : {
+    title : "OrdersAPI",
+    version : "1.0",
+    contact : {
+      name : "carbon-backend-team",
+      url : "https://github.com/meshifyiot/proto-orders-api",
+      email : "dev@meshify.com",
+    }
+  },
+  schemes : HTTPS,
+  consumes : "application/json",
+  produces : "application/json",
 };
 
-service Orders {
-  rpc Create(Order) returns (Order);
-  rpc Update(Order) returns (Order);
-  rpc Delete(OrderId) returns (google.protobuf.Empty);
-  rpc Get(OrderId) returns (Order);
+// Generated according to https://cloud.google.com/apis/design/standard_methods
+service OrderService {
+
+  // --- Orders API ---
+
+  // ListOrders returns paginated list of orders.
+  rpc ListOrders(ListOrdersRequest) returns (ListOrdersResponse) {
+    option (google.api.http) = {
+      get : "/v1/orders"
+    };
+  }
+
+  // GetOrder returns an order.
+  rpc GetOrder(GetOrderRequest) returns (Order) {
+    option (google.api.http) = {
+      get : "/v1/orders/{order_id}"
+    };
+  }
+
+  // CreateOrder creates an order.
+  rpc CreateOrder(CreateOrderRequest) returns (Order) {
+    option (google.api.http) = {
+      post : "/v1/orders"
+      body : "order"
+    };
+  }
+
+  // UpdateOrder updates an order.
+  rpc UpdateOrder(UpdateOrderRequest) returns (Order) {
+    option (google.api.http) = {
+      patch : "/v1/orders/{order.id}"
+      body : "*"
+    };
+  }
+
+  // DeleteOrder deletes an order.
+  rpc DeleteOrder(DeleteOrderRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete : "/v1/orders/{order_id}"
+    };
+  }
+
+  // --- Customer API ---
+
+  rpc ListCustomers(ListCustomersRequest) returns (ListCustomersResponse) {
+    option (google.api.http) = {
+      get: "/v1/customers"
+    };
+  }
+
+  rpc GetCustomer(GetCustomerRequest) returns (Customer) {
+    option (google.api.http) = {
+      get: "/v1/customers/{customer_id}"
+    };
+  }
+
+  rpc CreateCustomer(CreateCustomerRequest) returns (Customer) {
+    option (google.api.http) = {
+      post: "/v1/customers"
+      body: "customer"
+    };
+  }
+
+  rpc UpdateCustomer(UpdateCustomerRequest) returns (Customer) {
+    option (google.api.http) = {
+      patch: "/v1/customers/{customer.id}"
+      body: "*"
+    };
+  }
+
+  rpc DeleteCustomer(DeleteCustomerRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/v1/customers/{customer_id}"
+    };
+  }
+
+  // --- LineItems API ---
+
+  rpc ListLineItems(ListLineItemsRequest) returns (ListLineItemsResponse) {
+    option (google.api.http) = {
+      get: "/v1/line_items"
+    };
+  }
+
+  rpc GetLineItem(GetLineItemRequest) returns (LineItem) {
+    option (google.api.http) = {
+      get: "/v1/line_items/{line_item_id}"
+    };
+  }
+
+  rpc CreateLineItem(CreateLineItemRequest) returns (LineItem) {
+    option (google.api.http) = {
+      post: "/v1/line_items"
+      body: "line_item"
+    };
+  }
+
+  rpc UpdateLineItem(UpdateLineItemRequest) returns (LineItem) {
+    option (google.api.http) = {
+      patch: "/v1/line_items/{line_item.id}"
+      body: "*"
+    };
+  }
+
+  rpc DeleteLineItem(DeleteLineItemRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/v1/line_items/{line_item_id}"
+    };
+  }
 }
 
-message OrderId { 
+service Domains {
+  rpc Create(Domain) returns (Domain);
+  rpc Update(Domain) returns (Domain);
+  rpc Delete(DomainId) returns (google.protobuf.Empty);
+  rpc Get(DomainId) returns (Domain);
+  rpc GetByFQDN(DomainFqdn) returns (Domain);
+}
+
+message DomainId { int64 id = 1; }
+
+message DomainFqdn { string fqdn = 1; }
+
+service Fulfillments {
+  rpc Create(Fulfillment) returns (Fulfillment);
+  rpc Update(Fulfillment) returns (Fulfillment);
+  rpc Delete(FulfillmentId) returns (google.protobuf.Empty);
+  rpc Get(FulfillmentId) returns (Fulfillment);
+}
+
+message FulfillmentId {
   int64 domain_id = 1;
   int64 id = 2;
 }
 
-message Order {
-  int64 domain_id = 1;
-  int64 id = 2;
+service Tenants {
+  rpc Create(Tenant) returns (Tenant);
+  rpc Update(Tenant) returns (Tenant);
+  rpc Delete(TenantId) returns (google.protobuf.Empty);
+  rpc Get(TenantId) returns (Tenant);
+  rpc GetByFQDN(DomainFqdn) returns (Tenant);
+}
 
-  // Customer facing order ID
-  int64 order_number = 3;
+message TenantId { int64 id = 1; }
 
-  google.protobuf.Timestamp created_at = 10;
-  google.protobuf.Timestamp processed_at = 11;
-  google.protobuf.Timestamp updated_at = 12;
-  google.protobuf.Timestamp closed_at = 13;
-  google.protobuf.Timestamp cancelled_at = 14;
+// --- Orders API messages ---
 
-  string email = 5;
-  int64 number = 6;
-  string note = 7;
-  string token = 8;
-  string name = 23;
-  string cancel_reason = 27;
-  int64 user_id = 31;
-  int64 app_id = 39;
-  string processing_method = 47;
-  string source_name = 49;
-  string contact_email = 53;
-  string order_status_url = 54;
-  int64 customer_id = 68;
+// ListOrdersRequest
+//
+// All filter fields applied with AND operator.
+// Zero value in filter (by default) means no filtering.
+//
+message ListOrdersRequest {
+  // The maximum number of items to return.
+  int32 page_size = 1;
 
-  Address billing_address = 64;
-  Address shipping_address = 65;
+  // The next_page_token value returned from a previous List request, if any.
+  string page_token = 2;
 
-  repeated int64 line_item_ids = 66;
+  // The domain_id adds filtering by Shopify's domain.
+  int64 domain_id = 3;
+
+  // The folder_id adds filtering by folder.
+  int64 folder_id = 4;
+}
+
+message ListOrdersResponse {
+  // There will be a maximum number of items returned based on the page_size
+  // field in the request.
+  repeated Order orders = 1;
+
+  // Token to retrieve the next page of results, or empty if there are no more
+  // results in the list.
+  string next_page_token = 2;
+}
+
+message GetOrderRequest {
+  // The field will contain id of order.
+  int64 order_id = 1;
+}
+
+message CreateOrderRequest {
+  // The order resource to create.
+  Order order = 3;
+}
+
+message UpdateOrderRequest {
+  // The order resource which replaces the resource on the server.
+  Order order = 1;
+
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see
+  // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeleteOrderRequest {
+  // The resource id of the order to be deleted.
+  int64 order_id = 1;
+}
+
+// --- Customer API messages ---
+
+message ListCustomersRequest {
+  // The maximum number of items to return.
+  int32 page_size = 1;
+
+  // The next_page_token value returned from a previous List request, if any.
+  string page_token = 2;
+}
+
+message ListCustomersResponse {
+  // There will be a maximum number of items returned based on the page_size field in the request.
+  repeated Customer customers = 1;
+
+  // Token to retrieve the next page of results, or empty if there are no more results in the list.
+  string next_page_token = 2;
+}
+
+message GetCustomerRequest {
+  // The field will contain id of the resource requested.
+  int64 customer_id = 1;
+}
+
+message CreateCustomerRequest {
+  // The customer id to use for this customer.
+  string customer_id = 1;
+
+  // The customer resource to create.
+  Customer customer = 2;
+}
+
+message UpdateCustomerRequest {
+  // The customer resource which replaces the resource on the server.
+  Customer customer = 1;
+
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeleteCustomerRequest {
+  // The resource id of the customer to be deleted.
+  int64 customer_id = 1;
+}
+
+// --- LineItems API messages ---
+
+message ListLineItemsRequest {
+  // The parent resource name, for example, "shelves/shelf1"
+  string parent = 1;
+
+  // The maximum number of items to return.
+  int32 page_size = 2;
+
+  // The next_page_token value returned from a previous List request, if any.
+  string page_token = 3;
+}
+
+message ListLineItemsResponse {
+  // There will be a maximum number of items returned based on the page_size field in the request.
+  repeated LineItem line_items = 1;
+
+  // Token to retrieve the next page of results, or empty if there are no more results in the list.
+  string next_page_token = 2;
+}
+
+message GetLineItemRequest {
+  // The field will contain id of the resource requested.
+  int64 line_item_id = 1;
+}
+
+message CreateLineItemRequest {
+  // The line_item id to use for this line_item.
+  string line_item_id = 2;
+
+  // The line_item resource to create.
+  LineItem line_item = 3;
+}
+
+message UpdateLineItemRequest {
+  // The line_item resource which replaces the resource on the server.
+  LineItem line_item = 1;
+
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeleteLineItemRequest {
+  // The resource id of the line_item to be deleted.
+  int64 line_item_id = 1;
 }
