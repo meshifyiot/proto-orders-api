@@ -1,0 +1,123 @@
+syntax = "proto3";
+option go_package = "orders";
+
+import "google/protobuf/field_mask.proto";
+
+
+// fulfillable_quantity: The amount available to fulfill, calculated as follows:
+// quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity
+// fulfillment_status: How far along an order is in terms line items fulfilled. Valid values: null, fulfilled, partial, and not_eligible.
+// grams: The weight of the item in grams.
+// price: The price of the item before discounts have been applied in the shop currency.
+// price_set: The price of the line item in shop and presentment currencies.
+// product_id: The ID of the product that the line item belongs to. Can be null if the original product associated with the order is deleted at a later date.
+// quantity: The number of items that were purchased.
+// requires_shipping: 
+// sku: The item's SKU (stock keeping unit).
+// title: The title of the product.
+// variant_id: The ID of the product variant.
+// variant_title: The title of the product variant.
+// vendor: The name of the item's supplier.
+// name: 
+// gift_card: Whether the item is a gift card. If true, then the item is not taxed or considered for shipping charges.
+// properties: An array of custom information for the item that has been added to the cart. Often used to provide product customization options. For more information, see The line_item object.
+// taxable: Whether the item was taxable.
+// tax_lines: A list of tax line objects, each of which details a tax applied to the item.
+// title: The name of the tax.
+// price: The amount added to the order for this tax in the shop currency.
+// price_set: The amount added to the order for this tax in shop and presentment currencies.
+// rate: The tax rate applied to the order to calculate the tax price.
+// tip_payment_gateway: The payment gateway used to tender the tip, such as shopify_payments. Present only on tips.
+// tip_payment_method: The payment method used to tender the tip, such as Visa. Present only on tips.
+// total_discount: The total discount amount applied to this line item in the shop currency. This value is not subtracted in the line item price.
+// total_discount_set: The total discount applied to the line item in shop and presentment currencies.
+// discount_allocations: An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
+// amount: The discount amount allocated to the line in the shop currency.
+// discount_application_index: The index of the associated discount application in the order's discount_applications list.
+// amount_set: The discount amount allocated to the line item in shop and presentment currencies.
+// duties: A list of duty objects, each containing information about a duty on the line item.
+// location_id	
+// "location_id": 49202758
+// The ID of the physical location where the order was processed.
+
+
+message LineItem {
+  // The Shopify domain to which line_item record belongs to.
+  int64 domain_id = 1;
+
+  // The ID of the line item.
+  int64 id = 2;
+  
+  // The number of items that were purchased.
+  int64 quantity = 11;
+
+  // The amount available to fulfill, calculated as follows:
+  // quantity - max(refunded_quantity, fulfilled_quantity) -
+  // pending_fulfilled_quantity - open_fulfilled_quantity
+  int64 fulfillable_quantity = 12;
+
+  // Whether the item requires shipping.
+  bool requires_shipping = 13;
+
+  // The name of the product variant.
+  string name = 14;
+
+  // The title of the product.
+  string title = 15;
+
+  // The item's SKU (stock keeping unit).
+  string sku = 16;
+
+  // The service provider that's fulfilling the item. Valid values: 
+  // manual, or the name of the provider, such as amazon or shipwire.
+  string fulfillment_service = 17;
+}
+
+// --- LineItems API messages ---
+
+message ListLineItemsRequest {
+  // The parent resource name, for example, "shelves/shelf1"
+  string parent = 1;
+
+  // The maximum number of items to return.
+  int32 page_size = 2;
+
+  // The next_page_token value returned from a previous List request, if any.
+  string page_token = 3;
+}
+
+message ListLineItemsResponse {
+  // There will be a maximum number of items returned based on the page_size field in the request.
+  repeated LineItem line_items = 1;
+
+  // Token to retrieve the next page of results, or empty if there are no more results in the list.
+  string next_page_token = 2;
+}
+
+message GetLineItemRequest {
+  // The field will contain id of the resource requested.
+  int64 line_item_id = 1;
+}
+
+message CreateLineItemRequest {
+  // The line_item id to use for this line_item.
+  string line_item_id = 2;
+
+  // The line_item resource to create.
+  LineItem line_item = 3;
+}
+
+message UpdateLineItemRequest {
+  // The line_item resource which replaces the resource on the server.
+  LineItem line_item = 1;
+
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeleteLineItemRequest {
+  // The resource id of the line_item to be deleted.
+  int64 line_item_id = 1;
+}
+

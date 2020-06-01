@@ -1,0 +1,17 @@
+syntax = "proto3";
+option go_package = "orders";
+
+import "google/protobuf/timestamp.proto";
+
+message Tenant {
+  // The TenantID.
+  int64 id = 1;
+
+  // The name of tenant.
+  string name = 2;
+}
+
+message GetTenantByFQDNRequest {
+  // The Shopify domain FQDN.
+  string fqdn = 1;
+}

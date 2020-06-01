@@ -1,0 +1,225 @@
+syntax = "proto3";
+option go_package = "orders";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+import "orders/tenant.proto";
+import "orders/domain.proto";
+import "orders/line_item.proto";
+import "orders/customer.proto";
+import "orders/order.proto";
+import "orders/fulfillment.proto";
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+  info : {
+    title : "OrdersAPI",
+    version : "1.1.0",
+    contact : {
+      name : "carbon-backend-team",
+      url : "https://github.com/meshifyiot/proto-orders-api",
+      email : "dev@meshify.com",
+    }
+  },
+  schemes : HTTPS,
+  consumes : "application/json",
+  produces : "application/json",
+};
+
+service OrdersService {
+
+  // --- Orders API ---
+
+  // ListOrders returns paginated list of orders.
+  rpc ListOrders(ListOrdersRequest) returns (ListOrdersResponse) {
+    option (google.api.http) = {
+      get : "/v1/orders"
+    };
+  }
+
+  // GetOrder returns an order.
+  rpc GetOrder(GetOrderRequest) returns (Order) {
+    option (google.api.http) = {
+      get : "/v1/orders/{order_id}"
+    };
+  }
+
+  // CreateOrder creates an order.
+  rpc CreateOrder(CreateOrderRequest) returns (Order) {
+    option (google.api.http) = {
+      post : "/v1/orders"
+      body : "order"
+    };
+  }
+
+  // UpdateOrder updates an order.
+  rpc UpdateOrder(UpdateOrderRequest) returns (Order) {
+    option (google.api.http) = {
+      patch : "/v1/orders/{order.id}"
+      body : "*"
+    };
+  }
+
+  // DeleteOrder deletes an order.
+  rpc DeleteOrder(DeleteOrderRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete : "/v1/orders/{order_id}"
+    };
+  }
+
+  // --- Customer API ---
+
+  rpc ListCustomers(ListCustomersRequest) returns (ListCustomersResponse) {
+    option (google.api.http) = {
+      get: "/v1/customers"
+    };
+  }
+
+  rpc GetCustomer(GetCustomerRequest) returns (Customer) {
+    option (google.api.http) = {
+      get: "/v1/customers/{customer_id}"
+    };
+  }
+
+  rpc CreateCustomer(CreateCustomerRequest) returns (Customer) {
+    option (google.api.http) = {
+      post: "/v1/customers"
+      body: "customer"
+    };
+  }
+
+  rpc UpdateCustomer(UpdateCustomerRequest) returns (Customer) {
+    option (google.api.http) = {
+      patch: "/v1/customers/{customer.id}"
+      body: "*"
+    };
+  }
+
+  rpc DeleteCustomer(DeleteCustomerRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/v1/customers/{customer_id}"
+    };
+  }
+
+  // --- LineItems API ---
+
+  rpc ListLineItems(ListLineItemsRequest) returns (ListLineItemsResponse) {
+    option (google.api.http) = {
+      get: "/v1/line_items"
+    };
+  }
+
+  rpc GetLineItem(GetLineItemRequest) returns (LineItem) {
+    option (google.api.http) = {
+      get: "/v1/line_items/{line_item_id}"
+    };
+  }
+
+  rpc CreateLineItem(CreateLineItemRequest) returns (LineItem) {
+    option (google.api.http) = {
+      post: "/v1/line_items"
+      body: "line_item"
+    };
+  }
+
+  rpc UpdateLineItem(UpdateLineItemRequest) returns (LineItem) {
+    option (google.api.http) = {
+      patch: "/v1/line_items/{line_item.id}"
+      body: "*"
+    };
+  }
+
+  rpc DeleteLineItem(DeleteLineItemRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/v1/line_items/{line_item_id}"
+    };
+  }
+
+  // --- Shopify Domains API ---
+
+  // ListDomains returns paginated list of domains.
+  rpc ListDomains(ListDomainsRequest) returns (ListDomainsResponse) {
+    option (google.api.http) = {
+      get : "/v1/domains"
+    };
+  }
+    
+  // GetDomain returns a domain.
+  rpc GetDomain(GetDomainRequest) returns (Domain) {
+    option (google.api.http) = {
+      get : "/v1/domains/{domain_id}"
+    };
+  }
+
+  // CreateDomain creates a domain.
+  rpc CreateDomain(CreateDomainRequest) returns (Domain) {
+    option (google.api.http) = {
+      post : "/v1/domains"
+      body : "domain"
+    };
+  }
+
+  // UpdateDomain updates a domain.
+  rpc UpdateDomain(UpdateDomainRequest) returns (Domain) {
+    option (google.api.http) = {
+      patch : "/v1/domains/{domain.id}"
+      body : "*"
+    };
+  }
+
+  // DeleteDomain deletes a domain.
+  rpc DeleteDomain(DeleteDomainRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete : "/v1/domains/{domain_id}"
+    };
+  }
+
+  // --- Fulfillments API ---
+
+  // ListFulfillments returns paginated list of fulfillments.
+  rpc ListFulfillments(ListFulfillmentsRequest) returns (ListFulfillmentsResponse) {
+    option (google.api.http) = {
+      get : "/v1/fulfillments"
+    };
+  }
+    
+  // GetFulfillment returns a fulfillment.
+  rpc GetFulfillment(GetFulfillmentRequest) returns (Fulfillment) {
+    option (google.api.http) = {
+      get : "/v1/fulfillments/{fulfillment_id}"
+    };
+  }
+
+  // CreateFulfillment creates a fulfillment.
+  rpc CreateFulfillment(CreateFulfillmentRequest) returns (Fulfillment) {
+    option (google.api.http) = {
+      post : "/v1/fulfillments"
+      body : "fulfillment"
+    };
+  }
+
+  // UpdateFulfillment updates a fulfillment.
+  rpc UpdateFulfillment(UpdateFulfillmentRequest) returns (Fulfillment) {
+    option (google.api.http) = {
+      patch : "/v1/fulfillments/{fulfillment.id}"
+      body : "*"
+    };
+  }
+
+  // DeleteFulfillment deletes a fulfillment.
+  rpc DeleteFulfillment(DeleteFulfillmentRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete : "/v1/fulfillments/{fulfillment_id}"
+    };
+  }
+
+  // --- Tenants API ---
+
+  // GetTenant returns a tenant by Shopify domain FQDN.
+  rpc GetTenantByFQDN(GetTenantByFQDNRequest) returns (Tenant) {
+    option (google.api.http) = {
+      get : "/v1/tenants:getByFQDN/{fqdn}"
+    };
+  }
+}
+

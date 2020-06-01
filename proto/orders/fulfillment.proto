@@ -1,0 +1,101 @@
+syntax = "proto3";
+option go_package = "orders";
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+
+message Fulfillment {
+  // The Shopify domain to which fulfillment record belongs to.
+  int64 domain_id = 1;
+
+  // The ID for the fulfillment.
+  int64 id = 2;
+
+  // The unique numeric identifier for the order.
+  int64 order_id = 3;
+
+  // The date and time when the fulfillment was created.
+  google.protobuf.Timestamp created_at = 8;
+  
+  // The date and time when the fulfillment was updated.
+  google.protobuf.Timestamp updated_at = 9;
+
+  // The status of the fulfillment. Valid values:
+  // pending: The fulfillment is pending.
+  // open: The fulfillment has been acknowledged by the service and is 
+  //  in processing.
+  // success: The fulfillment was successful.
+  // cancelled: The fulfillment was cancelled.
+  // error: There was an error with the fulfillment request.
+  // failure: The fulfillment request failed.
+  string status = 10;
+
+  // The name of the tracking company.
+  string tracking_company = 11;
+
+  // A list of tracking numbers, provided by the shipping company.
+  repeated string tracking_numbers = 12;
+
+  // The URLs of tracking pages for the fulfillment.
+  repeated string tracking_urls = 13;
+
+  // A historical record of each item in the fulfillment.
+  repeated int64 line_item_ids = 20;
+}
+
+// --- Fulfillments API messages ---
+
+// ListFulfillmentsRequest
+//
+// All filter fields applied with AND operator.
+// Zero value in filter (by default) means no filtering.
+//
+message ListFulfillmentsRequest {
+  // The maximum number of items to return.
+  int32 page_size = 1;
+
+  // The next_page_token value returned from a previous List request, if any.
+  string page_token = 2;
+
+  // The domain_id adds filtering by Shopify's domain.
+  int64 domain_id = 3;
+
+  // The folder_id adds filtering by folder.
+  int64 folder_id = 4;
+}
+
+message ListFulfillmentsResponse {
+  // There will be a maximum number of items returned based on the page_size
+  // field in the request.
+  repeated Fulfillment fulfillments = 1;
+
+  // Token to retrieve the next page of results, or empty if there are no more
+  // results in the list.
+  string next_page_token = 2;
+}
+
+message GetFulfillmentRequest {
+  // The field will contain id of fulfillment.
+  int64 fulfillment_id = 1;
+}
+
+message CreateFulfillmentRequest {
+  // The fulfillment resource to create.
+  Fulfillment fulfillment = 3;
+}
+
+message UpdateFulfillmentRequest {
+  // The fulfillment resource which replaces the resource on the server.
+  Fulfillment fulfillment = 1;
+
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see
+  // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeleteFulfillmentRequest {
+  // The resource id of the fulfillment to be deleted.
+  int64 fulfillment_id = 1;
+}
+

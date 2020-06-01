@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "OrdersAPI",
-    "version": "1.0",
+    "version": "1.1.0",
     "contact": {
       "name": "carbon-backend-team",
       "url": "https://github.com/meshifyiot/proto-orders-api",
@@ -54,7 +54,7 @@
           }
         ],
         "tags": [
-          "OrderService"
+          "OrdersService"
         ]
       },
       "post": {
@@ -85,7 +85,7 @@
           }
         ],
         "tags": [
-          "OrderService"
+          "OrdersService"
         ]
       }
     },
@@ -109,6 +109,7 @@
         "parameters": [
           {
             "name": "customer.id",
+            "description": "A unique identifier for the customer.",
             "in": "path",
             "required": true,
             "type": "string",
@@ -124,7 +125,7 @@
           }
         ],
         "tags": [
-          "OrderService"
+          "OrdersService"
         ]
       }
     },
@@ -156,7 +157,7 @@
           }
         ],
         "tags": [
-          "OrderService"
+          "OrdersService"
         ]
       },
       "delete": {
@@ -186,7 +187,374 @@
           }
         ],
         "tags": [
-          "OrderService"
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/domains": {
+      "get": {
+        "operationId": "ListDomains",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListDomainsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page_size",
+            "description": "The maximum number of items to return.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token value returned from a previous List request, if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fqdn",
+            "description": "The fqdn adds filtering by Shopify's fqdn.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      },
+      "post": {
+        "operationId": "CreateDomain",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Domain"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "The domain resource to create.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Domain"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/domains/{domain.id}": {
+      "patch": {
+        "operationId": "UpdateDomain",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Domain"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain.id",
+            "description": "The domain ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateDomainRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/domains/{domain_id}": {
+      "get": {
+        "operationId": "GetDomain",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Domain"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain_id",
+            "description": "The field will contain id of domain.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteDomain",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain_id",
+            "description": "The resource id of the domain to be deleted.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/fulfillments": {
+      "get": {
+        "operationId": "ListFulfillments",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListFulfillmentsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page_size",
+            "description": "The maximum number of items to return.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token value returned from a previous List request, if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "domain_id",
+            "description": "The domain_id adds filtering by Shopify's domain.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "folder_id",
+            "description": "The folder_id adds filtering by folder.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      },
+      "post": {
+        "operationId": "CreateFulfillment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Fulfillment"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "The fulfillment resource to create.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Fulfillment"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/fulfillments/{fulfillment.id}": {
+      "patch": {
+        "operationId": "UpdateFulfillment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Fulfillment"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "fulfillment.id",
+            "description": "The ID for the fulfillment.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateFulfillmentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/fulfillments/{fulfillment_id}": {
+      "get": {
+        "operationId": "GetFulfillment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Fulfillment"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "fulfillment_id",
+            "description": "The field will contain id of fulfillment.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteFulfillment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "fulfillment_id",
+            "description": "The resource id of the fulfillment to be deleted.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
         ]
       }
     },
@@ -232,7 +600,7 @@
           }
         ],
         "tags": [
-          "OrderService"
+          "OrdersService"
         ]
       },
       "post": {
@@ -263,7 +631,7 @@
           }
         ],
         "tags": [
-          "OrderService"
+          "OrdersService"
         ]
       }
     },
@@ -287,6 +655,7 @@
         "parameters": [
           {
             "name": "line_item.id",
+            "description": "The ID of the line item.",
             "in": "path",
             "required": true,
             "type": "string",
@@ -302,7 +671,7 @@
           }
         ],
         "tags": [
-          "OrderService"
+          "OrdersService"
         ]
       }
     },
@@ -334,7 +703,7 @@
           }
         ],
         "tags": [
-          "OrderService"
+          "OrdersService"
         ]
       },
       "delete": {
@@ -364,7 +733,7 @@
           }
         ],
         "tags": [
-          "OrderService"
+          "OrdersService"
         ]
       }
     },
@@ -419,7 +788,7 @@
           }
         ],
         "tags": [
-          "OrderService"
+          "OrdersService"
         ]
       },
       "post": {
@@ -450,7 +819,7 @@
           }
         ],
         "tags": [
-          "OrderService"
+          "OrdersService"
         ]
       }
     },
@@ -474,6 +843,7 @@
         "parameters": [
           {
             "name": "order.id",
+            "description": "The Shopify ID of the order.",
             "in": "path",
             "required": true,
             "type": "string",
@@ -489,7 +859,7 @@
           }
         ],
         "tags": [
-          "OrderService"
+          "OrdersService"
         ]
       }
     },
@@ -521,7 +891,7 @@
           }
         ],
         "tags": [
-          "OrderService"
+          "OrdersService"
         ]
       },
       "delete": {
@@ -551,7 +921,38 @@
           }
         ],
         "tags": [
-          "OrderService"
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/tenants:getByFQDN/{fqdn}": {
+      "get": {
+        "operationId": "GetTenantByFQDN",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Tenant"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "fqdn",
+            "description": "The Shopify domain FQDN.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OrdersService"
         ]
       }
     }
@@ -561,51 +962,66 @@
       "type": "object",
       "properties": {
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "The full name of the person associated with the payment method."
         },
         "phone": {
-          "type": "string"
+          "type": "string",
+          "description": "The phone number at the shipping address."
         },
         "company": {
-          "type": "string"
+          "type": "string",
+          "description": "The company of the person associated with the shipping address."
         },
         "first_name": {
-          "type": "string"
+          "type": "string",
+          "description": "The first name of the person associated with the shipping address."
         },
         "last_name": {
-          "type": "string"
+          "type": "string",
+          "description": "The last name of the person associated with the shipping address."
         },
         "address1": {
-          "type": "string"
+          "type": "string",
+          "description": "The street address of the shipping address."
         },
         "address2": {
-          "type": "string"
+          "type": "string",
+          "description": "An optional additional field for the street address of the \nshipping address."
         },
         "city": {
-          "type": "string"
+          "type": "string",
+          "description": "The city, town, or village of the shipping address."
         },
         "province_code": {
-          "type": "string"
+          "type": "string",
+          "description": "The two-letter abbreviation of the region of the shipping address."
         },
         "province": {
-          "type": "string"
+          "type": "string",
+          "description": "The name of the region (province, state, prefecture, …) of the \nshipping address."
         },
         "zip": {
-          "type": "string"
+          "type": "string",
+          "description": "The postal code (zip, postcode, Eircode, …) of the shipping address."
         },
         "country_code": {
-          "type": "string"
+          "type": "string",
+          "description": "The two-letter code (ISO 3166-1 format) for the country of the \nshipping address."
         },
         "country": {
-          "type": "string"
+          "type": "string",
+          "description": "The name of the country of the shipping address."
         },
         "latitude": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The latitude of the shipping address."
         },
         "longitude": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The longitude of the shipping address."
         }
       }
     },
@@ -614,40 +1030,51 @@
       "properties": {
         "domain_id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The Shopify domain to which customer record belongs to."
         },
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "A unique identifier for the customer."
         },
         "created_at": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "The date and time when the customer was created."
         },
         "updated_at": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "The date and time when the customer information was last updated."
         },
         "email": {
-          "type": "string"
+          "type": "string",
+          "description": "The unique email address of the customer."
         },
         "first_name": {
-          "type": "string"
+          "type": "string",
+          "description": "The customer's first name."
         },
         "last_name": {
-          "type": "string"
+          "type": "string",
+          "description": "The customer's last name."
         },
         "state": {
-          "type": "string"
+          "type": "string",
+          "description": "The state of the customer's account with a shop. Default value: disabled.\nValid values:\ndisabled: The customer doesn't have an active account. \n  Customer accounts can be disabled from the Shopify admin at any time.\ninvited: The customer has received an email invite to create an account.\nenabled: The customer has created an account.\ndeclined: The customer declined the email invite to create an account."
         },
         "note": {
-          "type": "string"
+          "type": "string",
+          "description": "A note about the customer."
         },
         "phone": {
-          "type": "string"
+          "type": "string",
+          "description": "The unique phone number (E.164 format) for this customer."
         },
         "default_address": {
-          "$ref": "#/definitions/Address"
+          "$ref": "#/definitions/Address",
+          "description": "The default address for the customer."
         }
       }
     },
@@ -656,18 +1083,22 @@
       "properties": {
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The domain ID."
         },
         "fqdn": {
-          "type": "string"
+          "type": "string",
+          "title": "The FQDN for Shopify domain (store)"
         },
         "created_at": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "The date and time when the domain was created."
         },
         "updated_at": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "The date and time when the domain was updated."
         }
       }
     },
@@ -676,42 +1107,58 @@
       "properties": {
         "domain_id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The Shopify domain to which fulfillment record belongs to."
         },
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The ID for the fulfillment."
         },
         "order_id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The unique numeric identifier for the order."
         },
         "created_at": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "The date and time when the fulfillment was created."
         },
         "updated_at": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "The date and time when the fulfillment was updated."
         },
         "status": {
-          "type": "string"
+          "type": "string",
+          "description": "The status of the fulfillment. Valid values:\npending: The fulfillment is pending.\nopen: The fulfillment has been acknowledged by the service and is \n in processing.\nsuccess: The fulfillment was successful.\ncancelled: The fulfillment was cancelled.\nerror: There was an error with the fulfillment request.\nfailure: The fulfillment request failed."
         },
         "tracking_company": {
-          "type": "string"
+          "type": "string",
+          "description": "The name of the tracking company."
         },
-        "tracking_number": {
-          "type": "string"
+        "tracking_numbers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of tracking numbers, provided by the shipping company."
         },
-        "tracking_url": {
-          "type": "string"
+        "tracking_urls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The URLs of tracking pages for the fulfillment."
         },
         "line_item_ids": {
           "type": "array",
           "items": {
             "type": "string",
             "format": "int64"
-          }
+          },
+          "description": "A historical record of each item in the fulfillment."
         }
       }
     },
@@ -720,35 +1167,44 @@
       "properties": {
         "domain_id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The Shopify domain to which line_item record belongs to."
         },
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The ID of the line item."
         },
         "quantity": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The number of items that were purchased."
         },
         "fulfillable_quantity": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "title": "The amount available to fulfill, calculated as follows:\nquantity - max(refunded_quantity, fulfilled_quantity) -\npending_fulfilled_quantity - open_fulfilled_quantity"
         },
         "requires_shipping": {
           "type": "boolean",
-          "format": "boolean"
+          "format": "boolean",
+          "description": "Whether the item requires shipping."
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "The name of the product variant."
         },
         "title": {
-          "type": "string"
+          "type": "string",
+          "description": "The title of the product."
         },
         "sku": {
-          "type": "string"
+          "type": "string",
+          "description": "The item's SKU (stock keeping unit)."
         },
         "fulfillment_service": {
-          "type": "string"
+          "type": "string",
+          "description": "The service provider that's fulfilling the item. Valid values: \nmanual, or the name of the provider, such as amazon or shipwire."
         }
       }
     },
@@ -765,6 +1221,38 @@
         "next_page_token": {
           "type": "string",
           "description": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+        }
+      }
+    },
+    "ListDomainsResponse": {
+      "type": "object",
+      "properties": {
+        "domains": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Domain"
+          },
+          "description": "There will be a maximum number of items returned based on the page_size\nfield in the request."
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results, or empty if there are no more\nresults in the list."
+        }
+      }
+    },
+    "ListFulfillmentsResponse": {
+      "type": "object",
+      "properties": {
+        "fulfillments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fulfillment"
+          },
+          "description": "There will be a maximum number of items returned based on the page_size\nfield in the request."
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results, or empty if there are no more\nresults in the list."
         }
       }
     },
@@ -800,122 +1288,183 @@
         }
       }
     },
+    "NoteAttribute": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
     "Order": {
       "type": "object",
       "properties": {
         "domain_id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The Shopify domain to which order belongs to."
         },
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The Shopify ID of the order."
         },
         "order_number": {
           "type": "string",
           "format": "int64",
-          "title": "Customer facing order ID"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "processed_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "closed_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "cancelled_at": {
-          "type": "string",
-          "format": "date-time"
+          "description": "Customer facing order ID, used by the shop owner and customer."
         },
         "email": {
-          "type": "string"
+          "type": "string",
+          "description": "The customer's email address."
         },
         "number": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The order's position in the shop's count of orders. \nNumbers are sequential and start at 1."
         },
         "note": {
-          "type": "string"
+          "type": "string",
+          "description": "An optional note that a shop owner can attach to the order."
         },
         "token": {
-          "type": "string"
+          "type": "string",
+          "description": "A unique token for the order."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The autogenerated date and time when the order was created in Shopify. \nThe value for this property cannot be changed."
+        },
+        "processed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when an order was processed. \nThis value is the date that appears on your orders and that's used in \nthe analytic reports. By default, it matches the created_at value."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the order was last modified.\nIts value can change when no visible fields of an order have been updated."
+        },
+        "closed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the order was closed."
+        },
+        "cancelled_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the order was canceled."
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "The order name, generated by combining the order_number property with the\norder prefix and suffix that are set in the merchant's general settings.\nThis is different from the id property, which is the ID of the order used\nby the Shopify API. This field can also be set by the Shopify API \nto be any string value."
         },
         "cancel_reason": {
-          "type": "string"
-        },
-        "user_id": {
           "type": "string",
-          "format": "int64"
+          "description": "The reason why the order was canceled. Valid values:\ncustomer: The customer canceled the order.\nfraud: The order was fraudulent.\ninventory: Items in the order were not in inventory.\ndeclined: The payment was declined.\nother: A reason not in this list."
         },
         "app_id": {
           "type": "string",
-          "format": "int64"
-        },
-        "processing_method": {
-          "type": "string"
-        },
-        "source_name": {
-          "type": "string"
+          "format": "int64",
+          "description": "The ID of the Shopify app that created the order."
         },
         "contact_email": {
           "type": "string"
         },
-        "order_status_url": {
-          "type": "string"
-        },
-        "customer_id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "folder_id": {
-          "type": "integer",
-          "format": "int32",
-          "description": "ID of folder that order belongs to."
-        },
-        "billing_address": {
-          "$ref": "#/definitions/Address"
-        },
         "shipping_address": {
-          "$ref": "#/definitions/Address"
+          "$ref": "#/definitions/Address",
+          "description": "The mailing address to where the order will be shipped. \nThis address is optional and will not be available on orders that \ndo not require shipping."
         },
         "line_item_ids": {
           "type": "array",
           "items": {
             "type": "string",
             "format": "int64"
-          }
+          },
+          "description": "A list of line item objects, each containing information about an item\nin the order."
+        },
+        "customer_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Information about the customer. The order might not have a customer \nand apps should not depend on the existence of a customer object. \nThis value might be null if the order was created through Shopify POS."
+        },
+        "folder_id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "ID of folder that order belongs to."
+        },
+        "test": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Whether this is a test order."
+        },
+        "total_price": {
+          "type": "string",
+          "format": "int64",
+          "description": "The sum of all line item prices, discounts, shipping, taxes, and tips \nin the shop currency (in cents). Must be positive."
+        },
+        "subtotal_price": {
+          "type": "string",
+          "format": "int64",
+          "description": "The price of the order in the shop currency (in cents) after discounts \nbut before shipping, taxes, and tips."
+        },
+        "total_weight": {
+          "type": "string",
+          "format": "int64",
+          "description": "The sum of all line item weights in grams."
+        },
+        "total_tax": {
+          "type": "string",
+          "format": "int64",
+          "description": "The sum of all the taxes applied to the order in th shop currency \n(in cents). Must be positive."
+        },
+        "taxes_included": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Whether taxes are included in the order subtotal."
+        },
+        "currency": {
+          "type": "string",
+          "description": "The three-letter code (ISO 4217 format) for the shop currency."
+        },
+        "financial_status": {
+          "type": "string",
+          "description": "The status of payments associated with the order. \nCan only be set when the order is created. Valid values:\npending: The payments are pending. Payment might fail in this state. \n Check again to confirm whether the payments have been paid successfully.\nauthorized: The payments have been authorized.\npartially_paid: The order have been partially paid.\npaid: The payments have been paid.\npartially_refunded: The payments have been partially refunded.\nrefunded: The payments have been refunded.\nvoided: The payments have been voided."
+        },
+        "confirmed": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "total_price_usd": {
+          "type": "string",
+          "format": "int64",
+          "description": "The sum of all line item prices, discounts, shipping, taxes, and tips \nin the in USD cents. Must be positive."
+        },
+        "note_attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NoteAttribute"
+          },
+          "description": "Extra information that is added to the order. Appears in the Additional\ndetails section of an order details page. Each array entry must contain\na hash with name and value keys."
         }
-      }
+      },
+      "description": "An order is a customer's completed request to purchase one or more products\nfrom a shop. An order is created when a customer completes the checkout\nprocess, during which time they provide an email address or phone number,\nbilling address and payment information."
     },
     "Tenant": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The TenantID."
         },
         "name": {
-          "type": "string"
-        },
-        "created_at": {
           "type": "string",
-          "format": "date-time"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
+          "description": "The name of tenant."
         }
       }
     },
@@ -929,6 +1478,32 @@
         "update_mask": {
           "$ref": "#/definitions/protobufFieldMask",
           "title": "The update mask applies to the resource. For the `FieldMask` definition,\nsee https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask"
+        }
+      }
+    },
+    "UpdateDomainRequest": {
+      "type": "object",
+      "properties": {
+        "domain": {
+          "$ref": "#/definitions/Domain",
+          "description": "The domain resource which replaces the resource on the server."
+        },
+        "update_mask": {
+          "$ref": "#/definitions/protobufFieldMask",
+          "title": "The update mask applies to the resource. For the `FieldMask` definition,\nsee\nhttps://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask"
+        }
+      }
+    },
+    "UpdateFulfillmentRequest": {
+      "type": "object",
+      "properties": {
+        "fulfillment": {
+          "$ref": "#/definitions/Fulfillment",
+          "description": "The fulfillment resource which replaces the resource on the server."
+        },
+        "update_mask": {
+          "$ref": "#/definitions/protobufFieldMask",
+          "title": "The update mask applies to the resource. For the `FieldMask` definition,\nsee\nhttps://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask"
         }
       }
     },

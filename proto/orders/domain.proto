@@ -1,0 +1,73 @@
+syntax = "proto3";
+option go_package = "orders";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/field_mask.proto";
+
+message Domain {
+  // The domain ID.
+  int64 id = 1;
+
+  // The FQDN for Shopify domain (store)
+  string fqdn = 2;
+
+  // The date and time when the domain was created.
+  google.protobuf.Timestamp created_at = 3;
+  
+  // The date and time when the domain was updated.
+  google.protobuf.Timestamp updated_at = 4;
+}
+
+// --- Domains API messages ---
+
+// ListDomainsRequest
+//
+// All filter fields applied with AND operator.
+// Zero value in filter (by default) means no filtering.
+//
+message ListDomainsRequest {
+  // The maximum number of items to return.
+  int32 page_size = 1;
+
+  // The next_page_token value returned from a previous List request, if any.
+  string page_token = 2;
+
+  // The fqdn adds filtering by Shopify's fqdn.
+  string fqdn = 3;
+}
+
+message ListDomainsResponse {
+  // There will be a maximum number of items returned based on the page_size
+  // field in the request.
+  repeated Domain domains = 1;
+
+  // Token to retrieve the next page of results, or empty if there are no more
+  // results in the list.
+  string next_page_token = 2;
+}
+
+message GetDomainRequest {
+  // The field will contain id of domain.
+  int64 domain_id = 1;
+}
+
+message CreateDomainRequest {
+  // The domain resource to create.
+  Domain domain = 3;
+}
+
+message UpdateDomainRequest {
+  // The domain resource which replaces the resource on the server.
+  Domain domain = 1;
+
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see
+  // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeleteDomainRequest {
+  // The resource id of the domain to be deleted.
+  int64 domain_id = 1;
+}
+
