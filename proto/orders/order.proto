@@ -169,23 +169,32 @@ message ListOrdersResponse {
 }
 
 message GetOrderRequest {
+  // The Shopify Domain.
+  int64 domain_id = 1;
+
   // The field will contain id of order.
-  int64 order_id = 1;
+  int64 order_id = 2;
 }
 
 message CreateOrderRequest {
+  // The Shopify Domain.
+  int64 domain_id = 1;
+
   // The order resource to create.
-  Order order = 3;
+  Order order = 2;
 }
 
 message UpdateOrderRequest {
+  // The Shopify Domain.
+  int64 domain_id = 1;
+
   // The order resource which replaces the resource on the server.
-  Order order = 1;
+  Order order = 2;
 
   // The update mask applies to the resource. For the `FieldMask` definition,
   // see
   // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-  google.protobuf.FieldMask update_mask = 2;
+  google.protobuf.FieldMask update_mask = 3;
 }
 
 message DeleteOrderRequest {

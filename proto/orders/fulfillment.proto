@@ -75,27 +75,39 @@ message ListFulfillmentsResponse {
 }
 
 message GetFulfillmentRequest {
+  // The Shopify Domain.
+  int64 domain_id = 1;
+
   // The field will contain id of fulfillment.
-  int64 fulfillment_id = 1;
+  int64 fulfillment_id = 2;
 }
 
 message CreateFulfillmentRequest {
+  // The Shopify Domain.
+  int64 domain_id = 1;
+
   // The fulfillment resource to create.
-  Fulfillment fulfillment = 3;
+  Fulfillment fulfillment = 2;
 }
 
 message UpdateFulfillmentRequest {
+  // The Shopify Domain.
+  int64 domain_id = 1;
+
   // The fulfillment resource which replaces the resource on the server.
-  Fulfillment fulfillment = 1;
+  Fulfillment fulfillment = 2;
 
   // The update mask applies to the resource. For the `FieldMask` definition,
   // see
   // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-  google.protobuf.FieldMask update_mask = 2;
+  google.protobuf.FieldMask update_mask = 3;
 }
 
 message DeleteFulfillmentRequest {
+  // The Shopify Domain.
+  int64 domain_id = 1;
+
   // The resource id of the fulfillment to be deleted.
-  int64 fulfillment_id = 1;
+  int64 fulfillment_id = 2;
 }
 
