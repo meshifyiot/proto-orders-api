@@ -198,7 +198,10 @@ message UpdateOrderRequest {
 }
 
 message DeleteOrderRequest {
+  // The Shopify Domain.
+  int64 domain_id = 1;
+
   // The resource id of the order to be deleted.
-  int64 order_id = 1;
+  int64 order_id = 2;
 }
 

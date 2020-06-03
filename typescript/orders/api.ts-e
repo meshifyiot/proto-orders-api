@@ -1228,10 +1228,11 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         /**
          * 
          * @param {string} orderId The resource id of the order to be deleted.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteOrder(orderId: string, options: any = {}): FetchArgs {
+        deleteOrder(orderId: string, domainId?: string, options: any = {}): FetchArgs {
             // verify required parameter 'orderId' is not null or undefined
             if (orderId === null || orderId === undefined) {
                 throw new RequiredError('orderId','Required parameter orderId was null or undefined when calling deleteOrder.');
@@ -1242,6 +1243,10 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (domainId !== undefined) {
+                localVarQueryParameter['domain_id'] = domainId;
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1998,11 +2003,12 @@ export const OrdersServiceApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} orderId The resource id of the order to be deleted.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteOrder(orderId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).deleteOrder(orderId, options);
+        deleteOrder(orderId: string, domainId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).deleteOrder(orderId, domainId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2418,11 +2424,12 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         /**
          * 
          * @param {string} orderId The resource id of the order to be deleted.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteOrder(orderId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).deleteOrder(orderId, options)(fetch, basePath);
+        deleteOrder(orderId: string, domainId?: string, options?: any) {
+            return OrdersServiceApiFp(configuration).deleteOrder(orderId, domainId, options)(fetch, basePath);
         },
         /**
          * 
@@ -2704,12 +2711,13 @@ export class OrdersServiceApi extends BaseAPI {
     /**
      * 
      * @param {string} orderId The resource id of the order to be deleted.
+     * @param {string} [domainId] The Shopify Domain.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public deleteOrder(orderId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).deleteOrder(orderId, options)(this.fetch, this.basePath);
+    public deleteOrder(orderId: string, domainId?: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).deleteOrder(orderId, domainId, options)(this.fetch, this.basePath);
     }
 
     /**

@@ -983,6 +983,14 @@
             "required": true,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "domain_id",
+            "description": "The Shopify Domain.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
