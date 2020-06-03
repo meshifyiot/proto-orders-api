@@ -51,6 +51,14 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "domain_id",
+            "description": "The Shopify Domain.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -154,6 +162,14 @@
             "required": true,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "domain_id",
+            "description": "The Shopify Domain.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -182,6 +198,14 @@
             "description": "The resource id of the customer to be deleted.",
             "in": "path",
             "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "domain_id",
+            "description": "The Shopify Domain.",
+            "in": "query",
+            "required": false,
             "type": "string",
             "format": "int64"
           }
@@ -521,6 +545,14 @@
             "required": true,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "domain_id",
+            "description": "The Shopify Domain.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -551,6 +583,14 @@
             "required": true,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "domain_id",
+            "description": "The Shopify Domain.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -577,13 +617,6 @@
         },
         "parameters": [
           {
-            "name": "parent",
-            "description": "The parent resource name, for example, \"shelves/shelf1\".",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
             "name": "page_size",
             "description": "The maximum number of items to return.",
             "in": "query",
@@ -597,6 +630,14 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "domain_id",
+            "description": "The Shopify Domain.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -700,6 +741,14 @@
             "required": true,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "domain_id",
+            "description": "The Shopify Domain.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -728,6 +777,14 @@
             "description": "The resource id of the line_item to be deleted.",
             "in": "path",
             "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "domain_id",
+            "description": "The Shopify Domain.",
+            "in": "query",
+            "required": false,
             "type": "string",
             "format": "int64"
           }
@@ -886,6 +943,14 @@
             "description": "The field will contain id of order.",
             "in": "path",
             "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "domain_id",
+            "description": "The Shopify Domain.",
+            "in": "query",
+            "required": false,
             "type": "string",
             "format": "int64"
           }
@@ -1471,6 +1536,11 @@
     "UpdateCustomerRequest": {
       "type": "object",
       "properties": {
+        "domain_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "The Shopify Domain."
+        },
         "customer": {
           "$ref": "#/definitions/Customer",
           "description": "The customer resource which replaces the resource on the server."
@@ -1497,6 +1567,11 @@
     "UpdateFulfillmentRequest": {
       "type": "object",
       "properties": {
+        "domain_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "The Shopify Domain."
+        },
         "fulfillment": {
           "$ref": "#/definitions/Fulfillment",
           "description": "The fulfillment resource which replaces the resource on the server."
@@ -1510,6 +1585,11 @@
     "UpdateLineItemRequest": {
       "type": "object",
       "properties": {
+        "domain_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "The Shopify Domain."
+        },
         "line_item": {
           "$ref": "#/definitions/LineItem",
           "description": "The line_item resource which replaces the resource on the server."
@@ -1523,6 +1603,11 @@
     "UpdateOrderRequest": {
       "type": "object",
       "properties": {
+        "domain_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "The Shopify Domain."
+        },
         "order": {
           "$ref": "#/definitions/Order",
           "description": "The order resource which replaces the resource on the server."

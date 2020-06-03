@@ -819,6 +819,12 @@ export interface Tenant {
  */
 export interface UpdateCustomerRequest {
     /**
+     * The Shopify Domain.
+     * @type {string}
+     * @memberof UpdateCustomerRequest
+     */
+    domainId?: string;
+    /**
      * The customer resource which replaces the resource on the server.
      * @type {Customer}
      * @memberof UpdateCustomerRequest
@@ -859,6 +865,12 @@ export interface UpdateDomainRequest {
  */
 export interface UpdateFulfillmentRequest {
     /**
+     * The Shopify Domain.
+     * @type {string}
+     * @memberof UpdateFulfillmentRequest
+     */
+    domainId?: string;
+    /**
      * The fulfillment resource which replaces the resource on the server.
      * @type {Fulfillment}
      * @memberof UpdateFulfillmentRequest
@@ -879,6 +891,12 @@ export interface UpdateFulfillmentRequest {
  */
 export interface UpdateLineItemRequest {
     /**
+     * The Shopify Domain.
+     * @type {string}
+     * @memberof UpdateLineItemRequest
+     */
+    domainId?: string;
+    /**
      * The line_item resource which replaces the resource on the server.
      * @type {LineItem}
      * @memberof UpdateLineItemRequest
@@ -898,6 +916,12 @@ export interface UpdateLineItemRequest {
  * @interface UpdateOrderRequest
  */
 export interface UpdateOrderRequest {
+    /**
+     * The Shopify Domain.
+     * @type {string}
+     * @memberof UpdateOrderRequest
+     */
+    domainId?: string;
     /**
      * The order resource which replaces the resource on the server.
      * @type {Order}
@@ -1077,10 +1101,11 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         /**
          * 
          * @param {string} customerId The resource id of the customer to be deleted.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCustomer(customerId: string, options: any = {}): FetchArgs {
+        deleteCustomer(customerId: string, domainId?: string, options: any = {}): FetchArgs {
             // verify required parameter 'customerId' is not null or undefined
             if (customerId === null || customerId === undefined) {
                 throw new RequiredError('customerId','Required parameter customerId was null or undefined when calling deleteCustomer.');
@@ -1091,6 +1116,10 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (domainId !== undefined) {
+                localVarQueryParameter['domain_id'] = domainId;
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1133,10 +1162,11 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         /**
          * 
          * @param {string} fulfillmentId The resource id of the fulfillment to be deleted.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteFulfillment(fulfillmentId: string, options: any = {}): FetchArgs {
+        deleteFulfillment(fulfillmentId: string, domainId?: string, options: any = {}): FetchArgs {
             // verify required parameter 'fulfillmentId' is not null or undefined
             if (fulfillmentId === null || fulfillmentId === undefined) {
                 throw new RequiredError('fulfillmentId','Required parameter fulfillmentId was null or undefined when calling deleteFulfillment.');
@@ -1147,6 +1177,10 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (domainId !== undefined) {
+                localVarQueryParameter['domain_id'] = domainId;
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1161,10 +1195,11 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         /**
          * 
          * @param {string} lineItemId The resource id of the line_item to be deleted.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteLineItem(lineItemId: string, options: any = {}): FetchArgs {
+        deleteLineItem(lineItemId: string, domainId?: string, options: any = {}): FetchArgs {
             // verify required parameter 'lineItemId' is not null or undefined
             if (lineItemId === null || lineItemId === undefined) {
                 throw new RequiredError('lineItemId','Required parameter lineItemId was null or undefined when calling deleteLineItem.');
@@ -1175,6 +1210,10 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (domainId !== undefined) {
+                localVarQueryParameter['domain_id'] = domainId;
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1217,10 +1256,11 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         /**
          * 
          * @param {string} customerId The field will contain id of the resource requested.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomer(customerId: string, options: any = {}): FetchArgs {
+        getCustomer(customerId: string, domainId?: string, options: any = {}): FetchArgs {
             // verify required parameter 'customerId' is not null or undefined
             if (customerId === null || customerId === undefined) {
                 throw new RequiredError('customerId','Required parameter customerId was null or undefined when calling getCustomer.');
@@ -1231,6 +1271,10 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (domainId !== undefined) {
+                localVarQueryParameter['domain_id'] = domainId;
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1273,10 +1317,11 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         /**
          * 
          * @param {string} fulfillmentId The field will contain id of fulfillment.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFulfillment(fulfillmentId: string, options: any = {}): FetchArgs {
+        getFulfillment(fulfillmentId: string, domainId?: string, options: any = {}): FetchArgs {
             // verify required parameter 'fulfillmentId' is not null or undefined
             if (fulfillmentId === null || fulfillmentId === undefined) {
                 throw new RequiredError('fulfillmentId','Required parameter fulfillmentId was null or undefined when calling getFulfillment.');
@@ -1287,6 +1332,10 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (domainId !== undefined) {
+                localVarQueryParameter['domain_id'] = domainId;
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1301,10 +1350,11 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         /**
          * 
          * @param {string} lineItemId The field will contain id of the resource requested.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLineItem(lineItemId: string, options: any = {}): FetchArgs {
+        getLineItem(lineItemId: string, domainId?: string, options: any = {}): FetchArgs {
             // verify required parameter 'lineItemId' is not null or undefined
             if (lineItemId === null || lineItemId === undefined) {
                 throw new RequiredError('lineItemId','Required parameter lineItemId was null or undefined when calling getLineItem.');
@@ -1315,6 +1365,10 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (domainId !== undefined) {
+                localVarQueryParameter['domain_id'] = domainId;
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1329,10 +1383,11 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         /**
          * 
          * @param {string} orderId The field will contain id of order.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrder(orderId: string, options: any = {}): FetchArgs {
+        getOrder(orderId: string, domainId?: string, options: any = {}): FetchArgs {
             // verify required parameter 'orderId' is not null or undefined
             if (orderId === null || orderId === undefined) {
                 throw new RequiredError('orderId','Required parameter orderId was null or undefined when calling getOrder.');
@@ -1343,6 +1398,10 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (domainId !== undefined) {
+                localVarQueryParameter['domain_id'] = domainId;
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1386,10 +1445,11 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
          * 
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listCustomers(pageSize?: number, pageToken?: string, options: any = {}): FetchArgs {
+        listCustomers(pageSize?: number, pageToken?: string, domainId?: string, options: any = {}): FetchArgs {
             const localVarPath = `/v1/customers`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1402,6 +1462,10 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
 
             if (pageToken !== undefined) {
                 localVarQueryParameter['page_token'] = pageToken;
+            }
+
+            if (domainId !== undefined) {
+                localVarQueryParameter['domain_id'] = domainId;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1495,22 +1559,18 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {string} [parent] The parent resource name, for example, \&quot;shelves/shelf1\&quot;.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listLineItems(parent?: string, pageSize?: number, pageToken?: string, options: any = {}): FetchArgs {
+        listLineItems(pageSize?: number, pageToken?: string, domainId?: string, options: any = {}): FetchArgs {
             const localVarPath = `/v1/line_items`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            if (parent !== undefined) {
-                localVarQueryParameter['parent'] = parent;
-            }
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['page_size'] = pageSize;
@@ -1518,6 +1578,10 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
 
             if (pageToken !== undefined) {
                 localVarQueryParameter['page_token'] = pageToken;
+            }
+
+            if (domainId !== undefined) {
+                localVarQueryParameter['domain_id'] = domainId;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1864,11 +1928,12 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         /**
          * 
          * @param {string} customerId The resource id of the customer to be deleted.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCustomer(customerId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).deleteCustomer(customerId, options);
+        deleteCustomer(customerId: string, domainId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).deleteCustomer(customerId, domainId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1902,11 +1967,12 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         /**
          * 
          * @param {string} fulfillmentId The resource id of the fulfillment to be deleted.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteFulfillment(fulfillmentId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).deleteFulfillment(fulfillmentId, options);
+        deleteFulfillment(fulfillmentId: string, domainId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).deleteFulfillment(fulfillmentId, domainId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1921,11 +1987,12 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         /**
          * 
          * @param {string} lineItemId The resource id of the line_item to be deleted.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteLineItem(lineItemId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).deleteLineItem(lineItemId, options);
+        deleteLineItem(lineItemId: string, domainId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).deleteLineItem(lineItemId, domainId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1959,11 +2026,12 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         /**
          * 
          * @param {string} customerId The field will contain id of the resource requested.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomer(customerId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Customer> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).getCustomer(customerId, options);
+        getCustomer(customerId: string, domainId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Customer> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).getCustomer(customerId, domainId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1997,11 +2065,12 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         /**
          * 
          * @param {string} fulfillmentId The field will contain id of fulfillment.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFulfillment(fulfillmentId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Fulfillment> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).getFulfillment(fulfillmentId, options);
+        getFulfillment(fulfillmentId: string, domainId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Fulfillment> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).getFulfillment(fulfillmentId, domainId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2016,11 +2085,12 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         /**
          * 
          * @param {string} lineItemId The field will contain id of the resource requested.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLineItem(lineItemId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LineItem> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).getLineItem(lineItemId, options);
+        getLineItem(lineItemId: string, domainId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LineItem> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).getLineItem(lineItemId, domainId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2035,11 +2105,12 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         /**
          * 
          * @param {string} orderId The field will contain id of order.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrder(orderId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Order> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).getOrder(orderId, options);
+        getOrder(orderId: string, domainId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Order> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).getOrder(orderId, domainId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2074,11 +2145,12 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
          * 
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listCustomers(pageSize?: number, pageToken?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListCustomersResponse> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).listCustomers(pageSize, pageToken, options);
+        listCustomers(pageSize?: number, pageToken?: string, domainId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListCustomersResponse> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).listCustomers(pageSize, pageToken, domainId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2135,14 +2207,14 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
-         * @param {string} [parent] The parent resource name, for example, \&quot;shelves/shelf1\&quot;.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listLineItems(parent?: string, pageSize?: number, pageToken?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListLineItemsResponse> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).listLineItems(parent, pageSize, pageToken, options);
+        listLineItems(pageSize?: number, pageToken?: string, domainId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListLineItemsResponse> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).listLineItems(pageSize, pageToken, domainId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2333,11 +2405,12 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         /**
          * 
          * @param {string} customerId The resource id of the customer to be deleted.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCustomer(customerId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).deleteCustomer(customerId, options)(fetch, basePath);
+        deleteCustomer(customerId: string, domainId?: string, options?: any) {
+            return OrdersServiceApiFp(configuration).deleteCustomer(customerId, domainId, options)(fetch, basePath);
         },
         /**
          * 
@@ -2351,20 +2424,22 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         /**
          * 
          * @param {string} fulfillmentId The resource id of the fulfillment to be deleted.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteFulfillment(fulfillmentId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).deleteFulfillment(fulfillmentId, options)(fetch, basePath);
+        deleteFulfillment(fulfillmentId: string, domainId?: string, options?: any) {
+            return OrdersServiceApiFp(configuration).deleteFulfillment(fulfillmentId, domainId, options)(fetch, basePath);
         },
         /**
          * 
          * @param {string} lineItemId The resource id of the line_item to be deleted.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteLineItem(lineItemId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).deleteLineItem(lineItemId, options)(fetch, basePath);
+        deleteLineItem(lineItemId: string, domainId?: string, options?: any) {
+            return OrdersServiceApiFp(configuration).deleteLineItem(lineItemId, domainId, options)(fetch, basePath);
         },
         /**
          * 
@@ -2378,11 +2453,12 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         /**
          * 
          * @param {string} customerId The field will contain id of the resource requested.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomer(customerId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).getCustomer(customerId, options)(fetch, basePath);
+        getCustomer(customerId: string, domainId?: string, options?: any) {
+            return OrdersServiceApiFp(configuration).getCustomer(customerId, domainId, options)(fetch, basePath);
         },
         /**
          * 
@@ -2396,29 +2472,32 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         /**
          * 
          * @param {string} fulfillmentId The field will contain id of fulfillment.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFulfillment(fulfillmentId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).getFulfillment(fulfillmentId, options)(fetch, basePath);
+        getFulfillment(fulfillmentId: string, domainId?: string, options?: any) {
+            return OrdersServiceApiFp(configuration).getFulfillment(fulfillmentId, domainId, options)(fetch, basePath);
         },
         /**
          * 
          * @param {string} lineItemId The field will contain id of the resource requested.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLineItem(lineItemId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).getLineItem(lineItemId, options)(fetch, basePath);
+        getLineItem(lineItemId: string, domainId?: string, options?: any) {
+            return OrdersServiceApiFp(configuration).getLineItem(lineItemId, domainId, options)(fetch, basePath);
         },
         /**
          * 
          * @param {string} orderId The field will contain id of order.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrder(orderId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).getOrder(orderId, options)(fetch, basePath);
+        getOrder(orderId: string, domainId?: string, options?: any) {
+            return OrdersServiceApiFp(configuration).getOrder(orderId, domainId, options)(fetch, basePath);
         },
         /**
          * 
@@ -2433,11 +2512,12 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
          * 
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listCustomers(pageSize?: number, pageToken?: string, options?: any) {
-            return OrdersServiceApiFp(configuration).listCustomers(pageSize, pageToken, options)(fetch, basePath);
+        listCustomers(pageSize?: number, pageToken?: string, domainId?: string, options?: any) {
+            return OrdersServiceApiFp(configuration).listCustomers(pageSize, pageToken, domainId, options)(fetch, basePath);
         },
         /**
          * 
@@ -2464,14 +2544,14 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {string} [parent] The parent resource name, for example, \&quot;shelves/shelf1\&quot;.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {string} [domainId] The Shopify Domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listLineItems(parent?: string, pageSize?: number, pageToken?: string, options?: any) {
-            return OrdersServiceApiFp(configuration).listLineItems(parent, pageSize, pageToken, options)(fetch, basePath);
+        listLineItems(pageSize?: number, pageToken?: string, domainId?: string, options?: any) {
+            return OrdersServiceApiFp(configuration).listLineItems(pageSize, pageToken, domainId, options)(fetch, basePath);
         },
         /**
          * 
@@ -2603,12 +2683,13 @@ export class OrdersServiceApi extends BaseAPI {
     /**
      * 
      * @param {string} customerId The resource id of the customer to be deleted.
+     * @param {string} [domainId] The Shopify Domain.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public deleteCustomer(customerId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).deleteCustomer(customerId, options)(this.fetch, this.basePath);
+    public deleteCustomer(customerId: string, domainId?: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).deleteCustomer(customerId, domainId, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -2625,23 +2706,25 @@ export class OrdersServiceApi extends BaseAPI {
     /**
      * 
      * @param {string} fulfillmentId The resource id of the fulfillment to be deleted.
+     * @param {string} [domainId] The Shopify Domain.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public deleteFulfillment(fulfillmentId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).deleteFulfillment(fulfillmentId, options)(this.fetch, this.basePath);
+    public deleteFulfillment(fulfillmentId: string, domainId?: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).deleteFulfillment(fulfillmentId, domainId, options)(this.fetch, this.basePath);
     }
 
     /**
      * 
      * @param {string} lineItemId The resource id of the line_item to be deleted.
+     * @param {string} [domainId] The Shopify Domain.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public deleteLineItem(lineItemId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).deleteLineItem(lineItemId, options)(this.fetch, this.basePath);
+    public deleteLineItem(lineItemId: string, domainId?: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).deleteLineItem(lineItemId, domainId, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -2658,12 +2741,13 @@ export class OrdersServiceApi extends BaseAPI {
     /**
      * 
      * @param {string} customerId The field will contain id of the resource requested.
+     * @param {string} [domainId] The Shopify Domain.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public getCustomer(customerId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).getCustomer(customerId, options)(this.fetch, this.basePath);
+    public getCustomer(customerId: string, domainId?: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).getCustomer(customerId, domainId, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -2680,34 +2764,37 @@ export class OrdersServiceApi extends BaseAPI {
     /**
      * 
      * @param {string} fulfillmentId The field will contain id of fulfillment.
+     * @param {string} [domainId] The Shopify Domain.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public getFulfillment(fulfillmentId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).getFulfillment(fulfillmentId, options)(this.fetch, this.basePath);
+    public getFulfillment(fulfillmentId: string, domainId?: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).getFulfillment(fulfillmentId, domainId, options)(this.fetch, this.basePath);
     }
 
     /**
      * 
      * @param {string} lineItemId The field will contain id of the resource requested.
+     * @param {string} [domainId] The Shopify Domain.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public getLineItem(lineItemId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).getLineItem(lineItemId, options)(this.fetch, this.basePath);
+    public getLineItem(lineItemId: string, domainId?: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).getLineItem(lineItemId, domainId, options)(this.fetch, this.basePath);
     }
 
     /**
      * 
      * @param {string} orderId The field will contain id of order.
+     * @param {string} [domainId] The Shopify Domain.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public getOrder(orderId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).getOrder(orderId, options)(this.fetch, this.basePath);
+    public getOrder(orderId: string, domainId?: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).getOrder(orderId, domainId, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -2725,12 +2812,13 @@ export class OrdersServiceApi extends BaseAPI {
      * 
      * @param {number} [pageSize] The maximum number of items to return.
      * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+     * @param {string} [domainId] The Shopify Domain.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public listCustomers(pageSize?: number, pageToken?: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).listCustomers(pageSize, pageToken, options)(this.fetch, this.basePath);
+    public listCustomers(pageSize?: number, pageToken?: string, domainId?: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).listCustomers(pageSize, pageToken, domainId, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -2762,15 +2850,15 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
-     * @param {string} [parent] The parent resource name, for example, \&quot;shelves/shelf1\&quot;.
      * @param {number} [pageSize] The maximum number of items to return.
      * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+     * @param {string} [domainId] The Shopify Domain.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public listLineItems(parent?: string, pageSize?: number, pageToken?: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).listLineItems(parent, pageSize, pageToken, options)(this.fetch, this.basePath);
+    public listLineItems(pageSize?: number, pageToken?: string, domainId?: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).listLineItems(pageSize, pageToken, domainId, options)(this.fetch, this.basePath);
     }
 
     /**
