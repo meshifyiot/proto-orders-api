@@ -85,6 +85,12 @@ export class RequiredError extends Error {
  */
 export interface Address {
     /**
+     * The Shopify domain to which address record belongs to.
+     * @type {string}
+     * @memberof Address
+     */
+    domainId?: string;
+    /**
      * The full name of the person associated with the payment method.
      * @type {string}
      * @memberof Address

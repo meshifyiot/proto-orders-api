@@ -2,6 +2,9 @@ syntax = "proto3";
 option go_package = "orders";
 
 message Address {
+  // The Shopify domain to which address record belongs to.
+  int64 domain_id = 1;
+
   // The full name of the person associated with the payment method.
   string name = 2;
 

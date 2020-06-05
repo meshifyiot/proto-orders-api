@@ -1034,6 +1034,11 @@
     "Address": {
       "type": "object",
       "properties": {
+        "domain_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "The Shopify domain to which address record belongs to."
+        },
         "name": {
           "type": "string",
           "description": "The full name of the person associated with the payment method."
