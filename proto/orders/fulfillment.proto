@@ -5,8 +5,8 @@ import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 
 message Fulfillment {
-  // The Shopify domain to which fulfillment record belongs to.
-  int64 domain_id = 1;
+  // The Shopify Store to which fulfillment record belongs to.
+  int64 shop_id = 1;
 
   // The ID for the fulfillment.
   int64 id = 2;
@@ -57,8 +57,8 @@ message ListFulfillmentsRequest {
   // The next_page_token value returned from a previous List request, if any.
   string page_token = 2;
 
-  // The domain_id adds filtering by Shopify's domain.
-  int64 domain_id = 3;
+  // The shop_id adds filtering by Shopify's shop.
+  int64 shop_id = 3;
 
   // The folder_id adds filtering by folder.
   int64 folder_id = 4;
@@ -75,24 +75,24 @@ message ListFulfillmentsResponse {
 }
 
 message GetFulfillmentRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The field will contain id of fulfillment.
   int64 fulfillment_id = 2;
 }
 
 message CreateFulfillmentRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The fulfillment resource to create.
   Fulfillment fulfillment = 2;
 }
 
 message UpdateFulfillmentRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The fulfillment resource which replaces the resource on the server.
   Fulfillment fulfillment = 2;
@@ -104,8 +104,8 @@ message UpdateFulfillmentRequest {
 }
 
 message DeleteFulfillmentRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The resource id of the fulfillment to be deleted.
   int64 fulfillment_id = 2;

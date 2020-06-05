@@ -5,7 +5,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 import "orders/tenant.proto";
-import "orders/domain.proto";
+import "orders/shop.proto";
 import "orders/line_item.proto";
 import "orders/customer.proto";
 import "orders/order.proto";
@@ -135,42 +135,42 @@ service OrdersService {
     };
   }
 
-  // --- Shopify Domains API ---
+  // --- Shopify Stores API ---
 
-  // ListDomains returns paginated list of domains.
-  rpc ListDomains(ListDomainsRequest) returns (ListDomainsResponse) {
+  // ListShops returns paginated list of shops.
+  rpc ListShops(ListShopsRequest) returns (ListShopsResponse) {
     option (google.api.http) = {
-      get : "/v1/domains"
+      get : "/v1/shops"
     };
   }
     
-  // GetDomain returns a domain.
-  rpc GetDomain(GetDomainRequest) returns (Domain) {
+  // GetShop returns a shop.
+  rpc GetShop(GetShopRequest) returns (Shop) {
     option (google.api.http) = {
-      get : "/v1/domains/{domain_id}"
+      get : "/v1/shops/{shop_id}"
     };
   }
 
-  // CreateDomain creates a domain.
-  rpc CreateDomain(CreateDomainRequest) returns (Domain) {
+  // CreateShop creates a shop.
+  rpc CreateShop(CreateShopRequest) returns (Shop) {
     option (google.api.http) = {
-      post : "/v1/domains"
-      body : "domain"
+      post : "/v1/shops"
+      body : "shop"
     };
   }
 
-  // UpdateDomain updates a domain.
-  rpc UpdateDomain(UpdateDomainRequest) returns (Domain) {
+  // UpdateShop updates a shop.
+  rpc UpdateShop(UpdateShopRequest) returns (Shop) {
     option (google.api.http) = {
-      patch : "/v1/domains/{domain.id}"
+      patch : "/v1/shops/{shop.id}"
       body : "*"
     };
   }
 
-  // DeleteDomain deletes a domain.
-  rpc DeleteDomain(DeleteDomainRequest) returns (google.protobuf.Empty) {
+  // DeleteShop deletes a shop.
+  rpc DeleteShop(DeleteShopRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete : "/v1/domains/{domain_id}"
+      delete : "/v1/shops/{shop_id}"
     };
   }
 
@@ -215,10 +215,10 @@ service OrdersService {
 
   // --- Tenants API ---
 
-  // GetTenant returns a tenant by Shopify domain FQDN.
-  rpc GetTenantByFQDN(GetTenantByFQDNRequest) returns (Tenant) {
+  // GetTenant returns a tenant by Shopify Store domain.
+  rpc GetTenantByShopDomain(GetTenantByShopDomainRequest) returns (Tenant) {
     option (google.api.http) = {
-      get : "/v1/tenants:getByFQDN/{fqdn}"
+      get : "/v1/tenants:getByShopDomain/{domain}"
     };
   }
 }

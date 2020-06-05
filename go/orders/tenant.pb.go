@@ -70,63 +70,64 @@ func (m *Tenant) GetName() string {
 	return ""
 }
 
-type GetTenantByFQDNRequest struct {
-	// The Shopify domain FQDN.
-	Fqdn                 string   `protobuf:"bytes,1,opt,name=fqdn,proto3" json:"fqdn,omitempty"`
+type GetTenantByShopDomainRequest struct {
+	// The Shopify Store domain.
+	Domain               string   `protobuf:"bytes,1,opt,name=domain,proto3" json:"domain,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetTenantByFQDNRequest) Reset()         { *m = GetTenantByFQDNRequest{} }
-func (m *GetTenantByFQDNRequest) String() string { return proto.CompactTextString(m) }
-func (*GetTenantByFQDNRequest) ProtoMessage()    {}
-func (*GetTenantByFQDNRequest) Descriptor() ([]byte, []int) {
+func (m *GetTenantByShopDomainRequest) Reset()         { *m = GetTenantByShopDomainRequest{} }
+func (m *GetTenantByShopDomainRequest) String() string { return proto.CompactTextString(m) }
+func (*GetTenantByShopDomainRequest) ProtoMessage()    {}
+func (*GetTenantByShopDomainRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_eb9b6c86b5bee59d, []int{1}
 }
 
-func (m *GetTenantByFQDNRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetTenantByFQDNRequest.Unmarshal(m, b)
+func (m *GetTenantByShopDomainRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetTenantByShopDomainRequest.Unmarshal(m, b)
 }
-func (m *GetTenantByFQDNRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetTenantByFQDNRequest.Marshal(b, m, deterministic)
+func (m *GetTenantByShopDomainRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetTenantByShopDomainRequest.Marshal(b, m, deterministic)
 }
-func (m *GetTenantByFQDNRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetTenantByFQDNRequest.Merge(m, src)
+func (m *GetTenantByShopDomainRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetTenantByShopDomainRequest.Merge(m, src)
 }
-func (m *GetTenantByFQDNRequest) XXX_Size() int {
-	return xxx_messageInfo_GetTenantByFQDNRequest.Size(m)
+func (m *GetTenantByShopDomainRequest) XXX_Size() int {
+	return xxx_messageInfo_GetTenantByShopDomainRequest.Size(m)
 }
-func (m *GetTenantByFQDNRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetTenantByFQDNRequest.DiscardUnknown(m)
+func (m *GetTenantByShopDomainRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetTenantByShopDomainRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetTenantByFQDNRequest proto.InternalMessageInfo
+var xxx_messageInfo_GetTenantByShopDomainRequest proto.InternalMessageInfo
 
-func (m *GetTenantByFQDNRequest) GetFqdn() string {
+func (m *GetTenantByShopDomainRequest) GetDomain() string {
 	if m != nil {
-		return m.Fqdn
+		return m.Domain
 	}
 	return ""
 }
 
 func init() {
 	proto.RegisterType((*Tenant)(nil), "Tenant")
-	proto.RegisterType((*GetTenantByFQDNRequest)(nil), "GetTenantByFQDNRequest")
+	proto.RegisterType((*GetTenantByShopDomainRequest)(nil), "GetTenantByShopDomainRequest")
 }
 
 func init() { proto.RegisterFile("orders/tenant.proto", fileDescriptor_eb9b6c86b5bee59d) }
 
 var fileDescriptor_eb9b6c86b5bee59d = []byte{
-	// 156 bytes of a gzipped FileDescriptorProto
+	// 163 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0xce, 0x2f, 0x4a, 0x49,
 	0x2d, 0x2a, 0xd6, 0x2f, 0x49, 0xcd, 0x4b, 0xcc, 0x2b, 0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x97,
 	0x92, 0x4f, 0xcf, 0xcf, 0x4f, 0xcf, 0x49, 0xd5, 0x07, 0xf3, 0x92, 0x4a, 0xd3, 0xf4, 0x4b, 0x32,
 	0x73, 0x53, 0x8b, 0x4b, 0x12, 0x73, 0x0b, 0x20, 0x0a, 0x94, 0x74, 0xb8, 0xd8, 0x42, 0xc0, 0x1a,
 	0x84, 0xf8, 0xb8, 0x98, 0x32, 0x53, 0x24, 0x18, 0x15, 0x18, 0x35, 0x98, 0x83, 0x98, 0x32, 0x53,
 	0x84, 0x84, 0xb8, 0x58, 0xf2, 0x12, 0x73, 0x53, 0x25, 0x98, 0x14, 0x18, 0x35, 0x38, 0x83, 0xc0,
-	0x6c, 0x25, 0x1d, 0x2e, 0x31, 0xf7, 0xd4, 0x12, 0x88, 0x06, 0xa7, 0x4a, 0xb7, 0x40, 0x17, 0xbf,
-	0xa0, 0xd4, 0xc2, 0xd2, 0xd4, 0xe2, 0x12, 0x90, 0xea, 0xb4, 0xc2, 0x94, 0x3c, 0xb0, 0x7e, 0xce,
-	0x20, 0x30, 0xdb, 0x89, 0x23, 0x8a, 0x0d, 0xe2, 0xa6, 0x24, 0x36, 0xb0, 0x65, 0xc6, 0x80, 0x00,
-	0x00, 0x00, 0xff, 0xff, 0x20, 0xce, 0x7e, 0x92, 0xa4, 0x00, 0x00, 0x00,
+	0x6c, 0x25, 0x33, 0x2e, 0x19, 0xf7, 0xd4, 0x12, 0x88, 0x06, 0xa7, 0xca, 0xe0, 0x8c, 0xfc, 0x02,
+	0x97, 0xfc, 0xdc, 0xc4, 0xcc, 0xbc, 0xa0, 0xd4, 0xc2, 0xd2, 0xd4, 0xe2, 0x12, 0x21, 0x31, 0x2e,
+	0xb6, 0x14, 0xb0, 0x00, 0xd8, 0x1c, 0xce, 0x20, 0x28, 0xcf, 0x89, 0x23, 0x8a, 0x0d, 0xe2, 0xba,
+	0x24, 0x36, 0xb0, 0xb5, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0xd6, 0xba, 0x79, 0x86, 0xae,
+	0x00, 0x00, 0x00,
 }

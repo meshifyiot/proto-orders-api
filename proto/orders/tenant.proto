@@ -11,7 +11,7 @@ message Tenant {
   string name = 2;
 }
 
-message GetTenantByFQDNRequest {
-  // The Shopify domain FQDN.
-  string fqdn = 1;
+message GetTenantByShopDomainRequest {
+  // The Shopify Store domain.
+  string domain = 1;
 }

@@ -4,8 +4,8 @@ option go_package = "orders";
 import "google/protobuf/field_mask.proto";
 
 message LineItem {
-  // The Shopify domain to which line_item record belongs to.
-  int64 domain_id = 1;
+  // The Shopify Store to which line_item record belongs to.
+  int64 shop_id = 1;
 
   // The ID of the line item.
   int64 id = 2;
@@ -44,8 +44,8 @@ message ListLineItemsRequest {
   // The next_page_token value returned from a previous List request, if any.
   string page_token = 2;
 
-  // The Shopify Domain.
-  int64 domain_id = 3;
+  // The Shopify Store.
+  int64 shop_id = 3;
 }
 
 message ListLineItemsResponse {
@@ -57,16 +57,16 @@ message ListLineItemsResponse {
 }
 
 message GetLineItemRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The field will contain id of the resource requested.
   int64 line_item_id = 2;
 }
 
 message CreateLineItemRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The line_item id to use for this line_item.
   string line_item_id = 2;
@@ -76,8 +76,8 @@ message CreateLineItemRequest {
 }
 
 message UpdateLineItemRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The line_item resource which replaces the resource on the server.
   LineItem line_item = 2;
@@ -88,8 +88,8 @@ message UpdateLineItemRequest {
 }
 
 message DeleteLineItemRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The resource id of the line_item to be deleted.
   int64 line_item_id = 2;

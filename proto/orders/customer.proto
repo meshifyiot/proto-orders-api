@@ -6,8 +6,8 @@ import "google/protobuf/timestamp.proto";
 import "orders/address.proto";
 
 message Customer {
-  // The Shopify domain to which customer record belongs to.
-  int64 domain_id = 1;
+  // The Shopify Store to which customer record belongs to.
+  int64 shop_id = 1;
 
   // A unique identifier for the customer.
   int64 id = 2;
@@ -55,8 +55,8 @@ message ListCustomersRequest {
   // The next_page_token value returned from a previous List request, if any.
   string page_token = 2;
 
-  // The Shopify Domain.
-  int64 domain_id = 3;
+  // The Shopify Store.
+  int64 shop_id = 3;
 }
 
 message ListCustomersResponse {
@@ -68,24 +68,24 @@ message ListCustomersResponse {
 }
 
 message GetCustomerRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The field will contain id of the resource requested.
   int64 customer_id = 2;
 }
 
 message CreateCustomerRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The customer resource to create.
   Customer customer = 3;
 }
 
 message UpdateCustomerRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The customer resource which replaces the resource on the server.
   Customer customer = 2;
@@ -96,8 +96,8 @@ message UpdateCustomerRequest {
 }
 
 message DeleteCustomerRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The resource id of the customer to be deleted.
   int64 customer_id = 2;

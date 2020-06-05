@@ -11,8 +11,8 @@ import "orders/note_attribute.proto";
 // process, during which time they provide an email address or phone number,
 // billing address and payment information.
 message Order {
-  // The Shopify domain to which order belongs to.
-  int64 domain_id = 1;
+  // The Shopify Store to which order belongs to.
+  int64 shop_id = 1;
   
   // The Shopify ID of the order.
   int64 id = 2;
@@ -151,8 +151,8 @@ message ListOrdersRequest {
   // The next_page_token value returned from a previous List request, if any.
   string page_token = 2;
 
-  // The domain_id adds filtering by Shopify's domain.
-  int64 domain_id = 3;
+  // The shop_id adds filtering by Shopify's shop.
+  int64 shop_id = 3;
 
   // The folder_id adds filtering by folder.
   int64 folder_id = 4;
@@ -169,24 +169,24 @@ message ListOrdersResponse {
 }
 
 message GetOrderRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The field will contain id of order.
   int64 order_id = 2;
 }
 
 message CreateOrderRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The order resource to create.
   Order order = 2;
 }
 
 message UpdateOrderRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The order resource which replaces the resource on the server.
   Order order = 2;
@@ -198,8 +198,8 @@ message UpdateOrderRequest {
 }
 
 message DeleteOrderRequest {
-  // The Shopify Domain.
-  int64 domain_id = 1;
+  // The Shopify Store.
+  int64 shop_id = 1;
 
   // The resource id of the order to be deleted.
   int64 order_id = 2;

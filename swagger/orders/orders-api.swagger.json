@@ -53,8 +53,8 @@
             "type": "string"
           },
           {
-            "name": "domain_id",
-            "description": "The Shopify Domain.",
+            "name": "shop_id",
+            "description": "The Shopify Store.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -164,8 +164,8 @@
             "format": "int64"
           },
           {
-            "name": "domain_id",
-            "description": "The Shopify Domain.",
+            "name": "shop_id",
+            "description": "The Shopify Store.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -202,189 +202,10 @@
             "format": "int64"
           },
           {
-            "name": "domain_id",
-            "description": "The Shopify Domain.",
+            "name": "shop_id",
+            "description": "The Shopify Store.",
             "in": "query",
             "required": false,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "OrdersService"
-        ]
-      }
-    },
-    "/v1/domains": {
-      "get": {
-        "operationId": "ListDomains",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/ListDomainsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "page_size",
-            "description": "The maximum number of items to return.",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "page_token",
-            "description": "The next_page_token value returned from a previous List request, if any.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "fqdn",
-            "description": "The fqdn adds filtering by Shopify's fqdn.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "OrdersService"
-        ]
-      },
-      "post": {
-        "operationId": "CreateDomain",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/Domain"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "The domain resource to create.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Domain"
-            }
-          }
-        ],
-        "tags": [
-          "OrdersService"
-        ]
-      }
-    },
-    "/v1/domains/{domain.id}": {
-      "patch": {
-        "operationId": "UpdateDomain",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/Domain"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "domain.id",
-            "description": "The domain ID.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/UpdateDomainRequest"
-            }
-          }
-        ],
-        "tags": [
-          "OrdersService"
-        ]
-      }
-    },
-    "/v1/domains/{domain_id}": {
-      "get": {
-        "operationId": "GetDomain",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/Domain"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "domain_id",
-            "description": "The field will contain id of domain.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "OrdersService"
-        ]
-      },
-      "delete": {
-        "operationId": "DeleteDomain",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "domain_id",
-            "description": "The resource id of the domain to be deleted.",
-            "in": "path",
-            "required": true,
             "type": "string",
             "format": "int64"
           }
@@ -428,8 +249,8 @@
             "type": "string"
           },
           {
-            "name": "domain_id",
-            "description": "The domain_id adds filtering by Shopify's domain.",
+            "name": "shop_id",
+            "description": "The shop_id adds filtering by Shopify's shop.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -547,8 +368,8 @@
             "format": "int64"
           },
           {
-            "name": "domain_id",
-            "description": "The Shopify Domain.",
+            "name": "shop_id",
+            "description": "The Shopify Store.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -585,8 +406,8 @@
             "format": "int64"
           },
           {
-            "name": "domain_id",
-            "description": "The Shopify Domain.",
+            "name": "shop_id",
+            "description": "The Shopify Store.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -632,8 +453,8 @@
             "type": "string"
           },
           {
-            "name": "domain_id",
-            "description": "The Shopify Domain.",
+            "name": "shop_id",
+            "description": "The Shopify Store.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -743,8 +564,8 @@
             "format": "int64"
           },
           {
-            "name": "domain_id",
-            "description": "The Shopify Domain.",
+            "name": "shop_id",
+            "description": "The Shopify Store.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -781,8 +602,8 @@
             "format": "int64"
           },
           {
-            "name": "domain_id",
-            "description": "The Shopify Domain.",
+            "name": "shop_id",
+            "description": "The Shopify Store.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -828,8 +649,8 @@
             "type": "string"
           },
           {
-            "name": "domain_id",
-            "description": "The domain_id adds filtering by Shopify's domain.",
+            "name": "shop_id",
+            "description": "The shop_id adds filtering by Shopify's shop.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -947,8 +768,8 @@
             "format": "int64"
           },
           {
-            "name": "domain_id",
-            "description": "The Shopify Domain.",
+            "name": "shop_id",
+            "description": "The Shopify Store.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -985,8 +806,8 @@
             "format": "int64"
           },
           {
-            "name": "domain_id",
-            "description": "The Shopify Domain.",
+            "name": "shop_id",
+            "description": "The Shopify Store.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -998,9 +819,188 @@
         ]
       }
     },
-    "/v1/tenants:getByFQDN/{fqdn}": {
+    "/v1/shops": {
       "get": {
-        "operationId": "GetTenantByFQDN",
+        "operationId": "ListShops",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListShopsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page_size",
+            "description": "The maximum number of items to return.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token value returned from a previous List request, if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "domain",
+            "description": "The domain adds filtering by Shopify domain.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      },
+      "post": {
+        "operationId": "CreateShop",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Shop"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "The shop resource to create.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Shop"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{shop.id}": {
+      "patch": {
+        "operationId": "UpdateShop",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Shop"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop.id",
+            "description": "The shop ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateShopRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{shop_id}": {
+      "get": {
+        "operationId": "GetShop",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Shop"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The field will contain id of shop.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteShop",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The resource id of the shop to be deleted.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/tenants:getByShopDomain/{domain}": {
+      "get": {
+        "operationId": "GetTenantByShopDomain",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1017,8 +1017,8 @@
         },
         "parameters": [
           {
-            "name": "fqdn",
-            "description": "The Shopify domain FQDN.",
+            "name": "domain",
+            "description": "The Shopify Store domain.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1034,10 +1034,10 @@
     "Address": {
       "type": "object",
       "properties": {
-        "domain_id": {
+        "shop_id": {
           "type": "string",
           "format": "int64",
-          "description": "The Shopify domain to which address record belongs to."
+          "description": "The Shopify Store to which address record belongs to."
         },
         "name": {
           "type": "string",
@@ -1106,10 +1106,10 @@
     "Customer": {
       "type": "object",
       "properties": {
-        "domain_id": {
+        "shop_id": {
           "type": "string",
           "format": "int64",
-          "description": "The Shopify domain to which customer record belongs to."
+          "description": "The Shopify Store to which customer record belongs to."
         },
         "id": {
           "type": "string",
@@ -1156,37 +1156,13 @@
         }
       }
     },
-    "Domain": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64",
-          "description": "The domain ID."
-        },
-        "fqdn": {
-          "type": "string",
-          "title": "The FQDN for Shopify domain (store)"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The date and time when the domain was created."
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The date and time when the domain was updated."
-        }
-      }
-    },
     "Fulfillment": {
       "type": "object",
       "properties": {
-        "domain_id": {
+        "shop_id": {
           "type": "string",
           "format": "int64",
-          "description": "The Shopify domain to which fulfillment record belongs to."
+          "description": "The Shopify Store to which fulfillment record belongs to."
         },
         "id": {
           "type": "string",
@@ -1243,10 +1219,10 @@
     "LineItem": {
       "type": "object",
       "properties": {
-        "domain_id": {
+        "shop_id": {
           "type": "string",
           "format": "int64",
-          "description": "The Shopify domain to which line_item record belongs to."
+          "description": "The Shopify Store to which line_item record belongs to."
         },
         "id": {
           "type": "string",
@@ -1302,22 +1278,6 @@
         }
       }
     },
-    "ListDomainsResponse": {
-      "type": "object",
-      "properties": {
-        "domains": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Domain"
-          },
-          "description": "There will be a maximum number of items returned based on the page_size\nfield in the request."
-        },
-        "next_page_token": {
-          "type": "string",
-          "description": "Token to retrieve the next page of results, or empty if there are no more\nresults in the list."
-        }
-      }
-    },
     "ListFulfillmentsResponse": {
       "type": "object",
       "properties": {
@@ -1366,6 +1326,22 @@
         }
       }
     },
+    "ListShopsResponse": {
+      "type": "object",
+      "properties": {
+        "shops": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Shop"
+          },
+          "description": "There will be a maximum number of items returned based on the page_size\nfield in the request."
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results, or empty if there are no more\nresults in the list."
+        }
+      }
+    },
     "NoteAttribute": {
       "type": "object",
       "properties": {
@@ -1380,10 +1356,10 @@
     "Order": {
       "type": "object",
       "properties": {
-        "domain_id": {
+        "shop_id": {
           "type": "string",
           "format": "int64",
-          "description": "The Shopify domain to which order belongs to."
+          "description": "The Shopify Store to which order belongs to."
         },
         "id": {
           "type": "string",
@@ -1532,6 +1508,34 @@
       },
       "description": "An order is a customer's completed request to purchase one or more products\nfrom a shop. An order is created when a customer completes the checkout\nprocess, during which time they provide an email address or phone number,\nbilling address and payment information."
     },
+    "Shop": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "The shop ID."
+        },
+        "domain": {
+          "type": "string",
+          "title": "The domain for Shopify Store"
+        },
+        "name": {
+          "type": "string",
+          "title": "The name of Shopify Store"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the shop was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the shop was updated."
+        }
+      }
+    },
     "Tenant": {
       "type": "object",
       "properties": {
@@ -1549,10 +1553,10 @@
     "UpdateCustomerRequest": {
       "type": "object",
       "properties": {
-        "domain_id": {
+        "shop_id": {
           "type": "string",
           "format": "int64",
-          "description": "The Shopify Domain."
+          "description": "The Shopify Store."
         },
         "customer": {
           "$ref": "#/definitions/Customer",
@@ -1564,26 +1568,13 @@
         }
       }
     },
-    "UpdateDomainRequest": {
-      "type": "object",
-      "properties": {
-        "domain": {
-          "$ref": "#/definitions/Domain",
-          "description": "The domain resource which replaces the resource on the server."
-        },
-        "update_mask": {
-          "$ref": "#/definitions/protobufFieldMask",
-          "title": "The update mask applies to the resource. For the `FieldMask` definition,\nsee\nhttps://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask"
-        }
-      }
-    },
     "UpdateFulfillmentRequest": {
       "type": "object",
       "properties": {
-        "domain_id": {
+        "shop_id": {
           "type": "string",
           "format": "int64",
-          "description": "The Shopify Domain."
+          "description": "The Shopify Store."
         },
         "fulfillment": {
           "$ref": "#/definitions/Fulfillment",
@@ -1598,10 +1589,10 @@
     "UpdateLineItemRequest": {
       "type": "object",
       "properties": {
-        "domain_id": {
+        "shop_id": {
           "type": "string",
           "format": "int64",
-          "description": "The Shopify Domain."
+          "description": "The Shopify Store."
         },
         "line_item": {
           "$ref": "#/definitions/LineItem",
@@ -1616,14 +1607,27 @@
     "UpdateOrderRequest": {
       "type": "object",
       "properties": {
-        "domain_id": {
+        "shop_id": {
           "type": "string",
           "format": "int64",
-          "description": "The Shopify Domain."
+          "description": "The Shopify Store."
         },
         "order": {
           "$ref": "#/definitions/Order",
           "description": "The order resource which replaces the resource on the server."
+        },
+        "update_mask": {
+          "$ref": "#/definitions/protobufFieldMask",
+          "title": "The update mask applies to the resource. For the `FieldMask` definition,\nsee\nhttps://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask"
+        }
+      }
+    },
+    "UpdateShopRequest": {
+      "type": "object",
+      "properties": {
+        "shop": {
+          "$ref": "#/definitions/Shop",
+          "description": "The shop resource which replaces the resource on the server."
         },
         "update_mask": {
           "$ref": "#/definitions/protobufFieldMask",
