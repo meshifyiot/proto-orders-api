@@ -65,26 +65,20 @@ message GetLineItemRequest {
 }
 
 message CreateLineItemRequest {
-  // The Shopify Store.
-  int64 shop_id = 1;
-
   // The line_item id to use for this line_item.
-  string line_item_id = 2;
+  string line_item_id = 1;
 
   // The line_item resource to create.
-  LineItem line_item = 3;
+  LineItem line_item = 2;
 }
 
 message UpdateLineItemRequest {
-  // The Shopify Store.
-  int64 shop_id = 1;
-
   // The line_item resource which replaces the resource on the server.
-  LineItem line_item = 2;
+  LineItem line_item = 1;
 
   // The update mask applies to the resource. For the `FieldMask` definition,
   // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-  google.protobuf.FieldMask update_mask = 3;
+  google.protobuf.FieldMask update_mask = 2;
 }
 
 message DeleteLineItemRequest {

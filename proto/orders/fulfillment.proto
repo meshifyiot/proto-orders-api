@@ -46,10 +46,6 @@ message Fulfillment {
 // --- Fulfillments API messages ---
 
 // ListFulfillmentsRequest
-//
-// All filter fields applied with AND operator.
-// Zero value in filter (by default) means no filtering.
-//
 message ListFulfillmentsRequest {
   // The maximum number of items to return.
   int32 page_size = 1;
@@ -59,9 +55,6 @@ message ListFulfillmentsRequest {
 
   // The shop_id adds filtering by Shopify's shop.
   int64 shop_id = 3;
-
-  // The folder_id adds filtering by folder.
-  int64 folder_id = 4;
 }
 
 message ListFulfillmentsResponse {
@@ -83,24 +76,18 @@ message GetFulfillmentRequest {
 }
 
 message CreateFulfillmentRequest {
-  // The Shopify Store.
-  int64 shop_id = 1;
-
   // The fulfillment resource to create.
-  Fulfillment fulfillment = 2;
+  Fulfillment fulfillment = 1;
 }
 
 message UpdateFulfillmentRequest {
-  // The Shopify Store.
-  int64 shop_id = 1;
-
   // The fulfillment resource which replaces the resource on the server.
-  Fulfillment fulfillment = 2;
+  Fulfillment fulfillment = 1;
 
   // The update mask applies to the resource. For the `FieldMask` definition,
   // see
   // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-  google.protobuf.FieldMask update_mask = 3;
+  google.protobuf.FieldMask update_mask = 2;
 }
 
 message DeleteFulfillmentRequest {

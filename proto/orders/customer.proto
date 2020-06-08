@@ -77,16 +77,16 @@ message GetCustomerRequest {
 
 message CreateCustomerRequest {
   // The customer resource to create.
-  Customer customer = 3;
+  Customer customer = 1;
 }
 
 message UpdateCustomerRequest {
   // The customer resource which replaces the resource on the server.
-  Customer customer = 2;
+  Customer customer = 1;
 
   // The update mask applies to the resource. For the `FieldMask` definition,
   // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-  google.protobuf.FieldMask update_mask = 3;
+  google.protobuf.FieldMask update_mask = 2;
 }
 
 message DeleteCustomerRequest {

@@ -105,33 +105,33 @@ service OrdersService {
 
   rpc ListLineItems(ListLineItemsRequest) returns (ListLineItemsResponse) {
     option (google.api.http) = {
-      get: "/v1/line_items"
+      get: "/v1/shops/{shop_id}/line_items"
     };
   }
 
   rpc GetLineItem(GetLineItemRequest) returns (LineItem) {
     option (google.api.http) = {
-      get: "/v1/line_items/{line_item_id}"
+      get: "/v1/shops/{shop_id}/line_items/{line_item_id}"
     };
   }
 
   rpc CreateLineItem(CreateLineItemRequest) returns (LineItem) {
     option (google.api.http) = {
-      post: "/v1/line_items"
+      post: "/v1/shops/{line_item.shop_id}/line_items"
       body: "line_item"
     };
   }
 
   rpc UpdateLineItem(UpdateLineItemRequest) returns (LineItem) {
     option (google.api.http) = {
-      patch: "/v1/line_items/{line_item.id}"
+      patch: "/v1/shops/{line_item.shop_id}/line_items/{line_item.id}"
       body: "*"
     };
   }
 
   rpc DeleteLineItem(DeleteLineItemRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/v1/line_items/{line_item_id}"
+      delete: "/v1/shops/{shop_id}/line_items/{line_item_id}"
     };
   }
 
@@ -186,21 +186,21 @@ service OrdersService {
   // ListFulfillments returns paginated list of fulfillments.
   rpc ListFulfillments(ListFulfillmentsRequest) returns (ListFulfillmentsResponse) {
     option (google.api.http) = {
-      get : "/v1/fulfillments"
+      get : "/v1/shops/{shop_id}/fulfillments"
     };
   }
     
   // GetFulfillment returns a fulfillment.
   rpc GetFulfillment(GetFulfillmentRequest) returns (Fulfillment) {
     option (google.api.http) = {
-      get : "/v1/fulfillments/{fulfillment_id}"
+      get : "/v1/shops/{shop_id}/fulfillments/{fulfillment_id}"
     };
   }
 
   // CreateFulfillment creates a fulfillment.
   rpc CreateFulfillment(CreateFulfillmentRequest) returns (Fulfillment) {
     option (google.api.http) = {
-      post : "/v1/fulfillments"
+      post : "/v1/shops/{fulfillment.shop_id}/fulfillments"
       body : "fulfillment"
     };
   }
@@ -208,7 +208,7 @@ service OrdersService {
   // UpdateFulfillment updates a fulfillment.
   rpc UpdateFulfillment(UpdateFulfillmentRequest) returns (Fulfillment) {
     option (google.api.http) = {
-      patch : "/v1/fulfillments/{fulfillment.id}"
+      patch : "/v1/shops/{fulfillment.shop_id}/fulfillments/{fulfillment.id}"
       body : "*"
     };
   }
@@ -216,7 +216,7 @@ service OrdersService {
   // DeleteFulfillment deletes a fulfillment.
   rpc DeleteFulfillment(DeleteFulfillmentRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete : "/v1/fulfillments/{fulfillment_id}"
+      delete : "/v1/shops/{shop_id}/fulfillments/{fulfillment_id}"
     };
   }
 

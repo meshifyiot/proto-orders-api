@@ -178,17 +178,17 @@ message GetOrderRequest {
 
 message CreateOrderRequest {
   // The order resource to create.
-  Order order = 2;
+  Order order = 1;
 }
 
 message UpdateOrderRequest {
   // The order resource which replaces the resource on the server.
-  Order order = 2;
+  Order order = 1;
 
   // The update mask applies to the resource. For the `FieldMask` definition,
   // see
   // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-  google.protobuf.FieldMask update_mask = 3;
+  google.protobuf.FieldMask update_mask = 2;
 }
 
 message DeleteOrderRequest {
