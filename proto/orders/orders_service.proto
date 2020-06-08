@@ -151,6 +151,13 @@ service OrdersService {
     };
   }
 
+  // GetShopByDomain returns a shop by domain.
+  rpc GetShopByDomain(GetShopByDomainRequest) returns (Shop) {
+    option (google.api.http) = {
+      get : "/v1/shops:getByDomain/{domain}"
+    };
+  }
+  
   // CreateShop creates a shop.
   rpc CreateShop(CreateShopRequest) returns (Shop) {
     option (google.api.http) = {
@@ -215,7 +222,7 @@ service OrdersService {
 
   // --- Tenants API ---
 
-  // GetTenant returns a tenant by Shopify Store domain.
+  // GetTenantByShopDomain returns a tenant by Shopify Store domain.
   rpc GetTenantByShopDomain(GetTenantByShopDomainRequest) returns (Tenant) {
     option (google.api.http) = {
       get : "/v1/tenants:getByShopDomain/{domain}"

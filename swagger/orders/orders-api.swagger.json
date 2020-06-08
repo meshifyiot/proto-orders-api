@@ -998,6 +998,37 @@
         ]
       }
     },
+    "/v1/shops:getByDomain/{domain}": {
+      "get": {
+        "operationId": "GetShopByDomain",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Shop"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "The field will contain domain of shop.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
     "/v1/tenants:getByShopDomain/{domain}": {
       "get": {
         "operationId": "GetTenantByShopDomain",

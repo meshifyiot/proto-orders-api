@@ -1432,6 +1432,34 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @param {string} domain The field will contain domain of shop.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getShopByDomain(domain: string, options: any = {}): FetchArgs {
+            // verify required parameter 'domain' is not null or undefined
+            if (domain === null || domain === undefined) {
+                throw new RequiredError('domain','Required parameter domain was null or undefined when calling getShopByDomain.');
+            }
+            const localVarPath = `/v1/shops:getByDomain/{domain}`
+                .replace(`{${"domain"}}`, encodeURIComponent(String(domain)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} domain The Shopify Store domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2142,6 +2170,25 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @param {string} domain The field will contain domain of shop.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getShopByDomain(domain: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Shop> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).getShopByDomain(domain, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
          * @param {string} domain The Shopify Store domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2520,6 +2567,15 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @param {string} domain The field will contain domain of shop.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getShopByDomain(domain: string, options?: any) {
+            return OrdersServiceApiFp(configuration).getShopByDomain(domain, options)(fetch, basePath);
+        },
+        /**
+         * 
          * @param {string} domain The Shopify Store domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2815,6 +2871,17 @@ export class OrdersServiceApi extends BaseAPI {
      */
     public getShop(shopId: string, options?: any) {
         return OrdersServiceApiFp(this.configuration).getShop(shopId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} domain The field will contain domain of shop.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrdersServiceApi
+     */
+    public getShopByDomain(domain: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).getShopByDomain(domain, options)(this.fetch, this.basePath);
     }
 
     /**

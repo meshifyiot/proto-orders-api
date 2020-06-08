@@ -54,6 +54,11 @@ message GetShopRequest {
   int64 shop_id = 1;
 }
 
+message GetShopByDomainRequest {
+  // The field will contain domain of shop.
+  string domain = 1;
+}
+
 message CreateShopRequest {
   // The shop resource to create.
   Shop shop = 3;
