@@ -33,29 +33,29 @@ service OrdersService {
   // ListOrders returns paginated list of orders.
   rpc ListOrders(ListOrdersRequest) returns (ListOrdersResponse) {
     option (google.api.http) = {
-      get : "/v1/orders"
+      get : "/v1/shops/{shop_id}/orders"
     };
   }
 
   // GetOrder returns an order.
   rpc GetOrder(GetOrderRequest) returns (Order) {
     option (google.api.http) = {
-      get : "/v1/orders/{order_id}"
+      get : "/v1/shops/{shop_id}/orders/{order_id}"
     };
   }
 
   // CreateOrder creates an order.
   rpc CreateOrder(CreateOrderRequest) returns (Order) {
     option (google.api.http) = {
-      post : "/v1/orders"
-      body : "order"
+      post : "/v1/shops/{order.shop_id}/orders"
+      body : "*"
     };
   }
 
   // UpdateOrder updates an order.
   rpc UpdateOrder(UpdateOrderRequest) returns (Order) {
     option (google.api.http) = {
-      patch : "/v1/orders/{order.id}"
+      patch : "/v1/shops/{order.shop_id}/orders/{order.id}"
       body : "*"
     };
   }
@@ -63,7 +63,7 @@ service OrdersService {
   // DeleteOrder deletes an order.
   rpc DeleteOrder(DeleteOrderRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete : "/v1/orders/{order_id}"
+      delete : "/v1/shops/{shop_id}/orders/{order_id}"
     };
   }
 

@@ -154,7 +154,7 @@ message ListOrdersRequest {
   // The shop_id adds filtering by Shopify's shop.
   int64 shop_id = 3;
 
-  // The folder_id adds filtering by folder.
+  // The folder_id adds filtering by folder. Optional.
   int64 folder_id = 4;
 }
 
@@ -177,17 +177,11 @@ message GetOrderRequest {
 }
 
 message CreateOrderRequest {
-  // The Shopify Store.
-  int64 shop_id = 1;
-
   // The order resource to create.
   Order order = 2;
 }
 
 message UpdateOrderRequest {
-  // The Shopify Store.
-  int64 shop_id = 1;
-
   // The order resource which replaces the resource on the server.
   Order order = 2;
 
