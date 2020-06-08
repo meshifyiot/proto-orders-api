@@ -845,12 +845,6 @@ export interface Tenant {
  */
 export interface UpdateCustomerRequest {
     /**
-     * The Shopify Store.
-     * @type {string}
-     * @memberof UpdateCustomerRequest
-     */
-    shopId?: string;
-    /**
      * The customer resource which replaces the resource on the server.
      * @type {Customer}
      * @memberof UpdateCustomerRequest
@@ -965,16 +959,22 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
     return {
         /**
          * 
+         * @param {string} customerShopId The Shopify Store to which customer record belongs to.
          * @param {Customer} body The customer resource to create.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCustomer(body: Customer, options: any = {}): FetchArgs {
+        createCustomer(customerShopId: string, body: Customer, options: any = {}): FetchArgs {
+            // verify required parameter 'customerShopId' is not null or undefined
+            if (customerShopId === null || customerShopId === undefined) {
+                throw new RequiredError('customerShopId','Required parameter customerShopId was null or undefined when calling createCustomer.');
+            }
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling createCustomer.');
             }
-            const localVarPath = `/v1/customers`;
+            const localVarPath = `/v1/shops/{customer.shop_id}/customers`
+                .replace(`{${"customer.shop_id"}}`, encodeURIComponent(String(customerShopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1126,26 +1126,27 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @param {string} shopId The Shopify Store.
          * @param {string} customerId The resource id of the customer to be deleted.
-         * @param {string} [shopId] The Shopify Store.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCustomer(customerId: string, shopId?: string, options: any = {}): FetchArgs {
+        deleteCustomer(shopId: string, customerId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'shopId' is not null or undefined
+            if (shopId === null || shopId === undefined) {
+                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling deleteCustomer.');
+            }
             // verify required parameter 'customerId' is not null or undefined
             if (customerId === null || customerId === undefined) {
                 throw new RequiredError('customerId','Required parameter customerId was null or undefined when calling deleteCustomer.');
             }
-            const localVarPath = `/v1/customers/{customer_id}`
+            const localVarPath = `/v1/shops/{shop_id}/customers/{customer_id}`
+                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
                 .replace(`{${"customer_id"}}`, encodeURIComponent(String(customerId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            if (shopId !== undefined) {
-                localVarQueryParameter['shop_id'] = shopId;
-            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1287,26 +1288,27 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @param {string} shopId The Shopify Store.
          * @param {string} customerId The field will contain id of the resource requested.
-         * @param {string} [shopId] The Shopify Store.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomer(customerId: string, shopId?: string, options: any = {}): FetchArgs {
+        getCustomer(shopId: string, customerId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'shopId' is not null or undefined
+            if (shopId === null || shopId === undefined) {
+                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling getCustomer.');
+            }
             // verify required parameter 'customerId' is not null or undefined
             if (customerId === null || customerId === undefined) {
                 throw new RequiredError('customerId','Required parameter customerId was null or undefined when calling getCustomer.');
             }
-            const localVarPath = `/v1/customers/{customer_id}`
+            const localVarPath = `/v1/shops/{shop_id}/customers/{customer_id}`
+                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
                 .replace(`{${"customer_id"}}`, encodeURIComponent(String(customerId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            if (shopId !== undefined) {
-                localVarQueryParameter['shop_id'] = shopId;
-            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1504,14 +1506,19 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @param {string} shopId The Shopify Store.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-         * @param {string} [shopId] The Shopify Store.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listCustomers(pageSize?: number, pageToken?: string, shopId?: string, options: any = {}): FetchArgs {
-            const localVarPath = `/v1/customers`;
+        listCustomers(shopId: string, pageSize?: number, pageToken?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'shopId' is not null or undefined
+            if (shopId === null || shopId === undefined) {
+                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling listCustomers.');
+            }
+            const localVarPath = `/v1/shops/{shop_id}/customers`
+                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1523,10 +1530,6 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
 
             if (pageToken !== undefined) {
                 localVarQueryParameter['page_token'] = pageToken;
-            }
-
-            if (shopId !== undefined) {
-                localVarQueryParameter['shop_id'] = shopId;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -1700,12 +1703,17 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @param {string} customerShopId The Shopify Store to which customer record belongs to.
          * @param {string} customerId A unique identifier for the customer.
          * @param {UpdateCustomerRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCustomer(customerId: string, body: UpdateCustomerRequest, options: any = {}): FetchArgs {
+        updateCustomer(customerShopId: string, customerId: string, body: UpdateCustomerRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'customerShopId' is not null or undefined
+            if (customerShopId === null || customerShopId === undefined) {
+                throw new RequiredError('customerShopId','Required parameter customerShopId was null or undefined when calling updateCustomer.');
+            }
             // verify required parameter 'customerId' is not null or undefined
             if (customerId === null || customerId === undefined) {
                 throw new RequiredError('customerId','Required parameter customerId was null or undefined when calling updateCustomer.');
@@ -1714,7 +1722,8 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling updateCustomer.');
             }
-            const localVarPath = `/v1/customers/{customer.id}`
+            const localVarPath = `/v1/shops/{customer.shop_id}/customers/{customer.id}`
+                .replace(`{${"customer.shop_id"}}`, encodeURIComponent(String(customerShopId)))
                 .replace(`{${"customer.id"}}`, encodeURIComponent(String(customerId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
@@ -1900,12 +1909,13 @@ export const OrdersServiceApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} customerShopId The Shopify Store to which customer record belongs to.
          * @param {Customer} body The customer resource to create.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCustomer(body: Customer, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Customer> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).createCustomer(body, options);
+        createCustomer(customerShopId: string, body: Customer, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Customer> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).createCustomer(customerShopId, body, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1996,13 +2006,13 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @param {string} shopId The Shopify Store.
          * @param {string} customerId The resource id of the customer to be deleted.
-         * @param {string} [shopId] The Shopify Store.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCustomer(customerId: string, shopId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).deleteCustomer(customerId, shopId, options);
+        deleteCustomer(shopId: string, customerId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).deleteCustomer(shopId, customerId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2095,13 +2105,13 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @param {string} shopId The Shopify Store.
          * @param {string} customerId The field will contain id of the resource requested.
-         * @param {string} [shopId] The Shopify Store.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomer(customerId: string, shopId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Customer> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).getCustomer(customerId, shopId, options);
+        getCustomer(shopId: string, customerId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Customer> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).getCustomer(shopId, customerId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2232,14 +2242,14 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @param {string} shopId The Shopify Store.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-         * @param {string} [shopId] The Shopify Store.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listCustomers(pageSize?: number, pageToken?: string, shopId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListCustomersResponse> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).listCustomers(pageSize, pageToken, shopId, options);
+        listCustomers(shopId: string, pageSize?: number, pageToken?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListCustomersResponse> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).listCustomers(shopId, pageSize, pageToken, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2339,13 +2349,14 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @param {string} customerShopId The Shopify Store to which customer record belongs to.
          * @param {string} customerId A unique identifier for the customer.
          * @param {UpdateCustomerRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCustomer(customerId: string, body: UpdateCustomerRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Customer> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).updateCustomer(customerId, body, options);
+        updateCustomer(customerShopId: string, customerId: string, body: UpdateCustomerRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Customer> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).updateCustomer(customerShopId, customerId, body, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2449,12 +2460,13 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
     return {
         /**
          * 
+         * @param {string} customerShopId The Shopify Store to which customer record belongs to.
          * @param {Customer} body The customer resource to create.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCustomer(body: Customer, options?: any) {
-            return OrdersServiceApiFp(configuration).createCustomer(body, options)(fetch, basePath);
+        createCustomer(customerShopId: string, body: Customer, options?: any) {
+            return OrdersServiceApiFp(configuration).createCustomer(customerShopId, body, options)(fetch, basePath);
         },
         /**
          * 
@@ -2495,13 +2507,13 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @param {string} shopId The Shopify Store.
          * @param {string} customerId The resource id of the customer to be deleted.
-         * @param {string} [shopId] The Shopify Store.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCustomer(customerId: string, shopId?: string, options?: any) {
-            return OrdersServiceApiFp(configuration).deleteCustomer(customerId, shopId, options)(fetch, basePath);
+        deleteCustomer(shopId: string, customerId: string, options?: any) {
+            return OrdersServiceApiFp(configuration).deleteCustomer(shopId, customerId, options)(fetch, basePath);
         },
         /**
          * 
@@ -2544,13 +2556,13 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @param {string} shopId The Shopify Store.
          * @param {string} customerId The field will contain id of the resource requested.
-         * @param {string} [shopId] The Shopify Store.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomer(customerId: string, shopId?: string, options?: any) {
-            return OrdersServiceApiFp(configuration).getCustomer(customerId, shopId, options)(fetch, basePath);
+        getCustomer(shopId: string, customerId: string, options?: any) {
+            return OrdersServiceApiFp(configuration).getCustomer(shopId, customerId, options)(fetch, basePath);
         },
         /**
          * 
@@ -2611,14 +2623,14 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @param {string} shopId The Shopify Store.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-         * @param {string} [shopId] The Shopify Store.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listCustomers(pageSize?: number, pageToken?: string, shopId?: string, options?: any) {
-            return OrdersServiceApiFp(configuration).listCustomers(pageSize, pageToken, shopId, options)(fetch, basePath);
+        listCustomers(shopId: string, pageSize?: number, pageToken?: string, options?: any) {
+            return OrdersServiceApiFp(configuration).listCustomers(shopId, pageSize, pageToken, options)(fetch, basePath);
         },
         /**
          * 
@@ -2668,13 +2680,14 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @param {string} customerShopId The Shopify Store to which customer record belongs to.
          * @param {string} customerId A unique identifier for the customer.
          * @param {UpdateCustomerRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCustomer(customerId: string, body: UpdateCustomerRequest, options?: any) {
-            return OrdersServiceApiFp(configuration).updateCustomer(customerId, body, options)(fetch, basePath);
+        updateCustomer(customerShopId: string, customerId: string, body: UpdateCustomerRequest, options?: any) {
+            return OrdersServiceApiFp(configuration).updateCustomer(customerShopId, customerId, body, options)(fetch, basePath);
         },
         /**
          * 
@@ -2729,13 +2742,14 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
 export class OrdersServiceApi extends BaseAPI {
     /**
      * 
+     * @param {string} customerShopId The Shopify Store to which customer record belongs to.
      * @param {Customer} body The customer resource to create.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public createCustomer(body: Customer, options?: any) {
-        return OrdersServiceApiFp(this.configuration).createCustomer(body, options)(this.fetch, this.basePath);
+    public createCustomer(customerShopId: string, body: Customer, options?: any) {
+        return OrdersServiceApiFp(this.configuration).createCustomer(customerShopId, body, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -2785,14 +2799,14 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} shopId The Shopify Store.
      * @param {string} customerId The resource id of the customer to be deleted.
-     * @param {string} [shopId] The Shopify Store.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public deleteCustomer(customerId: string, shopId?: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).deleteCustomer(customerId, shopId, options)(this.fetch, this.basePath);
+    public deleteCustomer(shopId: string, customerId: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).deleteCustomer(shopId, customerId, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -2844,14 +2858,14 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} shopId The Shopify Store.
      * @param {string} customerId The field will contain id of the resource requested.
-     * @param {string} [shopId] The Shopify Store.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public getCustomer(customerId: string, shopId?: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).getCustomer(customerId, shopId, options)(this.fetch, this.basePath);
+    public getCustomer(shopId: string, customerId: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).getCustomer(shopId, customerId, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -2925,15 +2939,15 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} shopId The Shopify Store.
      * @param {number} [pageSize] The maximum number of items to return.
      * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-     * @param {string} [shopId] The Shopify Store.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public listCustomers(pageSize?: number, pageToken?: string, shopId?: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).listCustomers(pageSize, pageToken, shopId, options)(this.fetch, this.basePath);
+    public listCustomers(shopId: string, pageSize?: number, pageToken?: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).listCustomers(shopId, pageSize, pageToken, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -2992,14 +3006,15 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @param {string} customerShopId The Shopify Store to which customer record belongs to.
      * @param {string} customerId A unique identifier for the customer.
      * @param {UpdateCustomerRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public updateCustomer(customerId: string, body: UpdateCustomerRequest, options?: any) {
-        return OrdersServiceApiFp(this.configuration).updateCustomer(customerId, body, options)(this.fetch, this.basePath);
+    public updateCustomer(customerShopId: string, customerId: string, body: UpdateCustomerRequest, options?: any) {
+        return OrdersServiceApiFp(this.configuration).updateCustomer(customerShopId, customerId, body, options)(this.fetch, this.basePath);
     }
 
     /**

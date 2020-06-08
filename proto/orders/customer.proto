@@ -76,17 +76,11 @@ message GetCustomerRequest {
 }
 
 message CreateCustomerRequest {
-  // The Shopify Store.
-  int64 shop_id = 1;
-
   // The customer resource to create.
   Customer customer = 3;
 }
 
 message UpdateCustomerRequest {
-  // The Shopify Store.
-  int64 shop_id = 1;
-
   // The customer resource which replaces the resource on the server.
   Customer customer = 2;
 

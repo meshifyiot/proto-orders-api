@@ -71,33 +71,33 @@ service OrdersService {
 
   rpc ListCustomers(ListCustomersRequest) returns (ListCustomersResponse) {
     option (google.api.http) = {
-      get: "/v1/customers"
+      get: "/v1/shops/{shop_id}/customers"
     };
   }
 
   rpc GetCustomer(GetCustomerRequest) returns (Customer) {
     option (google.api.http) = {
-      get: "/v1/customers/{customer_id}"
+      get: "/v1/shops/{shop_id}/customers/{customer_id}"
     };
   }
 
   rpc CreateCustomer(CreateCustomerRequest) returns (Customer) {
     option (google.api.http) = {
-      post: "/v1/customers"
+      post: "/v1/shops/{customer.shop_id}/customers"
       body: "customer"
     };
   }
 
   rpc UpdateCustomer(UpdateCustomerRequest) returns (Customer) {
     option (google.api.http) = {
-      patch: "/v1/customers/{customer.id}"
+      patch: "/v1/shops/{customer.shop_id}/customers/{customer.id}"
       body: "*"
     };
   }
 
   rpc DeleteCustomer(DeleteCustomerRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/v1/customers/{customer_id}"
+      delete: "/v1/shops/{shop_id}/customers/{customer_id}"
     };
   }
 
