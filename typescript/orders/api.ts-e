@@ -1669,11 +1669,10 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
          * 
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-         * @param {string} [domain] The domain adds filtering by Shopify domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listShops(pageSize?: number, pageToken?: string, domain?: string, options: any = {}): FetchArgs {
+        listShops(pageSize?: number, pageToken?: string, options: any = {}): FetchArgs {
             const localVarPath = `/v1/shops`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1686,10 +1685,6 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
 
             if (pageToken !== undefined) {
                 localVarQueryParameter['page_token'] = pageToken;
-            }
-
-            if (domain !== undefined) {
-                localVarQueryParameter['domain'] = domain;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -2323,12 +2318,11 @@ export const OrdersServiceApiFp = function(configuration?: Configuration) {
          * 
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-         * @param {string} [domain] The domain adds filtering by Shopify domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listShops(pageSize?: number, pageToken?: string, domain?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListShopsResponse> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).listShops(pageSize, pageToken, domain, options);
+        listShops(pageSize?: number, pageToken?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListShopsResponse> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).listShops(pageSize, pageToken, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2661,12 +2655,11 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
          * 
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-         * @param {string} [domain] The domain adds filtering by Shopify domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listShops(pageSize?: number, pageToken?: string, domain?: string, options?: any) {
-            return OrdersServiceApiFp(configuration).listShops(pageSize, pageToken, domain, options)(fetch, basePath);
+        listShops(pageSize?: number, pageToken?: string, options?: any) {
+            return OrdersServiceApiFp(configuration).listShops(pageSize, pageToken, options)(fetch, basePath);
         },
         /**
          * 
@@ -2988,13 +2981,12 @@ export class OrdersServiceApi extends BaseAPI {
      * 
      * @param {number} [pageSize] The maximum number of items to return.
      * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-     * @param {string} [domain] The domain adds filtering by Shopify domain.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public listShops(pageSize?: number, pageToken?: string, domain?: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).listShops(pageSize, pageToken, domain, options)(this.fetch, this.basePath);
+    public listShops(pageSize?: number, pageToken?: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).listShops(pageSize, pageToken, options)(this.fetch, this.basePath);
     }
 
     /**

@@ -51,13 +51,6 @@
             "in": "query",
             "required": false,
             "type": "string"
-          },
-          {
-            "name": "domain",
-            "description": "The domain adds filtering by Shopify domain.",
-            "in": "query",
-            "required": false,
-            "type": "string"
           }
         ],
         "tags": [

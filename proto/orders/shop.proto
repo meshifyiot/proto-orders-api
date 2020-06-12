@@ -34,9 +34,6 @@ message ListShopsRequest {
 
   // The next_page_token value returned from a previous List request, if any.
   string page_token = 2;
-
-  // The domain adds filtering by Shopify domain.
-  string domain = 3;
 }
 
 message ListShopsResponse {
