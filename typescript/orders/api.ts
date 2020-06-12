@@ -804,18 +804,6 @@ export interface Shop {
      * @memberof Shop
      */
     name?: string;
-    /**
-     * The date and time when the shop was created.
-     * @type {Date}
-     * @memberof Shop
-     */
-    createdAt?: Date;
-    /**
-     * The date and time when the shop was updated.
-     * @type {Date}
-     * @memberof Shop
-     */
-    updatedAt?: Date;
 }
 
 /**

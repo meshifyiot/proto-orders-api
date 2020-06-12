@@ -1619,16 +1619,6 @@
         "name": {
           "type": "string",
           "title": "The name of Shopify Store"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The date and time when the shop was created."
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The date and time when the shop was updated."
         }
       }
     },

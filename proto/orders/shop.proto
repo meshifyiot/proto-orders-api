@@ -13,12 +13,6 @@ message Shop {
 
   // The name of Shopify Store
   string name = 3;
-
-  // The date and time when the shop was created.
-  google.protobuf.Timestamp created_at = 4;
-  
-  // The date and time when the shop was updated.
-  google.protobuf.Timestamp updated_at = 5;
 }
 
 // --- Shops API messages ---
