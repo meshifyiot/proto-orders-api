@@ -1,0 +1,55 @@
+syntax = "proto3";
+option go_package = "orders";
+
+message Address {
+  // The Shopify Store to which address record belongs to.
+  int64 shop_id = 1;
+
+  // The full name of the person associated with the payment method.
+  string name = 2;
+
+  // The phone number at the shipping address.
+  string phone = 3;
+
+  // The company of the person associated with the shipping address.
+  string company = 4;
+  
+  // The first name of the person associated with the shipping address.
+  string first_name = 5;
+
+  // The last name of the person associated with the shipping address.
+  string last_name = 6;
+
+  // The street address of the shipping address.
+  string address1 = 7;
+
+  // An optional additional field for the street address of the 
+  // shipping address.
+  string address2 = 8;
+
+  // The city, town, or village of the shipping address.
+  string city = 9;
+
+  // The two-letter abbreviation of the region of the shipping address.
+  string province_code = 10;
+
+  // The name of the region (province, state, prefecture, …) of the 
+  // shipping address.
+  string province = 11;
+
+  // The postal code (zip, postcode, Eircode, …) of the shipping address.
+  string zip = 12;
+
+  // The two-letter code (ISO 3166-1 format) for the country of the 
+  // shipping address.
+  string country_code = 13;
+
+  // The name of the country of the shipping address.
+  string country = 14;
+
+  // The latitude of the shipping address.
+  double latitude = 15;
+  
+  // The longitude of the shipping address.
+  double longitude = 16;
+}

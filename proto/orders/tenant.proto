@@ -1,0 +1,15 @@
+syntax = "proto3";
+option go_package = "orders";
+
+message Tenant {
+  // The TenantID.
+  int64 id = 1;
+
+  // The name of tenant.
+  string name = 2;
+}
+
+message GetTenantByShopDomainRequest {
+  // The Shopify Store domain.
+  string domain = 1;
+}
