@@ -21,7 +21,7 @@
   "paths": {
     "/v1/shops": {
       "get": {
-        "operationId": "ListShops",
+        "operationId": "OrdersService_ListShops",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -58,7 +58,7 @@
         ]
       },
       "post": {
-        "operationId": "CreateShop",
+        "operationId": "OrdersService_CreateShop",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -91,7 +91,7 @@
     },
     "/v1/shops/{customer.shop_id}/customers": {
       "post": {
-        "operationId": "CreateCustomer",
+        "operationId": "OrdersService_CreateCustomer",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -132,7 +132,7 @@
     },
     "/v1/shops/{customer.shop_id}/customers/{customer.id}": {
       "patch": {
-        "operationId": "UpdateCustomer",
+        "operationId": "OrdersService_UpdateCustomer",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -180,7 +180,7 @@
     },
     "/v1/shops/{fulfillment.shop_id}/fulfillments": {
       "post": {
-        "operationId": "CreateFulfillment",
+        "operationId": "OrdersService_CreateFulfillment",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -221,7 +221,7 @@
     },
     "/v1/shops/{fulfillment.shop_id}/fulfillments/{fulfillment.id}": {
       "patch": {
-        "operationId": "UpdateFulfillment",
+        "operationId": "OrdersService_UpdateFulfillment",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -269,7 +269,7 @@
     },
     "/v1/shops/{line_item.shop_id}/line_items": {
       "post": {
-        "operationId": "CreateLineItem",
+        "operationId": "OrdersService_CreateLineItem",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -310,7 +310,7 @@
     },
     "/v1/shops/{line_item.shop_id}/line_items/{line_item.id}": {
       "patch": {
-        "operationId": "UpdateLineItem",
+        "operationId": "OrdersService_UpdateLineItem",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -358,7 +358,7 @@
     },
     "/v1/shops/{order.shop_id}/orders": {
       "post": {
-        "operationId": "CreateOrder",
+        "operationId": "OrdersService_CreateOrder",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -398,7 +398,7 @@
     },
     "/v1/shops/{order.shop_id}/orders/{order.id}": {
       "patch": {
-        "operationId": "UpdateOrder",
+        "operationId": "OrdersService_UpdateOrder",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -446,7 +446,7 @@
     },
     "/v1/shops/{shop.id}": {
       "patch": {
-        "operationId": "UpdateShop",
+        "operationId": "OrdersService_UpdateShop",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -486,7 +486,7 @@
     },
     "/v1/shops/{shop_id}": {
       "get": {
-        "operationId": "GetShop",
+        "operationId": "OrdersService_GetShop",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -516,7 +516,7 @@
         ]
       },
       "delete": {
-        "operationId": "DeleteShop",
+        "operationId": "OrdersService_DeleteShop",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -548,7 +548,7 @@
     },
     "/v1/shops/{shop_id}/customers": {
       "get": {
-        "operationId": "ListCustomers",
+        "operationId": "OrdersService_ListCustomers",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -595,7 +595,7 @@
     },
     "/v1/shops/{shop_id}/customers/{customer_id}": {
       "get": {
-        "operationId": "GetCustomer",
+        "operationId": "OrdersService_GetCustomer",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -633,7 +633,7 @@
         ]
       },
       "delete": {
-        "operationId": "DeleteCustomer",
+        "operationId": "OrdersService_DeleteCustomer",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -673,7 +673,7 @@
     },
     "/v1/shops/{shop_id}/fulfillments": {
       "get": {
-        "operationId": "ListFulfillments",
+        "operationId": "OrdersService_ListFulfillments",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -720,7 +720,7 @@
     },
     "/v1/shops/{shop_id}/fulfillments/{fulfillment_id}": {
       "get": {
-        "operationId": "GetFulfillment",
+        "operationId": "OrdersService_GetFulfillment",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -758,7 +758,7 @@
         ]
       },
       "delete": {
-        "operationId": "DeleteFulfillment",
+        "operationId": "OrdersService_DeleteFulfillment",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -798,7 +798,7 @@
     },
     "/v1/shops/{shop_id}/line_items": {
       "get": {
-        "operationId": "ListLineItems",
+        "operationId": "OrdersService_ListLineItems",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -845,7 +845,7 @@
     },
     "/v1/shops/{shop_id}/line_items/{line_item_id}": {
       "get": {
-        "operationId": "GetLineItem",
+        "operationId": "OrdersService_GetLineItem",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -883,7 +883,7 @@
         ]
       },
       "delete": {
-        "operationId": "DeleteLineItem",
+        "operationId": "OrdersService_DeleteLineItem",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -923,7 +923,7 @@
     },
     "/v1/shops/{shop_id}/orders": {
       "get": {
-        "operationId": "ListOrders",
+        "operationId": "OrdersService_ListOrders",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -978,7 +978,7 @@
     },
     "/v1/shops/{shop_id}/orders/{order_id}": {
       "get": {
-        "operationId": "GetOrder",
+        "operationId": "OrdersService_GetOrder",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1016,7 +1016,7 @@
         ]
       },
       "delete": {
-        "operationId": "DeleteOrder",
+        "operationId": "OrdersService_DeleteOrder",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1056,7 +1056,7 @@
     },
     "/v1/shops:getByDomain/{domain}": {
       "get": {
-        "operationId": "GetShopByDomain",
+        "operationId": "OrdersService_GetShopByDomain",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1087,7 +1087,7 @@
     },
     "/v1/tenants:getByShopDomain/{domain}": {
       "get": {
-        "operationId": "GetTenantByShopDomain",
+        "operationId": "OrdersService_GetTenantByShopDomain",
         "responses": {
           "200": {
             "description": "A successful response.",

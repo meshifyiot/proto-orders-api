@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "orders";
+option go_package = "github.com/meshifyiot/proto-orders-api/go/orders";
 
 message Tenant {
   // The TenantID.
