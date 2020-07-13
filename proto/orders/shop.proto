@@ -1,0 +1,72 @@
+syntax = "proto3";
+option go_package = "orders";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/field_mask.proto";
+
+message Shop {
+  // The shop ID.
+  int64 id = 1;
+
+  // The domain for Shopify Store
+  string domain = 2;
+
+  // The name of Shopify Store
+  string name = 3;
+}
+
+// --- Shops API messages ---
+
+// ListShopsRequest
+//
+// All filter fields applied with AND operator.
+// Zero value in filter (by default) means no filtering.
+//
+message ListShopsRequest {
+  // The maximum number of items to return.
+  int32 page_size = 1;
+
+  // The next_page_token value returned from a previous List request, if any.
+  string page_token = 2;
+}
+
+message ListShopsResponse {
+  // There will be a maximum number of items returned based on the page_size
+  // field in the request.
+  repeated Shop shops = 1;
+
+  // Token to retrieve the next page of results, or empty if there are no more
+  // results in the list.
+  string next_page_token = 2;
+}
+
+message GetShopRequest {
+  // The field will contain id of shop.
+  int64 shop_id = 1;
+}
+
+message GetShopByDomainRequest {
+  // The field will contain domain of shop.
+  string domain = 1;
+}
+
+message CreateShopRequest {
+  // The shop resource to create.
+  Shop shop = 3;
+}
+
+message UpdateShopRequest {
+  // The shop resource which replaces the resource on the server.
+  Shop shop = 1;
+
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see
+  // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeleteShopRequest {
+  // The resource id of the shop to be deleted.
+  int64 shop_id = 1;
+}
+

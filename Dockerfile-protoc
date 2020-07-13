@@ -4,10 +4,10 @@ ENV PROJECT_PATH=/orders-api
 RUN apk add --no-cache make git bash protobuf protobuf-dev
 
 RUN mkdir -p $PROJECT_PATH
-COPY . $PROJECT_PATH
+COPY go.* $PROJECT_PATH/
 WORKDIR $PROJECT_PATH
 
-RUN go mod download && \
-	go install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway && \
-	go install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger && \
-	go install github.com/golang/protobuf/protoc-gen-go
+RUN go mod download && go install \
+	github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway \
+	github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger \
+	github.com/golang/protobuf/protoc-gen-go

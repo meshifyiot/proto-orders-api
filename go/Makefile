@@ -4,5 +4,7 @@ GRPC_GW_PATH := $(shell go list -f '{{ .Dir }}' github.com/grpc-ecosystem/grpc-g
 GOOGLEAPIS_PATH := "$(GRPC_GW_PATH)/third_party/googleapis"
 PROTOS := $(shell cd ../proto && find orders/*.proto)
 
-all: 	
+all:
+	@echo
+	@echo "[Generate go source files...]"
 	protoc -I=$(GOOGLEAPIS_PATH) -I=${GRPC_GW_PATH} -I=../proto --go_out=plugins=grpc:. ${PROTOS}
