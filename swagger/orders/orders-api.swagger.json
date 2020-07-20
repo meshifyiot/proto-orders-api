@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "OrdersAPI",
-    "version": "1.0",
+    "version": "1.1.0",
     "contact": {
       "name": "carbon-backend-team",
       "url": "https://github.com/meshifyiot/proto-orders-api",
@@ -18,199 +18,1433 @@
   "produces": [
     "application/json"
   ],
-  "paths": {},
+  "paths": {
+    "/v1/shops": {
+      "get": {
+        "operationId": "ListShops",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListShopsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page_size",
+            "description": "The maximum number of items to return.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token value returned from a previous List request, if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      },
+      "post": {
+        "operationId": "CreateShop",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Shop"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "The shop resource to create.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Shop"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{customer.shop_id}/customers": {
+      "post": {
+        "operationId": "CreateCustomer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "customer.shop_id",
+            "description": "The Shopify Store to which customer record belongs to.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "description": "The customer resource to create.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{customer.shop_id}/customers/{customer.id}": {
+      "patch": {
+        "operationId": "UpdateCustomer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "customer.shop_id",
+            "description": "The Shopify Store to which customer record belongs to.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "customer.id",
+            "description": "A unique identifier for the customer.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateCustomerRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{fulfillment.shop_id}/fulfillments": {
+      "post": {
+        "operationId": "CreateFulfillment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Fulfillment"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "fulfillment.shop_id",
+            "description": "The Shopify Store to which fulfillment record belongs to.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "description": "The fulfillment resource to create.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Fulfillment"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{fulfillment.shop_id}/fulfillments/{fulfillment.id}": {
+      "patch": {
+        "operationId": "UpdateFulfillment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Fulfillment"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "fulfillment.shop_id",
+            "description": "The Shopify Store to which fulfillment record belongs to.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "fulfillment.id",
+            "description": "The ID for the fulfillment.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateFulfillmentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{line_item.shop_id}/line_items": {
+      "post": {
+        "operationId": "CreateLineItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/LineItem"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "line_item.shop_id",
+            "description": "The Shopify Store to which line_item record belongs to.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "description": "The line_item resource to create.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LineItem"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{line_item.shop_id}/line_items/{line_item.id}": {
+      "patch": {
+        "operationId": "UpdateLineItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/LineItem"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "line_item.shop_id",
+            "description": "The Shopify Store to which line_item record belongs to.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "line_item.id",
+            "description": "The ID of the line item.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateLineItemRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{order.shop_id}/orders": {
+      "post": {
+        "operationId": "CreateOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "order.shop_id",
+            "description": "The Shopify Store to which order belongs to.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateOrderRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{order.shop_id}/orders/{order.id}": {
+      "patch": {
+        "operationId": "UpdateOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "order.shop_id",
+            "description": "The Shopify Store to which order belongs to.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "order.id",
+            "description": "The Shopify ID of the order.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateOrderRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{shop.id}": {
+      "patch": {
+        "operationId": "UpdateShop",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Shop"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop.id",
+            "description": "The shop ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateShopRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{shop_id}": {
+      "get": {
+        "operationId": "GetShop",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Shop"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The field will contain id of shop.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteShop",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The resource id of the shop to be deleted.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{shop_id}/customers": {
+      "get": {
+        "operationId": "ListCustomers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListCustomersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The Shopify Store.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "page_size",
+            "description": "The maximum number of items to return.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token value returned from a previous List request, if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{shop_id}/customers/{customer_id}": {
+      "get": {
+        "operationId": "GetCustomer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The Shopify Store.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "customer_id",
+            "description": "The field will contain id of the resource requested.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteCustomer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The Shopify Store.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "customer_id",
+            "description": "The resource id of the customer to be deleted.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{shop_id}/fulfillments": {
+      "get": {
+        "operationId": "ListFulfillments",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListFulfillmentsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The shop_id adds filtering by Shopify's shop.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "page_size",
+            "description": "The maximum number of items to return.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token value returned from a previous List request, if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{shop_id}/fulfillments/{fulfillment_id}": {
+      "get": {
+        "operationId": "GetFulfillment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Fulfillment"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The Shopify Store.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "fulfillment_id",
+            "description": "The field will contain id of fulfillment.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteFulfillment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The Shopify Store.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "fulfillment_id",
+            "description": "The resource id of the fulfillment to be deleted.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{shop_id}/line_items": {
+      "get": {
+        "operationId": "ListLineItems",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListLineItemsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The Shopify Store.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "page_size",
+            "description": "The maximum number of items to return.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token value returned from a previous List request, if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{shop_id}/line_items/{line_item_id}": {
+      "get": {
+        "operationId": "GetLineItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/LineItem"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The Shopify Store.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "line_item_id",
+            "description": "The field will contain id of the resource requested.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteLineItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The Shopify Store.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "line_item_id",
+            "description": "The resource id of the line_item to be deleted.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{shop_id}/orders": {
+      "get": {
+        "operationId": "ListOrders",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListOrdersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The shop_id adds filtering by Shopify's shop.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "page_size",
+            "description": "The maximum number of items to return.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token value returned from a previous List request, if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "folder_id",
+            "description": "The folder_id adds filtering by folder. Optional.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops/{shop_id}/orders/{order_id}": {
+      "get": {
+        "operationId": "GetOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The Shopify Store.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "order_id",
+            "description": "The field will contain id of order.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shop_id",
+            "description": "The Shopify Store.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "order_id",
+            "description": "The resource id of the order to be deleted.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/shops:getByDomain/{domain}": {
+      "get": {
+        "operationId": "GetShopByDomain",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Shop"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "The field will contain domain of shop.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    },
+    "/v1/tenants:getByShopDomain/{domain}": {
+      "get": {
+        "operationId": "GetTenantByShopDomain",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Tenant"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "description": "The Shopify Store domain.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OrdersService"
+        ]
+      }
+    }
+  },
   "definitions": {
     "Address": {
       "type": "object",
       "properties": {
+        "shop_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "The Shopify Store to which address record belongs to."
+        },
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "The full name of the person associated with the payment method."
         },
         "phone": {
-          "type": "string"
+          "type": "string",
+          "description": "The phone number at the shipping address."
         },
         "company": {
-          "type": "string"
+          "type": "string",
+          "description": "The company of the person associated with the shipping address."
         },
         "first_name": {
-          "type": "string"
+          "type": "string",
+          "description": "The first name of the person associated with the shipping address."
         },
         "last_name": {
-          "type": "string"
+          "type": "string",
+          "description": "The last name of the person associated with the shipping address."
         },
         "address1": {
-          "type": "string"
+          "type": "string",
+          "description": "The street address of the shipping address."
         },
         "address2": {
-          "type": "string"
+          "type": "string",
+          "description": "An optional additional field for the street address of the \nshipping address."
         },
         "city": {
-          "type": "string"
+          "type": "string",
+          "description": "The city, town, or village of the shipping address."
         },
         "province_code": {
-          "type": "string"
+          "type": "string",
+          "description": "The two-letter abbreviation of the region of the shipping address."
         },
         "province": {
-          "type": "string"
+          "type": "string",
+          "description": "The name of the region (province, state, prefecture, …) of the \nshipping address."
         },
         "zip": {
-          "type": "string"
+          "type": "string",
+          "description": "The postal code (zip, postcode, Eircode, …) of the shipping address."
         },
         "country_code": {
-          "type": "string"
+          "type": "string",
+          "description": "The two-letter code (ISO 3166-1 format) for the country of the \nshipping address."
         },
         "country": {
-          "type": "string"
+          "type": "string",
+          "description": "The name of the country of the shipping address."
         },
         "latitude": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The latitude of the shipping address."
         },
         "longitude": {
           "type": "number",
-          "format": "double"
+          "format": "double",
+          "description": "The longitude of the shipping address."
+        }
+      }
+    },
+    "CreateOrderRequest": {
+      "type": "object",
+      "properties": {
+        "order": {
+          "$ref": "#/definitions/Order",
+          "description": "The order resource to create."
         }
       }
     },
     "Customer": {
       "type": "object",
       "properties": {
-        "domain_id": {
+        "shop_id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The Shopify Store to which customer record belongs to."
         },
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "A unique identifier for the customer."
         },
         "created_at": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "The date and time when the customer was created."
         },
         "updated_at": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "The date and time when the customer information was last updated."
         },
         "email": {
-          "type": "string"
+          "type": "string",
+          "description": "The unique email address of the customer."
         },
         "first_name": {
-          "type": "string"
+          "type": "string",
+          "description": "The customer's first name."
         },
         "last_name": {
-          "type": "string"
+          "type": "string",
+          "description": "The customer's last name."
         },
         "state": {
-          "type": "string"
+          "type": "string",
+          "description": "The state of the customer's account with a shop. Default value: disabled.\nValid values:\ndisabled: The customer doesn't have an active account. \n  Customer accounts can be disabled from the Shopify admin at any time.\ninvited: The customer has received an email invite to create an account.\nenabled: The customer has created an account.\ndeclined: The customer declined the email invite to create an account."
         },
         "note": {
-          "type": "string"
+          "type": "string",
+          "description": "A note about the customer."
         },
         "phone": {
-          "type": "string"
+          "type": "string",
+          "description": "The unique phone number (E.164 format) for this customer."
         },
         "default_address": {
-          "$ref": "#/definitions/Address"
-        }
-      }
-    },
-    "Domain": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "fqdn": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
+          "$ref": "#/definitions/Address",
+          "description": "The default address for the customer."
         }
       }
     },
     "Fulfillment": {
       "type": "object",
       "properties": {
-        "domain_id": {
+        "shop_id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The Shopify Store to which fulfillment record belongs to."
         },
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The ID for the fulfillment."
         },
         "order_id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The unique numeric identifier for the order."
         },
         "created_at": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "The date and time when the fulfillment was created."
         },
         "updated_at": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "The date and time when the fulfillment was updated."
         },
         "status": {
-          "type": "string"
+          "type": "string",
+          "description": "The status of the fulfillment. Valid values:\npending: The fulfillment is pending.\nopen: The fulfillment has been acknowledged by the service and is \n in processing.\nsuccess: The fulfillment was successful.\ncancelled: The fulfillment was cancelled.\nerror: There was an error with the fulfillment request.\nfailure: The fulfillment request failed."
         },
         "tracking_company": {
-          "type": "string"
+          "type": "string",
+          "description": "The name of the tracking company."
         },
-        "tracking_number": {
-          "type": "string"
+        "tracking_numbers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of tracking numbers, provided by the shipping company."
         },
-        "tracking_url": {
-          "type": "string"
+        "tracking_urls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The URLs of tracking pages for the fulfillment."
         },
         "line_item_ids": {
           "type": "array",
           "items": {
             "type": "string",
             "format": "int64"
-          }
+          },
+          "description": "A historical record of each item in the fulfillment."
         }
       }
     },
     "LineItem": {
       "type": "object",
       "properties": {
-        "domain_id": {
+        "shop_id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The Shopify Store to which line_item record belongs to."
         },
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The ID of the line item."
         },
         "quantity": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The number of items that were purchased."
         },
         "fulfillable_quantity": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "title": "The amount available to fulfill, calculated as follows:\nquantity - max(refunded_quantity, fulfilled_quantity) -\npending_fulfilled_quantity - open_fulfilled_quantity"
         },
         "requires_shipping": {
           "type": "boolean",
-          "format": "boolean"
+          "format": "boolean",
+          "description": "Whether the item requires shipping."
         },
+        "name": {
+          "type": "string",
+          "description": "The name of the product variant."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the product."
+        },
+        "sku": {
+          "type": "string",
+          "description": "The item's SKU (stock keeping unit)."
+        },
+        "fulfillment_service": {
+          "type": "string",
+          "description": "The service provider that's fulfilling the item. Valid values: \nmanual, or the name of the provider, such as amazon or shipwire."
+        }
+      }
+    },
+    "ListCustomersResponse": {
+      "type": "object",
+      "properties": {
+        "customers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Customer"
+          },
+          "description": "There will be a maximum number of items returned based on the page_size field in the request."
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+        }
+      }
+    },
+    "ListFulfillmentsResponse": {
+      "type": "object",
+      "properties": {
+        "fulfillments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fulfillment"
+          },
+          "description": "There will be a maximum number of items returned based on the page_size\nfield in the request."
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results, or empty if there are no more\nresults in the list."
+        }
+      }
+    },
+    "ListLineItemsResponse": {
+      "type": "object",
+      "properties": {
+        "line_items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LineItem"
+          },
+          "description": "There will be a maximum number of items returned based on the page_size field in the request."
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+        }
+      }
+    },
+    "ListOrdersResponse": {
+      "type": "object",
+      "properties": {
+        "orders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Order"
+          },
+          "description": "There will be a maximum number of items returned based on the page_size\nfield in the request."
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results, or empty if there are no more\nresults in the list."
+        }
+      }
+    },
+    "ListShopsResponse": {
+      "type": "object",
+      "properties": {
+        "shops": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Shop"
+          },
+          "description": "There will be a maximum number of items returned based on the page_size\nfield in the request."
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results, or empty if there are no more\nresults in the list."
+        }
+      }
+    },
+    "NoteAttribute": {
+      "type": "object",
+      "properties": {
         "name": {
           "type": "string"
         },
-        "title": {
-          "type": "string"
-        },
-        "sku": {
-          "type": "string"
-        },
-        "fulfillment_service": {
+        "value": {
           "type": "string"
         }
       }
@@ -218,94 +1452,173 @@
     "Order": {
       "type": "object",
       "properties": {
-        "domain_id": {
+        "shop_id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The Shopify Store to which order belongs to."
         },
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The Shopify ID of the order."
         },
         "order_number": {
           "type": "string",
           "format": "int64",
-          "title": "Customer facing order ID"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "processed_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "closed_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "cancelled_at": {
-          "type": "string",
-          "format": "date-time"
+          "description": "Customer facing order ID, used by the shop owner and customer."
         },
         "email": {
-          "type": "string"
+          "type": "string",
+          "description": "The customer's email address."
         },
         "number": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The order's position in the shop's count of orders. \nNumbers are sequential and start at 1."
         },
         "note": {
-          "type": "string"
+          "type": "string",
+          "description": "An optional note that a shop owner can attach to the order."
         },
         "token": {
-          "type": "string"
+          "type": "string",
+          "description": "A unique token for the order."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The autogenerated date and time when the order was created in Shopify. \nThe value for this property cannot be changed."
+        },
+        "processed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when an order was processed. \nThis value is the date that appears on your orders and that's used in \nthe analytic reports. By default, it matches the created_at value."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the order was last modified.\nIts value can change when no visible fields of an order have been updated."
+        },
+        "closed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the order was closed."
+        },
+        "cancelled_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the order was canceled."
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "The order name, generated by combining the order_number property with the\norder prefix and suffix that are set in the merchant's general settings.\nThis is different from the id property, which is the ID of the order used\nby the Shopify API. This field can also be set by the Shopify API \nto be any string value."
         },
         "cancel_reason": {
-          "type": "string"
-        },
-        "user_id": {
           "type": "string",
-          "format": "int64"
+          "description": "The reason why the order was canceled. Valid values:\ncustomer: The customer canceled the order.\nfraud: The order was fraudulent.\ninventory: Items in the order were not in inventory.\ndeclined: The payment was declined.\nother: A reason not in this list."
         },
         "app_id": {
           "type": "string",
-          "format": "int64"
-        },
-        "processing_method": {
-          "type": "string"
-        },
-        "source_name": {
-          "type": "string"
+          "format": "int64",
+          "description": "The ID of the Shopify app that created the order."
         },
         "contact_email": {
           "type": "string"
         },
-        "order_status_url": {
-          "type": "string"
-        },
-        "customer_id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "billing_address": {
-          "$ref": "#/definitions/Address"
-        },
         "shipping_address": {
-          "$ref": "#/definitions/Address"
+          "$ref": "#/definitions/Address",
+          "description": "The mailing address to where the order will be shipped. \nThis address is optional and will not be available on orders that \ndo not require shipping."
         },
         "line_item_ids": {
           "type": "array",
           "items": {
             "type": "string",
             "format": "int64"
-          }
+          },
+          "description": "A list of line item objects, each containing information about an item\nin the order."
+        },
+        "customer_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Information about the customer. The order might not have a customer \nand apps should not depend on the existence of a customer object. \nThis value might be null if the order was created through Shopify POS."
+        },
+        "folder_id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "ID of folder that order belongs to."
+        },
+        "test": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Whether this is a test order."
+        },
+        "total_price": {
+          "type": "string",
+          "format": "int64",
+          "description": "The sum of all line item prices, discounts, shipping, taxes, and tips \nin the shop currency (in cents). Must be positive."
+        },
+        "subtotal_price": {
+          "type": "string",
+          "format": "int64",
+          "description": "The price of the order in the shop currency (in cents) after discounts \nbut before shipping, taxes, and tips."
+        },
+        "total_weight": {
+          "type": "string",
+          "format": "int64",
+          "description": "The sum of all line item weights in grams."
+        },
+        "total_tax": {
+          "type": "string",
+          "format": "int64",
+          "description": "The sum of all the taxes applied to the order in th shop currency \n(in cents). Must be positive."
+        },
+        "taxes_included": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Whether taxes are included in the order subtotal."
+        },
+        "currency": {
+          "type": "string",
+          "description": "The three-letter code (ISO 4217 format) for the shop currency."
+        },
+        "financial_status": {
+          "type": "string",
+          "description": "The status of payments associated with the order. \nCan only be set when the order is created. Valid values:\npending: The payments are pending. Payment might fail in this state. \n Check again to confirm whether the payments have been paid successfully.\nauthorized: The payments have been authorized.\npartially_paid: The order have been partially paid.\npaid: The payments have been paid.\npartially_refunded: The payments have been partially refunded.\nrefunded: The payments have been refunded.\nvoided: The payments have been voided."
+        },
+        "confirmed": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "total_price_usd": {
+          "type": "string",
+          "format": "int64",
+          "description": "The sum of all line item prices, discounts, shipping, taxes, and tips \nin the in USD cents. Must be positive."
+        },
+        "note_attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NoteAttribute"
+          },
+          "description": "Extra information that is added to the order. Appears in the Additional\ndetails section of an order details page. Each array entry must contain\na hash with name and value keys."
+        }
+      },
+      "description": "An order is a customer's completed request to purchase one or more products\nfrom a shop. An order is created when a customer completes the checkout\nprocess, during which time they provide an email address or phone number,\nbilling address and payment information."
+    },
+    "Shop": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "The shop ID."
+        },
+        "domain": {
+          "type": "string",
+          "title": "The domain for Shopify Store"
+        },
+        "name": {
+          "type": "string",
+          "title": "The name of Shopify Store"
         }
       }
     },
@@ -314,18 +1627,77 @@
       "properties": {
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "The TenantID."
         },
         "name": {
-          "type": "string"
-        },
-        "created_at": {
           "type": "string",
-          "format": "date-time"
+          "description": "The name of tenant."
+        }
+      }
+    },
+    "UpdateCustomerRequest": {
+      "type": "object",
+      "properties": {
+        "customer": {
+          "$ref": "#/definitions/Customer",
+          "description": "The customer resource which replaces the resource on the server."
         },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
+        "update_mask": {
+          "$ref": "#/definitions/protobufFieldMask",
+          "title": "The update mask applies to the resource. For the `FieldMask` definition,\nsee https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask"
+        }
+      }
+    },
+    "UpdateFulfillmentRequest": {
+      "type": "object",
+      "properties": {
+        "fulfillment": {
+          "$ref": "#/definitions/Fulfillment",
+          "description": "The fulfillment resource which replaces the resource on the server."
+        },
+        "update_mask": {
+          "$ref": "#/definitions/protobufFieldMask",
+          "title": "The update mask applies to the resource. For the `FieldMask` definition,\nsee\nhttps://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask"
+        }
+      }
+    },
+    "UpdateLineItemRequest": {
+      "type": "object",
+      "properties": {
+        "line_item": {
+          "$ref": "#/definitions/LineItem",
+          "description": "The line_item resource which replaces the resource on the server."
+        },
+        "update_mask": {
+          "$ref": "#/definitions/protobufFieldMask",
+          "title": "The update mask applies to the resource. For the `FieldMask` definition,\nsee https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask"
+        }
+      }
+    },
+    "UpdateOrderRequest": {
+      "type": "object",
+      "properties": {
+        "order": {
+          "$ref": "#/definitions/Order",
+          "description": "The order resource which replaces the resource on the server."
+        },
+        "update_mask": {
+          "$ref": "#/definitions/protobufFieldMask",
+          "title": "The update mask applies to the resource. For the `FieldMask` definition,\nsee\nhttps://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask"
+        }
+      }
+    },
+    "UpdateShopRequest": {
+      "type": "object",
+      "properties": {
+        "shop": {
+          "$ref": "#/definitions/Shop",
+          "description": "The shop resource which replaces the resource on the server."
+        },
+        "update_mask": {
+          "$ref": "#/definitions/protobufFieldMask",
+          "title": "The update mask applies to the resource. For the `FieldMask` definition,\nsee\nhttps://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask"
         }
       }
     },
@@ -343,6 +1715,20 @@
         }
       },
       "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := \u0026pb.Foo{}\n     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "protobufFieldMask": {
+      "type": "object",
+      "properties": {
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The set of field mask paths."
+        }
+      },
+      "description": "paths: \"f.a\"\n    paths: \"f.b.d\"\n\nHere `f` represents a field in some root message, `a` and `b`\nfields in the message found in `f`, and `d` a field found in the\nmessage in `f.b`.\n\nField masks are used to specify a subset of fields that should be\nreturned by a get operation or modified by an update operation.\nField masks also have a custom JSON encoding (see below).\n\n# Field Masks in Projections\n\nWhen used in the context of a projection, a response message or\nsub-message is filtered by the API to only contain those fields as\nspecified in the mask. For example, if the mask in the previous\nexample is applied to a response message as follows:\n\n    f {\n      a : 22\n      b {\n        d : 1\n        x : 2\n      }\n      y : 13\n    }\n    z: 8\n\nThe result will not contain specific values for fields x,y and z\n(their value will be set to the default, and omitted in proto text\noutput):\n\n\n    f {\n      a : 22\n      b {\n        d : 1\n      }\n    }\n\nA repeated field is not allowed except at the last position of a\npaths string.\n\nIf a FieldMask object is not present in a get operation, the\noperation applies to all fields (as if a FieldMask of all fields\nhad been specified).\n\nNote that a field mask does not necessarily apply to the\ntop-level response message. In case of a REST get operation, the\nfield mask applies directly to the response, but in case of a REST\nlist operation, the mask instead applies to each individual message\nin the returned resource list. In case of a REST custom method,\nother definitions may be used. Where the mask applies will be\nclearly documented together with its declaration in the API.  In\nany case, the effect on the returned resource/resources is required\nbehavior for APIs.\n\n# Field Masks in Update Operations\n\nA field mask in update operations specifies which fields of the\ntargeted resource are going to be updated. The API is required\nto only change the values of the fields as specified in the mask\nand leave the others untouched. If a resource is passed in to\ndescribe the updated values, the API ignores the values of all\nfields not covered by the mask.\n\nIf a repeated field is specified for an update operation, new values will\nbe appended to the existing repeated field in the target resource. Note that\na repeated field is only allowed in the last position of a `paths` string.\n\nIf a sub-message is specified in the last position of the field mask for an\nupdate operation, then new value will be merged into the existing sub-message\nin the target resource.\n\nFor example, given the target message:\n\n    f {\n      b {\n        d: 1\n        x: 2\n      }\n      c: [1]\n    }\n\nAnd an update message:\n\n    f {\n      b {\n        d: 10\n      }\n      c: [2]\n    }\n\nthen if the field mask is:\n\n paths: [\"f.b\", \"f.c\"]\n\nthen the result will be:\n\n    f {\n      b {\n        d: 10\n        x: 2\n      }\n      c: [1, 2]\n    }\n\nAn implementation may provide options to override this default behavior for\nrepeated and message fields.\n\nIn order to reset a field's value to the default, the field must\nbe in the mask and set to the default value in the provided resource.\nHence, in order to reset all fields of a resource, provide a default\ninstance of the resource and set all fields in the mask, or do\nnot provide a mask as described below.\n\nIf a field mask is not present on update, the operation applies to\nall fields (as if a field mask of all fields has been specified).\nNote that in the presence of schema evolution, this may mean that\nfields the client does not know and has therefore not filled into\nthe request will be reset to their default. If this is unwanted\nbehavior, a specific service may require a client to always specify\na field mask, producing an error if not.\n\nAs with get operations, the location of the resource which\ndescribes the updated values in the request message depends on the\noperation kind. In any case, the effect of the field mask is\nrequired to be honored by the API.\n\n## Considerations for HTTP REST\n\nThe HTTP kind of an update operation which uses a field mask must\nbe set to PATCH instead of PUT in order to satisfy HTTP semantics\n(PUT must only be used for full updates).\n\n# JSON Encoding of Field Masks\n\nIn JSON, a field mask is encoded as a single string where paths are\nseparated by a comma. Fields name in each path are converted\nto/from lower-camel naming conventions.\n\nAs an example, consider the following message declarations:\n\n    message Profile {\n      User user = 1;\n      Photo photo = 2;\n    }\n    message User {\n      string display_name = 1;\n      string address = 2;\n    }\n\nIn proto a field mask for `Profile` may look as such:\n\n    mask {\n      paths: \"user.display_name\"\n      paths: \"photo\"\n    }\n\nIn JSON, the same mask is represented as below:\n\n    {\n      mask: \"user.displayName,photo\"\n    }\n\n# Field Masks and Oneof Fields\n\nField masks treat fields in oneofs just as regular fields. Consider the\nfollowing message:\n\n    message SampleMessage {\n      oneof test_oneof {\n        string name = 4;\n        SubMessage sub_message = 9;\n      }\n    }\n\nThe field mask can be:\n\n    mask {\n      paths: \"name\"\n    }\n\nOr:\n\n    mask {\n      paths: \"sub_message\"\n    }\n\nNote that oneof type names (\"test_oneof\" in this case) cannot be used in\npaths.\n\n## Field Mask Verification\n\nThe implementation of any API method which has a FieldMask type field in the\nrequest should verify the included field paths, and return an\n`INVALID_ARGUMENT` error if any path is unmappable.",
+      "title": "`FieldMask` represents a set of symbolic field paths, for example:"
     },
     "runtimeError": {
       "type": "object",

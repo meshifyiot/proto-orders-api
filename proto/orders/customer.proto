@@ -1,0 +1,98 @@
+syntax = "proto3";
+option go_package = "orders";
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+import "orders/address.proto";
+
+message Customer {
+  // The Shopify Store to which customer record belongs to.
+  int64 shop_id = 1;
+
+  // A unique identifier for the customer.
+  int64 id = 2;
+
+  // The date and time when the customer was created.
+  google.protobuf.Timestamp created_at = 8;
+
+  // The date and time when the customer information was last updated.
+  google.protobuf.Timestamp updated_at = 9;
+
+  // The unique email address of the customer.
+  string email = 10;
+
+  // The customer's first name.
+  string first_name = 11;
+
+  // The customer's last name.
+  string last_name = 12;
+
+  // The state of the customer's account with a shop. Default value: disabled.
+  // Valid values:
+  // disabled: The customer doesn't have an active account. 
+  //   Customer accounts can be disabled from the Shopify admin at any time.
+  // invited: The customer has received an email invite to create an account.
+  // enabled: The customer has created an account.
+  // declined: The customer declined the email invite to create an account.
+  string state = 13;
+
+  // A note about the customer.
+  string note = 14;
+
+  // The unique phone number (E.164 format) for this customer.
+  string phone = 15;
+
+  // The default address for the customer.
+  Address default_address = 16;
+}
+
+// --- Customer API messages ---
+
+message ListCustomersRequest {
+  // The maximum number of items to return.
+  int32 page_size = 1;
+
+  // The next_page_token value returned from a previous List request, if any.
+  string page_token = 2;
+
+  // The Shopify Store.
+  int64 shop_id = 3;
+}
+
+message ListCustomersResponse {
+  // There will be a maximum number of items returned based on the page_size field in the request.
+  repeated Customer customers = 1;
+
+  // Token to retrieve the next page of results, or empty if there are no more results in the list.
+  string next_page_token = 2;
+}
+
+message GetCustomerRequest {
+  // The Shopify Store.
+  int64 shop_id = 1;
+
+  // The field will contain id of the resource requested.
+  int64 customer_id = 2;
+}
+
+message CreateCustomerRequest {
+  // The customer resource to create.
+  Customer customer = 1;
+}
+
+message UpdateCustomerRequest {
+  // The customer resource which replaces the resource on the server.
+  Customer customer = 1;
+
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeleteCustomerRequest {
+  // The Shopify Store.
+  int64 shop_id = 1;
+
+  // The resource id of the customer to be deleted.
+  int64 customer_id = 2;
+}

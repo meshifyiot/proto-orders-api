@@ -1,0 +1,90 @@
+syntax = "proto3";
+option go_package = "orders";
+
+import "google/protobuf/field_mask.proto";
+
+message LineItem {
+  // The Shopify Store to which line_item record belongs to.
+  int64 shop_id = 1;
+
+  // The ID of the line item.
+  int64 id = 2;
+  
+  // The number of items that were purchased.
+  int64 quantity = 11;
+
+  // The amount available to fulfill, calculated as follows:
+  // quantity - max(refunded_quantity, fulfilled_quantity) -
+  // pending_fulfilled_quantity - open_fulfilled_quantity
+  int64 fulfillable_quantity = 12;
+
+  // Whether the item requires shipping.
+  bool requires_shipping = 13;
+
+  // The name of the product variant.
+  string name = 14;
+
+  // The title of the product.
+  string title = 15;
+
+  // The item's SKU (stock keeping unit).
+  string sku = 16;
+
+  // The service provider that's fulfilling the item. Valid values: 
+  // manual, or the name of the provider, such as amazon or shipwire.
+  string fulfillment_service = 17;
+}
+
+// --- LineItems API messages ---
+
+message ListLineItemsRequest {
+  // The maximum number of items to return.
+  int32 page_size = 1;
+
+  // The next_page_token value returned from a previous List request, if any.
+  string page_token = 2;
+
+  // The Shopify Store.
+  int64 shop_id = 3;
+}
+
+message ListLineItemsResponse {
+  // There will be a maximum number of items returned based on the page_size field in the request.
+  repeated LineItem line_items = 1;
+
+  // Token to retrieve the next page of results, or empty if there are no more results in the list.
+  string next_page_token = 2;
+}
+
+message GetLineItemRequest {
+  // The Shopify Store.
+  int64 shop_id = 1;
+
+  // The field will contain id of the resource requested.
+  int64 line_item_id = 2;
+}
+
+message CreateLineItemRequest {
+  // The line_item id to use for this line_item.
+  string line_item_id = 1;
+
+  // The line_item resource to create.
+  LineItem line_item = 2;
+}
+
+message UpdateLineItemRequest {
+  // The line_item resource which replaces the resource on the server.
+  LineItem line_item = 1;
+
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeleteLineItemRequest {
+  // The Shopify Store.
+  int64 shop_id = 1;
+
+  // The resource id of the line_item to be deleted.
+  int64 line_item_id = 2;
+}
