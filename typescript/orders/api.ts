@@ -972,6 +972,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary CreateFulfillment creates a fulfillment.
          * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
          * @param {Fulfillment} body The fulfillment resource to create.
          * @param {*} [options] Override http request option.
@@ -1011,10 +1012,11 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
          * 
          * @param {string} lineItemShopId The Shopify Store to which line_item record belongs to.
          * @param {LineItem} body The line_item resource to create.
+         * @param {string} [lineItemId] The line_item id to use for this line_item.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersServiceCreateLineItem(lineItemShopId: string, body: LineItem, options: any = {}): FetchArgs {
+        ordersServiceCreateLineItem(lineItemShopId: string, body: LineItem, lineItemId?: string, options: any = {}): FetchArgs {
             // verify required parameter 'lineItemShopId' is not null or undefined
             if (lineItemShopId === null || lineItemShopId === undefined) {
                 throw new RequiredError('lineItemShopId','Required parameter lineItemShopId was null or undefined when calling ordersServiceCreateLineItem.');
@@ -1029,6 +1031,10 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (lineItemId !== undefined) {
+                localVarQueryParameter['line_item_id'] = lineItemId;
+            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -1046,6 +1052,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary CreateOrder creates an order.
          * @param {string} orderShopId The Shopify Store to which order belongs to.
          * @param {CreateOrderRequest} body 
          * @param {*} [options] Override http request option.
@@ -1083,6 +1090,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary CreateShop creates a shop.
          * @param {Shop} body The shop resource to create.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1148,6 +1156,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary DeleteFulfillment deletes a fulfillment.
          * @param {string} shopId The Shopify Store.
          * @param {string} fulfillmentId The resource id of the fulfillment to be deleted.
          * @param {*} [options] Override http request option.
@@ -1216,6 +1225,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary DeleteOrder deletes an order.
          * @param {string} shopId The Shopify Store.
          * @param {string} orderId The resource id of the order to be deleted.
          * @param {*} [options] Override http request option.
@@ -1250,6 +1260,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary DeleteShop deletes a shop.
          * @param {string} shopId The resource id of the shop to be deleted.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1312,6 +1323,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary GetFulfillment returns a fulfillment.
          * @param {string} shopId The Shopify Store.
          * @param {string} fulfillmentId The field will contain id of fulfillment.
          * @param {*} [options] Override http request option.
@@ -1380,6 +1392,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary GetOrder returns an order.
          * @param {string} shopId The Shopify Store.
          * @param {string} orderId The field will contain id of order.
          * @param {*} [options] Override http request option.
@@ -1414,6 +1427,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary GetShop returns a shop.
          * @param {string} shopId The field will contain id of shop.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1442,6 +1456,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary GetShopByDomain returns a shop by domain.
          * @param {string} domain The field will contain domain of shop.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1470,6 +1485,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary GetTenantByShopDomain returns a tenant by Shopify Store domain.
          * @param {string} domain The Shopify Store domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1536,6 +1552,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary ListFulfillments returns paginated list of fulfillments.
          * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
@@ -1612,6 +1629,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary ListOrders returns paginated list of orders.
          * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
@@ -1655,6 +1673,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary ListShops returns paginated list of shops.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
          * @param {*} [options] Override http request option.
@@ -1730,6 +1749,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary UpdateFulfillment updates a fulfillment.
          * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
          * @param {string} fulfillmentId The ID for the fulfillment.
          * @param {UpdateFulfillmentRequest} body 
@@ -1816,6 +1836,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary UpdateOrder updates an order.
          * @param {string} orderShopId The Shopify Store to which order belongs to.
          * @param {string} orderId The Shopify ID of the order.
          * @param {UpdateOrderRequest} body 
@@ -1859,6 +1880,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @summary UpdateShop updates a shop.
          * @param {string} shopId The shop ID.
          * @param {UpdateShopRequest} body 
          * @param {*} [options] Override http request option.
@@ -1925,6 +1947,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary CreateFulfillment creates a fulfillment.
          * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
          * @param {Fulfillment} body The fulfillment resource to create.
          * @param {*} [options] Override http request option.
@@ -1947,11 +1970,12 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
          * 
          * @param {string} lineItemShopId The Shopify Store to which line_item record belongs to.
          * @param {LineItem} body The line_item resource to create.
+         * @param {string} [lineItemId] The line_item id to use for this line_item.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersServiceCreateLineItem(lineItemShopId: string, body: LineItem, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LineItem> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceCreateLineItem(lineItemShopId, body, options);
+        ordersServiceCreateLineItem(lineItemShopId: string, body: LineItem, lineItemId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LineItem> {
+            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceCreateLineItem(lineItemShopId, body, lineItemId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1965,6 +1989,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary CreateOrder creates an order.
          * @param {string} orderShopId The Shopify Store to which order belongs to.
          * @param {CreateOrderRequest} body 
          * @param {*} [options] Override http request option.
@@ -1985,6 +2010,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary CreateShop creates a shop.
          * @param {Shop} body The shop resource to create.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2024,6 +2050,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary DeleteFulfillment deletes a fulfillment.
          * @param {string} shopId The Shopify Store.
          * @param {string} fulfillmentId The resource id of the fulfillment to be deleted.
          * @param {*} [options] Override http request option.
@@ -2064,6 +2091,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary DeleteOrder deletes an order.
          * @param {string} shopId The Shopify Store.
          * @param {string} orderId The resource id of the order to be deleted.
          * @param {*} [options] Override http request option.
@@ -2084,6 +2112,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary DeleteShop deletes a shop.
          * @param {string} shopId The resource id of the shop to be deleted.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2123,6 +2152,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary GetFulfillment returns a fulfillment.
          * @param {string} shopId The Shopify Store.
          * @param {string} fulfillmentId The field will contain id of fulfillment.
          * @param {*} [options] Override http request option.
@@ -2163,6 +2193,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary GetOrder returns an order.
          * @param {string} shopId The Shopify Store.
          * @param {string} orderId The field will contain id of order.
          * @param {*} [options] Override http request option.
@@ -2183,6 +2214,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary GetShop returns a shop.
          * @param {string} shopId The field will contain id of shop.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2202,6 +2234,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary GetShopByDomain returns a shop by domain.
          * @param {string} domain The field will contain domain of shop.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2221,6 +2254,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary GetTenantByShopDomain returns a tenant by Shopify Store domain.
          * @param {string} domain The Shopify Store domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2261,6 +2295,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary ListFulfillments returns paginated list of fulfillments.
          * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
@@ -2303,6 +2338,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary ListOrders returns paginated list of orders.
          * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
@@ -2325,6 +2361,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary ListShops returns paginated list of shops.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
          * @param {*} [options] Override http request option.
@@ -2366,6 +2403,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary UpdateFulfillment updates a fulfillment.
          * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
          * @param {string} fulfillmentId The ID for the fulfillment.
          * @param {UpdateFulfillmentRequest} body 
@@ -2408,6 +2446,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary UpdateOrder updates an order.
          * @param {string} orderShopId The Shopify Store to which order belongs to.
          * @param {string} orderId The Shopify ID of the order.
          * @param {UpdateOrderRequest} body 
@@ -2429,6 +2468,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
         },
         /**
          * 
+         * @summary UpdateShop updates a shop.
          * @param {string} shopId The shop ID.
          * @param {UpdateShopRequest} body 
          * @param {*} [options] Override http request option.
@@ -2468,6 +2508,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary CreateFulfillment creates a fulfillment.
          * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
          * @param {Fulfillment} body The fulfillment resource to create.
          * @param {*} [options] Override http request option.
@@ -2480,14 +2521,16 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
          * 
          * @param {string} lineItemShopId The Shopify Store to which line_item record belongs to.
          * @param {LineItem} body The line_item resource to create.
+         * @param {string} [lineItemId] The line_item id to use for this line_item.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ordersServiceCreateLineItem(lineItemShopId: string, body: LineItem, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceCreateLineItem(lineItemShopId, body, options)(fetch, basePath);
+        ordersServiceCreateLineItem(lineItemShopId: string, body: LineItem, lineItemId?: string, options?: any) {
+            return OrdersServiceApiFp(configuration).ordersServiceCreateLineItem(lineItemShopId, body, lineItemId, options)(fetch, basePath);
         },
         /**
          * 
+         * @summary CreateOrder creates an order.
          * @param {string} orderShopId The Shopify Store to which order belongs to.
          * @param {CreateOrderRequest} body 
          * @param {*} [options] Override http request option.
@@ -2498,6 +2541,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary CreateShop creates a shop.
          * @param {Shop} body The shop resource to create.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2517,6 +2561,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary DeleteFulfillment deletes a fulfillment.
          * @param {string} shopId The Shopify Store.
          * @param {string} fulfillmentId The resource id of the fulfillment to be deleted.
          * @param {*} [options] Override http request option.
@@ -2537,6 +2582,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary DeleteOrder deletes an order.
          * @param {string} shopId The Shopify Store.
          * @param {string} orderId The resource id of the order to be deleted.
          * @param {*} [options] Override http request option.
@@ -2547,6 +2593,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary DeleteShop deletes a shop.
          * @param {string} shopId The resource id of the shop to be deleted.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2566,6 +2613,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary GetFulfillment returns a fulfillment.
          * @param {string} shopId The Shopify Store.
          * @param {string} fulfillmentId The field will contain id of fulfillment.
          * @param {*} [options] Override http request option.
@@ -2586,6 +2634,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary GetOrder returns an order.
          * @param {string} shopId The Shopify Store.
          * @param {string} orderId The field will contain id of order.
          * @param {*} [options] Override http request option.
@@ -2596,6 +2645,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary GetShop returns a shop.
          * @param {string} shopId The field will contain id of shop.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2605,6 +2655,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary GetShopByDomain returns a shop by domain.
          * @param {string} domain The field will contain domain of shop.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2614,6 +2665,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary GetTenantByShopDomain returns a tenant by Shopify Store domain.
          * @param {string} domain The Shopify Store domain.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2634,6 +2686,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary ListFulfillments returns paginated list of fulfillments.
          * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
@@ -2656,6 +2709,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary ListOrders returns paginated list of orders.
          * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
@@ -2668,6 +2722,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary ListShops returns paginated list of shops.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
          * @param {*} [options] Override http request option.
@@ -2689,6 +2744,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary UpdateFulfillment updates a fulfillment.
          * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
          * @param {string} fulfillmentId The ID for the fulfillment.
          * @param {UpdateFulfillmentRequest} body 
@@ -2711,6 +2767,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary UpdateOrder updates an order.
          * @param {string} orderShopId The Shopify Store to which order belongs to.
          * @param {string} orderId The Shopify ID of the order.
          * @param {UpdateOrderRequest} body 
@@ -2722,6 +2779,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @summary UpdateShop updates a shop.
          * @param {string} shopId The shop ID.
          * @param {UpdateShopRequest} body 
          * @param {*} [options] Override http request option.
@@ -2754,6 +2812,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary CreateFulfillment creates a fulfillment.
      * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
      * @param {Fulfillment} body The fulfillment resource to create.
      * @param {*} [options] Override http request option.
@@ -2768,16 +2827,18 @@ export class OrdersServiceApi extends BaseAPI {
      * 
      * @param {string} lineItemShopId The Shopify Store to which line_item record belongs to.
      * @param {LineItem} body The line_item resource to create.
+     * @param {string} [lineItemId] The line_item id to use for this line_item.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersServiceApi
      */
-    public ordersServiceCreateLineItem(lineItemShopId: string, body: LineItem, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceCreateLineItem(lineItemShopId, body, options)(this.fetch, this.basePath);
+    public ordersServiceCreateLineItem(lineItemShopId: string, body: LineItem, lineItemId?: string, options?: any) {
+        return OrdersServiceApiFp(this.configuration).ordersServiceCreateLineItem(lineItemShopId, body, lineItemId, options)(this.fetch, this.basePath);
     }
 
     /**
      * 
+     * @summary CreateOrder creates an order.
      * @param {string} orderShopId The Shopify Store to which order belongs to.
      * @param {CreateOrderRequest} body 
      * @param {*} [options] Override http request option.
@@ -2790,6 +2851,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary CreateShop creates a shop.
      * @param {Shop} body The shop resource to create.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2813,6 +2875,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary DeleteFulfillment deletes a fulfillment.
      * @param {string} shopId The Shopify Store.
      * @param {string} fulfillmentId The resource id of the fulfillment to be deleted.
      * @param {*} [options] Override http request option.
@@ -2837,6 +2900,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary DeleteOrder deletes an order.
      * @param {string} shopId The Shopify Store.
      * @param {string} orderId The resource id of the order to be deleted.
      * @param {*} [options] Override http request option.
@@ -2849,6 +2913,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary DeleteShop deletes a shop.
      * @param {string} shopId The resource id of the shop to be deleted.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2872,6 +2937,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary GetFulfillment returns a fulfillment.
      * @param {string} shopId The Shopify Store.
      * @param {string} fulfillmentId The field will contain id of fulfillment.
      * @param {*} [options] Override http request option.
@@ -2896,6 +2962,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary GetOrder returns an order.
      * @param {string} shopId The Shopify Store.
      * @param {string} orderId The field will contain id of order.
      * @param {*} [options] Override http request option.
@@ -2908,6 +2975,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary GetShop returns a shop.
      * @param {string} shopId The field will contain id of shop.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2919,6 +2987,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary GetShopByDomain returns a shop by domain.
      * @param {string} domain The field will contain domain of shop.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2930,6 +2999,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary GetTenantByShopDomain returns a tenant by Shopify Store domain.
      * @param {string} domain The Shopify Store domain.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -2954,6 +3024,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary ListFulfillments returns paginated list of fulfillments.
      * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
      * @param {number} [pageSize] The maximum number of items to return.
      * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
@@ -2980,6 +3051,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary ListOrders returns paginated list of orders.
      * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
      * @param {number} [pageSize] The maximum number of items to return.
      * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
@@ -2994,6 +3066,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary ListShops returns paginated list of shops.
      * @param {number} [pageSize] The maximum number of items to return.
      * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
      * @param {*} [options] Override http request option.
@@ -3019,6 +3092,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary UpdateFulfillment updates a fulfillment.
      * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
      * @param {string} fulfillmentId The ID for the fulfillment.
      * @param {UpdateFulfillmentRequest} body 
@@ -3045,6 +3119,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary UpdateOrder updates an order.
      * @param {string} orderShopId The Shopify Store to which order belongs to.
      * @param {string} orderId The Shopify ID of the order.
      * @param {UpdateOrderRequest} body 
@@ -3058,6 +3133,7 @@ export class OrdersServiceApi extends BaseAPI {
 
     /**
      * 
+     * @summary UpdateShop updates a shop.
      * @param {string} shopId The shop ID.
      * @param {UpdateShopRequest} body 
      * @param {*} [options] Override http request option.

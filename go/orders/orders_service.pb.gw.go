@@ -1952,6 +1952,7 @@ func local_request_OrdersService_GetTenantByShopDomain_0(ctx context.Context, ma
 // RegisterOrdersServiceHandlerServer registers the http handlers for service OrdersService to "mux".
 // UnaryRPC     :call OrdersServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
+// Note that using this registration option will cause many gRPC library features (such as grpc.SendHeader, etc) to stop working. Consider using RegisterOrdersServiceHandlerFromEndpoint instead.
 func RegisterOrdersServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server OrdersServiceServer) error {
 
 	mux.Handle("GET", pattern_OrdersService_ListOrders_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
