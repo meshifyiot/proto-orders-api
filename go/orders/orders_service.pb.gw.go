@@ -3080,59 +3080,59 @@ func RegisterOrdersServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 }
 
 var (
-	pattern_OrdersService_ListOrders_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "shops", "shop_id", "orders"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_ListOrders_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"ordersapi", "v1", "shops", "shop_id", "orders"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_GetOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "shops", "shop_id", "orders", "order_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_GetOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"ordersapi", "v1", "shops", "shop_id", "orders", "order_id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_CreateOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "shops", "order.shop_id", "orders"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_CreateOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"ordersapi", "v1", "shops", "order.shop_id", "orders"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_UpdateOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "shops", "order.shop_id", "orders", "order.id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_UpdateOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"ordersapi", "v1", "shops", "order.shop_id", "orders", "order.id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_DeleteOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "shops", "shop_id", "orders", "order_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_DeleteOrder_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"ordersapi", "v1", "shops", "shop_id", "orders", "order_id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_ListCustomers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "shops", "shop_id", "customers"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_ListCustomers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"ordersapi", "v1", "shops", "shop_id", "customers"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_GetCustomer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "shops", "shop_id", "customers", "customer_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_GetCustomer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"ordersapi", "v1", "shops", "shop_id", "customers", "customer_id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_CreateCustomer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "shops", "customer.shop_id", "customers"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_CreateCustomer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"ordersapi", "v1", "shops", "customer.shop_id", "customers"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_UpdateCustomer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "shops", "customer.shop_id", "customers", "customer.id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_UpdateCustomer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"ordersapi", "v1", "shops", "customer.shop_id", "customers", "customer.id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_DeleteCustomer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "shops", "shop_id", "customers", "customer_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_DeleteCustomer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"ordersapi", "v1", "shops", "shop_id", "customers", "customer_id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_ListLineItems_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "shops", "shop_id", "line_items"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_ListLineItems_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"ordersapi", "v1", "shops", "shop_id", "lineitems"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_GetLineItem_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "shops", "shop_id", "line_items", "line_item_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_GetLineItem_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"ordersapi", "v1", "shops", "shop_id", "lineitems", "line_item_id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_CreateLineItem_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "shops", "line_item.shop_id", "line_items"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_CreateLineItem_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"ordersapi", "v1", "shops", "line_item.shop_id", "lineitems"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_UpdateLineItem_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "shops", "line_item.shop_id", "line_items", "line_item.id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_UpdateLineItem_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"ordersapi", "v1", "shops", "line_item.shop_id", "lineitems", "line_item.id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_DeleteLineItem_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "shops", "shop_id", "line_items", "line_item_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_DeleteLineItem_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"ordersapi", "v1", "shops", "shop_id", "lineitems", "line_item_id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_ListShops_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "shops"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_ListShops_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"ordersapi", "v1", "shops"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_GetShop_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "shops", "shop_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_GetShop_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"ordersapi", "v1", "shops", "shop_id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_GetShopByDomain_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "shops:getByDomain", "domain"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_GetShopByDomain_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"ordersapi", "v1", "shops:getByDomain", "domain"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_CreateShop_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "shops"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_CreateShop_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"ordersapi", "v1", "shops"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_UpdateShop_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "shops", "shop.id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_UpdateShop_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"ordersapi", "v1", "shops", "shop.id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_DeleteShop_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "shops", "shop_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_DeleteShop_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"ordersapi", "v1", "shops", "shop_id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_ListFulfillments_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "shops", "shop_id", "fulfillments"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_ListFulfillments_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"ordersapi", "v1", "shops", "shop_id", "fulfillments"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_GetFulfillment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "shops", "shop_id", "fulfillments", "fulfillment_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_GetFulfillment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"ordersapi", "v1", "shops", "shop_id", "fulfillments", "fulfillment_id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_CreateFulfillment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "shops", "fulfillment.shop_id", "fulfillments"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_CreateFulfillment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"ordersapi", "v1", "shops", "fulfillment.shop_id", "fulfillments"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_UpdateFulfillment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "shops", "fulfillment.shop_id", "fulfillments", "fulfillment.id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_UpdateFulfillment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"ordersapi", "v1", "shops", "fulfillment.shop_id", "fulfillments", "fulfillment.id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_DeleteFulfillment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "shops", "shop_id", "fulfillments", "fulfillment_id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_DeleteFulfillment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"ordersapi", "v1", "shops", "shop_id", "fulfillments", "fulfillment_id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_OrdersService_GetTenantByShopDomain_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "tenants:getByShopDomain", "domain"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_OrdersService_GetTenantByShopDomain_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"ordersapi", "v1", "tenants:getByShopDomain", "domain"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

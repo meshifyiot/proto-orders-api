@@ -5,8 +5,8 @@ Be warned: this is en experimental repo.
 ## Workflow
 
 * Make changes to *.proto
-* Build docker images for generating stuff: `make build`
-* Generate doc, clients and stubs: `make all`
+* Build docker images, generate doc, clients and stubs: `make all`
+* Tag a version
 * Push to github
 * Enjoy!
  

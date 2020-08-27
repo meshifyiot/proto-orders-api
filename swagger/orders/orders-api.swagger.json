@@ -19,7 +19,7 @@
     "application/json"
   ],
   "paths": {
-    "/v1/shops": {
+    "/ordersapi/v1/shops": {
       "get": {
         "summary": "ListShops returns paginated list of shops.",
         "operationId": "OrdersService_ListShops",
@@ -91,7 +91,7 @@
         ]
       }
     },
-    "/v1/shops/{customer.shop_id}/customers": {
+    "/ordersapi/v1/shops/{customer.shop_id}/customers": {
       "post": {
         "operationId": "OrdersService_CreateCustomer",
         "responses": {
@@ -132,7 +132,7 @@
         ]
       }
     },
-    "/v1/shops/{customer.shop_id}/customers/{customer.id}": {
+    "/ordersapi/v1/shops/{customer.shop_id}/customers/{customer.id}": {
       "patch": {
         "operationId": "OrdersService_UpdateCustomer",
         "responses": {
@@ -180,7 +180,7 @@
         ]
       }
     },
-    "/v1/shops/{fulfillment.shop_id}/fulfillments": {
+    "/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments": {
       "post": {
         "summary": "CreateFulfillment creates a fulfillment.",
         "operationId": "OrdersService_CreateFulfillment",
@@ -222,7 +222,7 @@
         ]
       }
     },
-    "/v1/shops/{fulfillment.shop_id}/fulfillments/{fulfillment.id}": {
+    "/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments/{fulfillment.id}": {
       "patch": {
         "summary": "UpdateFulfillment updates a fulfillment.",
         "operationId": "OrdersService_UpdateFulfillment",
@@ -271,7 +271,7 @@
         ]
       }
     },
-    "/v1/shops/{line_item.shop_id}/line_items": {
+    "/ordersapi/v1/shops/{line_item.shop_id}/lineitems": {
       "post": {
         "operationId": "OrdersService_CreateLineItem",
         "responses": {
@@ -319,7 +319,7 @@
         ]
       }
     },
-    "/v1/shops/{line_item.shop_id}/line_items/{line_item.id}": {
+    "/ordersapi/v1/shops/{line_item.shop_id}/lineitems/{line_item.id}": {
       "patch": {
         "operationId": "OrdersService_UpdateLineItem",
         "responses": {
@@ -367,7 +367,7 @@
         ]
       }
     },
-    "/v1/shops/{order.shop_id}/orders": {
+    "/ordersapi/v1/shops/{order.shop_id}/orders": {
       "post": {
         "summary": "CreateOrder creates an order.",
         "operationId": "OrdersService_CreateOrder",
@@ -408,7 +408,7 @@
         ]
       }
     },
-    "/v1/shops/{order.shop_id}/orders/{order.id}": {
+    "/ordersapi/v1/shops/{order.shop_id}/orders/{order.id}": {
       "patch": {
         "summary": "UpdateOrder updates an order.",
         "operationId": "OrdersService_UpdateOrder",
@@ -457,7 +457,7 @@
         ]
       }
     },
-    "/v1/shops/{shop.id}": {
+    "/ordersapi/v1/shops/{shop.id}": {
       "patch": {
         "summary": "UpdateShop updates a shop.",
         "operationId": "OrdersService_UpdateShop",
@@ -498,7 +498,7 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}": {
+    "/ordersapi/v1/shops/{shop_id}": {
       "get": {
         "summary": "GetShop returns a shop.",
         "operationId": "OrdersService_GetShop",
@@ -562,7 +562,7 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/customers": {
+    "/ordersapi/v1/shops/{shop_id}/customers": {
       "get": {
         "operationId": "OrdersService_ListCustomers",
         "responses": {
@@ -609,7 +609,7 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/customers/{customer_id}": {
+    "/ordersapi/v1/shops/{shop_id}/customers/{customer_id}": {
       "get": {
         "operationId": "OrdersService_GetCustomer",
         "responses": {
@@ -687,7 +687,7 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/fulfillments": {
+    "/ordersapi/v1/shops/{shop_id}/fulfillments": {
       "get": {
         "summary": "ListFulfillments returns paginated list of fulfillments.",
         "operationId": "OrdersService_ListFulfillments",
@@ -735,7 +735,7 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/fulfillments/{fulfillment_id}": {
+    "/ordersapi/v1/shops/{shop_id}/fulfillments/{fulfillment_id}": {
       "get": {
         "summary": "GetFulfillment returns a fulfillment.",
         "operationId": "OrdersService_GetFulfillment",
@@ -815,7 +815,7 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/line_items": {
+    "/ordersapi/v1/shops/{shop_id}/lineitems": {
       "get": {
         "operationId": "OrdersService_ListLineItems",
         "responses": {
@@ -862,7 +862,7 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/line_items/{line_item_id}": {
+    "/ordersapi/v1/shops/{shop_id}/lineitems/{line_item_id}": {
       "get": {
         "operationId": "OrdersService_GetLineItem",
         "responses": {
@@ -940,7 +940,7 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/orders": {
+    "/ordersapi/v1/shops/{shop_id}/orders": {
       "get": {
         "summary": "ListOrders returns paginated list of orders.",
         "operationId": "OrdersService_ListOrders",
@@ -996,7 +996,7 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/orders/{order_id}": {
+    "/ordersapi/v1/shops/{shop_id}/orders/{order_id}": {
       "get": {
         "summary": "GetOrder returns an order.",
         "operationId": "OrdersService_GetOrder",
@@ -1076,7 +1076,7 @@
         ]
       }
     },
-    "/v1/shops:getByDomain/{domain}": {
+    "/ordersapi/v1/shops:getByDomain/{domain}": {
       "get": {
         "summary": "GetShopByDomain returns a shop by domain.",
         "operationId": "OrdersService_GetShopByDomain",
@@ -1108,7 +1108,7 @@
         ]
       }
     },
-    "/v1/tenants:getByShopDomain/{domain}": {
+    "/ordersapi/v1/tenants:getByShopDomain/{domain}": {
       "get": {
         "summary": "GetTenantByShopDomain returns a tenant by Shopify Store domain.",
         "operationId": "OrdersService_GetTenantByShopDomain",
