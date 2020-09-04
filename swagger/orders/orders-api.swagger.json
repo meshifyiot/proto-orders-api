@@ -19,9 +19,10 @@
     "application/json"
   ],
   "paths": {
-    "/v1/shops": {
+    "/ordersapi/v1/shops": {
       "get": {
-        "operationId": "ListShops",
+        "summary": "ListShops returns paginated list of shops.",
+        "operationId": "OrdersService_ListShops",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -58,7 +59,8 @@
         ]
       },
       "post": {
-        "operationId": "CreateShop",
+        "summary": "CreateShop creates a shop.",
+        "operationId": "OrdersService_CreateShop",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -89,9 +91,9 @@
         ]
       }
     },
-    "/v1/shops/{customer.shop_id}/customers": {
+    "/ordersapi/v1/shops/{customer.shop_id}/customers": {
       "post": {
-        "operationId": "CreateCustomer",
+        "operationId": "OrdersService_CreateCustomer",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -130,9 +132,9 @@
         ]
       }
     },
-    "/v1/shops/{customer.shop_id}/customers/{customer.id}": {
+    "/ordersapi/v1/shops/{customer.shop_id}/customers/{customer.id}": {
       "patch": {
-        "operationId": "UpdateCustomer",
+        "operationId": "OrdersService_UpdateCustomer",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -178,9 +180,10 @@
         ]
       }
     },
-    "/v1/shops/{fulfillment.shop_id}/fulfillments": {
+    "/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments": {
       "post": {
-        "operationId": "CreateFulfillment",
+        "summary": "CreateFulfillment creates a fulfillment.",
+        "operationId": "OrdersService_CreateFulfillment",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -219,9 +222,10 @@
         ]
       }
     },
-    "/v1/shops/{fulfillment.shop_id}/fulfillments/{fulfillment.id}": {
+    "/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments/{fulfillment.id}": {
       "patch": {
-        "operationId": "UpdateFulfillment",
+        "summary": "UpdateFulfillment updates a fulfillment.",
+        "operationId": "OrdersService_UpdateFulfillment",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -267,9 +271,9 @@
         ]
       }
     },
-    "/v1/shops/{line_item.shop_id}/line_items": {
+    "/ordersapi/v1/shops/{line_item.shop_id}/lineitems": {
       "post": {
-        "operationId": "CreateLineItem",
+        "operationId": "OrdersService_CreateLineItem",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -301,6 +305,13 @@
             "schema": {
               "$ref": "#/definitions/LineItem"
             }
+          },
+          {
+            "name": "line_item_id",
+            "description": "The line_item id to use for this line_item.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -308,9 +319,9 @@
         ]
       }
     },
-    "/v1/shops/{line_item.shop_id}/line_items/{line_item.id}": {
+    "/ordersapi/v1/shops/{line_item.shop_id}/lineitems/{line_item.id}": {
       "patch": {
-        "operationId": "UpdateLineItem",
+        "operationId": "OrdersService_UpdateLineItem",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -356,9 +367,10 @@
         ]
       }
     },
-    "/v1/shops/{order.shop_id}/orders": {
+    "/ordersapi/v1/shops/{order.shop_id}/orders": {
       "post": {
-        "operationId": "CreateOrder",
+        "summary": "CreateOrder creates an order.",
+        "operationId": "OrdersService_CreateOrder",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -396,9 +408,10 @@
         ]
       }
     },
-    "/v1/shops/{order.shop_id}/orders/{order.id}": {
+    "/ordersapi/v1/shops/{order.shop_id}/orders/{order.id}": {
       "patch": {
-        "operationId": "UpdateOrder",
+        "summary": "UpdateOrder updates an order.",
+        "operationId": "OrdersService_UpdateOrder",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -444,9 +457,10 @@
         ]
       }
     },
-    "/v1/shops/{shop.id}": {
+    "/ordersapi/v1/shops/{shop.id}": {
       "patch": {
-        "operationId": "UpdateShop",
+        "summary": "UpdateShop updates a shop.",
+        "operationId": "OrdersService_UpdateShop",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -484,9 +498,10 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}": {
+    "/ordersapi/v1/shops/{shop_id}": {
       "get": {
-        "operationId": "GetShop",
+        "summary": "GetShop returns a shop.",
+        "operationId": "OrdersService_GetShop",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -516,7 +531,8 @@
         ]
       },
       "delete": {
-        "operationId": "DeleteShop",
+        "summary": "DeleteShop deletes a shop.",
+        "operationId": "OrdersService_DeleteShop",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -546,9 +562,9 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/customers": {
+    "/ordersapi/v1/shops/{shop_id}/customers": {
       "get": {
-        "operationId": "ListCustomers",
+        "operationId": "OrdersService_ListCustomers",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -593,9 +609,9 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/customers/{customer_id}": {
+    "/ordersapi/v1/shops/{shop_id}/customers/{customer_id}": {
       "get": {
-        "operationId": "GetCustomer",
+        "operationId": "OrdersService_GetCustomer",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -633,7 +649,7 @@
         ]
       },
       "delete": {
-        "operationId": "DeleteCustomer",
+        "operationId": "OrdersService_DeleteCustomer",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -671,9 +687,10 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/fulfillments": {
+    "/ordersapi/v1/shops/{shop_id}/fulfillments": {
       "get": {
-        "operationId": "ListFulfillments",
+        "summary": "ListFulfillments returns paginated list of fulfillments.",
+        "operationId": "OrdersService_ListFulfillments",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -718,9 +735,10 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/fulfillments/{fulfillment_id}": {
+    "/ordersapi/v1/shops/{shop_id}/fulfillments/{fulfillment_id}": {
       "get": {
-        "operationId": "GetFulfillment",
+        "summary": "GetFulfillment returns a fulfillment.",
+        "operationId": "OrdersService_GetFulfillment",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -758,7 +776,8 @@
         ]
       },
       "delete": {
-        "operationId": "DeleteFulfillment",
+        "summary": "DeleteFulfillment deletes a fulfillment.",
+        "operationId": "OrdersService_DeleteFulfillment",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -796,9 +815,9 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/line_items": {
+    "/ordersapi/v1/shops/{shop_id}/lineitems": {
       "get": {
-        "operationId": "ListLineItems",
+        "operationId": "OrdersService_ListLineItems",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -843,9 +862,9 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/line_items/{line_item_id}": {
+    "/ordersapi/v1/shops/{shop_id}/lineitems/{line_item_id}": {
       "get": {
-        "operationId": "GetLineItem",
+        "operationId": "OrdersService_GetLineItem",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -883,7 +902,7 @@
         ]
       },
       "delete": {
-        "operationId": "DeleteLineItem",
+        "operationId": "OrdersService_DeleteLineItem",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -921,9 +940,10 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/orders": {
+    "/ordersapi/v1/shops/{shop_id}/orders": {
       "get": {
-        "operationId": "ListOrders",
+        "summary": "ListOrders returns paginated list of orders.",
+        "operationId": "OrdersService_ListOrders",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -976,9 +996,10 @@
         ]
       }
     },
-    "/v1/shops/{shop_id}/orders/{order_id}": {
+    "/ordersapi/v1/shops/{shop_id}/orders/{order_id}": {
       "get": {
-        "operationId": "GetOrder",
+        "summary": "GetOrder returns an order.",
+        "operationId": "OrdersService_GetOrder",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1016,7 +1037,8 @@
         ]
       },
       "delete": {
-        "operationId": "DeleteOrder",
+        "summary": "DeleteOrder deletes an order.",
+        "operationId": "OrdersService_DeleteOrder",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1054,9 +1076,10 @@
         ]
       }
     },
-    "/v1/shops:getByDomain/{domain}": {
+    "/ordersapi/v1/shops:getByDomain/{domain}": {
       "get": {
-        "operationId": "GetShopByDomain",
+        "summary": "GetShopByDomain returns a shop by domain.",
+        "operationId": "OrdersService_GetShopByDomain",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1085,9 +1108,10 @@
         ]
       }
     },
-    "/v1/tenants:getByShopDomain/{domain}": {
+    "/ordersapi/v1/tenants:getByShopDomain/{domain}": {
       "get": {
-        "operationId": "GetTenantByShopDomain",
+        "summary": "GetTenantByShopDomain returns a tenant by Shopify Store domain.",
+        "operationId": "OrdersService_GetTenantByShopDomain",
         "responses": {
           "200": {
             "description": "A successful response.",
