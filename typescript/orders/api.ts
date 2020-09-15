@@ -949,7 +949,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceCreateCustomer.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{customer.shop_id}/customers`
+            const localVarPath = `/api/ordersapi/v1/shops/{customer.shop_id}/customers`
                 .replace(`{${"customer.shop_id"}}`, encodeURIComponent(String(customerShopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
@@ -987,7 +987,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceCreateFulfillment.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments`
+            const localVarPath = `/api/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments`
                 .replace(`{${"fulfillment.shop_id"}}`, encodeURIComponent(String(fulfillmentShopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
@@ -1025,7 +1025,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceCreateLineItem.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{line_item.shop_id}/lineitems`
+            const localVarPath = `/api/ordersapi/v1/shops/{line_item.shop_id}/lineitems`
                 .replace(`{${"line_item.shop_id"}}`, encodeURIComponent(String(lineItemShopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
@@ -1067,7 +1067,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceCreateOrder.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{order.shop_id}/orders`
+            const localVarPath = `/api/ordersapi/v1/shops/{order.shop_id}/orders`
                 .replace(`{${"order.shop_id"}}`, encodeURIComponent(String(orderShopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
@@ -1100,7 +1100,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceCreateShop.');
             }
-            const localVarPath = `/ordersapi/v1/shops`;
+            const localVarPath = `/api/ordersapi/v1/shops`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1136,7 +1136,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (customerId === null || customerId === undefined) {
                 throw new RequiredError('customerId','Required parameter customerId was null or undefined when calling ordersServiceDeleteCustomer.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/customers/{customer_id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/customers/{customer_id}`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
                 .replace(`{${"customer_id"}}`, encodeURIComponent(String(customerId)));
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1171,7 +1171,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (fulfillmentId === null || fulfillmentId === undefined) {
                 throw new RequiredError('fulfillmentId','Required parameter fulfillmentId was null or undefined when calling ordersServiceDeleteFulfillment.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/fulfillments/{fulfillment_id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/fulfillments/{fulfillment_id}`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
                 .replace(`{${"fulfillment_id"}}`, encodeURIComponent(String(fulfillmentId)));
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1205,7 +1205,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (lineItemId === null || lineItemId === undefined) {
                 throw new RequiredError('lineItemId','Required parameter lineItemId was null or undefined when calling ordersServiceDeleteLineItem.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/lineitems/{line_item_id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/lineitems/{line_item_id}`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
                 .replace(`{${"line_item_id"}}`, encodeURIComponent(String(lineItemId)));
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1240,7 +1240,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (orderId === null || orderId === undefined) {
                 throw new RequiredError('orderId','Required parameter orderId was null or undefined when calling ordersServiceDeleteOrder.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/orders/{order_id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/orders/{order_id}`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
                 .replace(`{${"order_id"}}`, encodeURIComponent(String(orderId)));
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1270,7 +1270,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (shopId === null || shopId === undefined) {
                 throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceDeleteShop.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
@@ -1303,7 +1303,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (customerId === null || customerId === undefined) {
                 throw new RequiredError('customerId','Required parameter customerId was null or undefined when calling ordersServiceGetCustomer.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/customers/{customer_id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/customers/{customer_id}`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
                 .replace(`{${"customer_id"}}`, encodeURIComponent(String(customerId)));
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1338,7 +1338,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (fulfillmentId === null || fulfillmentId === undefined) {
                 throw new RequiredError('fulfillmentId','Required parameter fulfillmentId was null or undefined when calling ordersServiceGetFulfillment.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/fulfillments/{fulfillment_id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/fulfillments/{fulfillment_id}`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
                 .replace(`{${"fulfillment_id"}}`, encodeURIComponent(String(fulfillmentId)));
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1372,7 +1372,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (lineItemId === null || lineItemId === undefined) {
                 throw new RequiredError('lineItemId','Required parameter lineItemId was null or undefined when calling ordersServiceGetLineItem.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/lineitems/{line_item_id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/lineitems/{line_item_id}`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
                 .replace(`{${"line_item_id"}}`, encodeURIComponent(String(lineItemId)));
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1407,7 +1407,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (orderId === null || orderId === undefined) {
                 throw new RequiredError('orderId','Required parameter orderId was null or undefined when calling ordersServiceGetOrder.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/orders/{order_id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/orders/{order_id}`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
                 .replace(`{${"order_id"}}`, encodeURIComponent(String(orderId)));
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1437,7 +1437,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (shopId === null || shopId === undefined) {
                 throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceGetShop.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1466,36 +1466,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (domain === null || domain === undefined) {
                 throw new RequiredError('domain','Required parameter domain was null or undefined when calling ordersServiceGetShopByDomain.');
             }
-            const localVarPath = `/ordersapi/v1/shops:getByDomain/{domain}`
-                .replace(`{${"domain"}}`, encodeURIComponent(String(domain)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary GetTenantByShopDomain returns a tenant by Shopify Store domain.
-         * @param {string} domain The Shopify Store domain.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetTenantByShopDomain(domain: string, options: any = {}): FetchArgs {
-            // verify required parameter 'domain' is not null or undefined
-            if (domain === null || domain === undefined) {
-                throw new RequiredError('domain','Required parameter domain was null or undefined when calling ordersServiceGetTenantByShopDomain.');
-            }
-            const localVarPath = `/ordersapi/v1/tenants:getByShopDomain/{domain}`
+            const localVarPath = `/api/ordersapi/v1/shops:getByDomain/{domain}`
                 .replace(`{${"domain"}}`, encodeURIComponent(String(domain)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1525,7 +1496,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (shopId === null || shopId === undefined) {
                 throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceListCustomers.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/customers`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/customers`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1564,7 +1535,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (shopId === null || shopId === undefined) {
                 throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceListFulfillments.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/fulfillments`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/fulfillments`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1602,7 +1573,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (shopId === null || shopId === undefined) {
                 throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceListLineItems.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/lineitems`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/lineitems`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1642,7 +1613,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (shopId === null || shopId === undefined) {
                 throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceListOrders.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/orders`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/orders`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1680,7 +1651,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
          * @throws {RequiredError}
          */
         ordersServiceListShops(pageSize?: number, pageToken?: string, options: any = {}): FetchArgs {
-            const localVarPath = `/ordersapi/v1/shops`;
+            const localVarPath = `/api/ordersapi/v1/shops`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1725,7 +1696,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceUpdateCustomer.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{customer.shop_id}/customers/{customer.id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{customer.shop_id}/customers/{customer.id}`
                 .replace(`{${"customer.shop_id"}}`, encodeURIComponent(String(customerShopId)))
                 .replace(`{${"customer.id"}}`, encodeURIComponent(String(customerId)));
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1769,7 +1740,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceUpdateFulfillment.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments/{fulfillment.id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments/{fulfillment.id}`
                 .replace(`{${"fulfillment.shop_id"}}`, encodeURIComponent(String(fulfillmentShopId)))
                 .replace(`{${"fulfillment.id"}}`, encodeURIComponent(String(fulfillmentId)));
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1812,7 +1783,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceUpdateLineItem.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{line_item.shop_id}/lineitems/{line_item.id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{line_item.shop_id}/lineitems/{line_item.id}`
                 .replace(`{${"line_item.shop_id"}}`, encodeURIComponent(String(lineItemShopId)))
                 .replace(`{${"line_item.id"}}`, encodeURIComponent(String(lineItemId)));
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1856,7 +1827,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceUpdateOrder.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{order.shop_id}/orders/{order.id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{order.shop_id}/orders/{order.id}`
                 .replace(`{${"order.shop_id"}}`, encodeURIComponent(String(orderShopId)))
                 .replace(`{${"order.id"}}`, encodeURIComponent(String(orderId)));
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1895,7 +1866,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceUpdateShop.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop.id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop.id}`
                 .replace(`{${"shop.id"}}`, encodeURIComponent(String(shopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
@@ -2241,26 +2212,6 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
          */
         ordersServiceGetShopByDomain(domain: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Shop> {
             const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceGetShopByDomain(domain, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @summary GetTenantByShopDomain returns a tenant by Shopify Store domain.
-         * @param {string} domain The Shopify Store domain.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetTenantByShopDomain(domain: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Tenant> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceGetTenantByShopDomain(domain, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2665,16 +2616,6 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @summary GetTenantByShopDomain returns a tenant by Shopify Store domain.
-         * @param {string} domain The Shopify Store domain.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetTenantByShopDomain(domain: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceGetTenantByShopDomain(domain, options)(fetch, basePath);
-        },
-        /**
-         * 
          * @param {string} shopId The Shopify Store.
          * @param {number} [pageSize] The maximum number of items to return.
          * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
@@ -2995,18 +2936,6 @@ export class OrdersServiceApi extends BaseAPI {
      */
     public ordersServiceGetShopByDomain(domain: string, options?: any) {
         return OrdersServiceApiFp(this.configuration).ordersServiceGetShopByDomain(domain, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary GetTenantByShopDomain returns a tenant by Shopify Store domain.
-     * @param {string} domain The Shopify Store domain.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceGetTenantByShopDomain(domain: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceGetTenantByShopDomain(domain, options)(this.fetch, this.basePath);
     }
 
     /**

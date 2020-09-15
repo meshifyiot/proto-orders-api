@@ -19,7 +19,7 @@
     "application/json"
   ],
   "paths": {
-    "/ordersapi/v1/shops": {
+    "/api/ordersapi/v1/shops": {
       "get": {
         "summary": "ListShops returns paginated list of shops.",
         "operationId": "OrdersService_ListShops",
@@ -91,7 +91,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{customer.shop_id}/customers": {
+    "/api/ordersapi/v1/shops/{customer.shop_id}/customers": {
       "post": {
         "operationId": "OrdersService_CreateCustomer",
         "responses": {
@@ -132,7 +132,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{customer.shop_id}/customers/{customer.id}": {
+    "/api/ordersapi/v1/shops/{customer.shop_id}/customers/{customer.id}": {
       "patch": {
         "operationId": "OrdersService_UpdateCustomer",
         "responses": {
@@ -180,7 +180,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments": {
+    "/api/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments": {
       "post": {
         "summary": "CreateFulfillment creates a fulfillment.",
         "operationId": "OrdersService_CreateFulfillment",
@@ -222,7 +222,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments/{fulfillment.id}": {
+    "/api/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments/{fulfillment.id}": {
       "patch": {
         "summary": "UpdateFulfillment updates a fulfillment.",
         "operationId": "OrdersService_UpdateFulfillment",
@@ -271,7 +271,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{line_item.shop_id}/lineitems": {
+    "/api/ordersapi/v1/shops/{line_item.shop_id}/lineitems": {
       "post": {
         "operationId": "OrdersService_CreateLineItem",
         "responses": {
@@ -319,7 +319,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{line_item.shop_id}/lineitems/{line_item.id}": {
+    "/api/ordersapi/v1/shops/{line_item.shop_id}/lineitems/{line_item.id}": {
       "patch": {
         "operationId": "OrdersService_UpdateLineItem",
         "responses": {
@@ -367,7 +367,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{order.shop_id}/orders": {
+    "/api/ordersapi/v1/shops/{order.shop_id}/orders": {
       "post": {
         "summary": "CreateOrder creates an order.",
         "operationId": "OrdersService_CreateOrder",
@@ -408,7 +408,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{order.shop_id}/orders/{order.id}": {
+    "/api/ordersapi/v1/shops/{order.shop_id}/orders/{order.id}": {
       "patch": {
         "summary": "UpdateOrder updates an order.",
         "operationId": "OrdersService_UpdateOrder",
@@ -457,7 +457,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{shop.id}": {
+    "/api/ordersapi/v1/shops/{shop.id}": {
       "patch": {
         "summary": "UpdateShop updates a shop.",
         "operationId": "OrdersService_UpdateShop",
@@ -498,7 +498,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{shop_id}": {
+    "/api/ordersapi/v1/shops/{shop_id}": {
       "get": {
         "summary": "GetShop returns a shop.",
         "operationId": "OrdersService_GetShop",
@@ -562,7 +562,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{shop_id}/customers": {
+    "/api/ordersapi/v1/shops/{shop_id}/customers": {
       "get": {
         "operationId": "OrdersService_ListCustomers",
         "responses": {
@@ -609,7 +609,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{shop_id}/customers/{customer_id}": {
+    "/api/ordersapi/v1/shops/{shop_id}/customers/{customer_id}": {
       "get": {
         "operationId": "OrdersService_GetCustomer",
         "responses": {
@@ -687,7 +687,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{shop_id}/fulfillments": {
+    "/api/ordersapi/v1/shops/{shop_id}/fulfillments": {
       "get": {
         "summary": "ListFulfillments returns paginated list of fulfillments.",
         "operationId": "OrdersService_ListFulfillments",
@@ -735,7 +735,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{shop_id}/fulfillments/{fulfillment_id}": {
+    "/api/ordersapi/v1/shops/{shop_id}/fulfillments/{fulfillment_id}": {
       "get": {
         "summary": "GetFulfillment returns a fulfillment.",
         "operationId": "OrdersService_GetFulfillment",
@@ -815,7 +815,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{shop_id}/lineitems": {
+    "/api/ordersapi/v1/shops/{shop_id}/lineitems": {
       "get": {
         "operationId": "OrdersService_ListLineItems",
         "responses": {
@@ -862,7 +862,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{shop_id}/lineitems/{line_item_id}": {
+    "/api/ordersapi/v1/shops/{shop_id}/lineitems/{line_item_id}": {
       "get": {
         "operationId": "OrdersService_GetLineItem",
         "responses": {
@@ -940,7 +940,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{shop_id}/orders": {
+    "/api/ordersapi/v1/shops/{shop_id}/orders": {
       "get": {
         "summary": "ListOrders returns paginated list of orders.",
         "operationId": "OrdersService_ListOrders",
@@ -996,7 +996,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops/{shop_id}/orders/{order_id}": {
+    "/api/ordersapi/v1/shops/{shop_id}/orders/{order_id}": {
       "get": {
         "summary": "GetOrder returns an order.",
         "operationId": "OrdersService_GetOrder",
@@ -1076,7 +1076,7 @@
         ]
       }
     },
-    "/ordersapi/v1/shops:getByDomain/{domain}": {
+    "/api/ordersapi/v1/shops:getByDomain/{domain}": {
       "get": {
         "summary": "GetShopByDomain returns a shop by domain.",
         "operationId": "OrdersService_GetShopByDomain",
@@ -1098,38 +1098,6 @@
           {
             "name": "domain",
             "description": "The field will contain domain of shop.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "OrdersService"
-        ]
-      }
-    },
-    "/ordersapi/v1/tenants:getByShopDomain/{domain}": {
-      "get": {
-        "summary": "GetTenantByShopDomain returns a tenant by Shopify Store domain.",
-        "operationId": "OrdersService_GetTenantByShopDomain",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/Tenant"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "domain",
-            "description": "The Shopify Store domain.",
             "in": "path",
             "required": true,
             "type": "string"
