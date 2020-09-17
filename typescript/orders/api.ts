@@ -185,20 +185,6 @@ export interface Address {
 /**
  * 
  * @export
- * @interface CreateOrderRequest
- */
-export interface CreateOrderRequest {
-    /**
-     * The order resource to create.
-     * @type {Order}
-     * @memberof CreateOrderRequest
-     */
-    order?: Order;
-}
-
-/**
- * 
- * @export
  * @interface Customer
  */
 export interface Customer {
@@ -829,86 +815,6 @@ export interface Tenant {
 /**
  * 
  * @export
- * @interface UpdateCustomerRequest
- */
-export interface UpdateCustomerRequest {
-    /**
-     * The customer resource which replaces the resource on the server.
-     * @type {Customer}
-     * @memberof UpdateCustomerRequest
-     */
-    customer?: Customer;
-    /**
-     * 
-     * @type {ProtobufFieldMask}
-     * @memberof UpdateCustomerRequest
-     */
-    updateMask?: ProtobufFieldMask;
-}
-
-/**
- * 
- * @export
- * @interface UpdateFulfillmentRequest
- */
-export interface UpdateFulfillmentRequest {
-    /**
-     * The fulfillment resource which replaces the resource on the server.
-     * @type {Fulfillment}
-     * @memberof UpdateFulfillmentRequest
-     */
-    fulfillment?: Fulfillment;
-    /**
-     * 
-     * @type {ProtobufFieldMask}
-     * @memberof UpdateFulfillmentRequest
-     */
-    updateMask?: ProtobufFieldMask;
-}
-
-/**
- * 
- * @export
- * @interface UpdateLineItemRequest
- */
-export interface UpdateLineItemRequest {
-    /**
-     * The line_item resource which replaces the resource on the server.
-     * @type {LineItem}
-     * @memberof UpdateLineItemRequest
-     */
-    lineItem?: LineItem;
-    /**
-     * 
-     * @type {ProtobufFieldMask}
-     * @memberof UpdateLineItemRequest
-     */
-    updateMask?: ProtobufFieldMask;
-}
-
-/**
- * 
- * @export
- * @interface UpdateOrderRequest
- */
-export interface UpdateOrderRequest {
-    /**
-     * The order resource which replaces the resource on the server.
-     * @type {Order}
-     * @memberof UpdateOrderRequest
-     */
-    order?: Order;
-    /**
-     * 
-     * @type {ProtobufFieldMask}
-     * @memberof UpdateOrderRequest
-     */
-    updateMask?: ProtobufFieldMask;
-}
-
-/**
- * 
- * @export
  * @interface UpdateShopRequest
  */
 export interface UpdateShopRequest {
@@ -928,365 +834,11 @@ export interface UpdateShopRequest {
 
 
 /**
- * OrdersServiceApi - fetch parameter creator
+ * CustomersApi - fetch parameter creator
  * @export
  */
-export const OrdersServiceApiFetchParamCreator = function (configuration?: Configuration) {
+export const CustomersApiFetchParamCreator = function (configuration?: Configuration) {
     return {
-        /**
-         * 
-         * @param {string} customerShopId The Shopify Store to which customer record belongs to.
-         * @param {Customer} body The customer resource to create.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceCreateCustomer(customerShopId: string, body: Customer, options: any = {}): FetchArgs {
-            // verify required parameter 'customerShopId' is not null or undefined
-            if (customerShopId === null || customerShopId === undefined) {
-                throw new RequiredError('customerShopId','Required parameter customerShopId was null or undefined when calling ordersServiceCreateCustomer.');
-            }
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceCreateCustomer.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{customer.shop_id}/customers`
-                .replace(`{${"customer.shop_id"}}`, encodeURIComponent(String(customerShopId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary CreateFulfillment creates a fulfillment.
-         * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
-         * @param {Fulfillment} body The fulfillment resource to create.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceCreateFulfillment(fulfillmentShopId: string, body: Fulfillment, options: any = {}): FetchArgs {
-            // verify required parameter 'fulfillmentShopId' is not null or undefined
-            if (fulfillmentShopId === null || fulfillmentShopId === undefined) {
-                throw new RequiredError('fulfillmentShopId','Required parameter fulfillmentShopId was null or undefined when calling ordersServiceCreateFulfillment.');
-            }
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceCreateFulfillment.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments`
-                .replace(`{${"fulfillment.shop_id"}}`, encodeURIComponent(String(fulfillmentShopId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} lineItemShopId The Shopify Store to which line_item record belongs to.
-         * @param {LineItem} body The line_item resource to create.
-         * @param {string} [lineItemId] The line_item id to use for this line_item.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceCreateLineItem(lineItemShopId: string, body: LineItem, lineItemId?: string, options: any = {}): FetchArgs {
-            // verify required parameter 'lineItemShopId' is not null or undefined
-            if (lineItemShopId === null || lineItemShopId === undefined) {
-                throw new RequiredError('lineItemShopId','Required parameter lineItemShopId was null or undefined when calling ordersServiceCreateLineItem.');
-            }
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceCreateLineItem.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{line_item.shop_id}/lineitems`
-                .replace(`{${"line_item.shop_id"}}`, encodeURIComponent(String(lineItemShopId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (lineItemId !== undefined) {
-                localVarQueryParameter['line_item_id'] = lineItemId;
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary CreateOrder creates an order.
-         * @param {string} orderShopId The Shopify Store to which order belongs to.
-         * @param {CreateOrderRequest} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceCreateOrder(orderShopId: string, body: CreateOrderRequest, options: any = {}): FetchArgs {
-            // verify required parameter 'orderShopId' is not null or undefined
-            if (orderShopId === null || orderShopId === undefined) {
-                throw new RequiredError('orderShopId','Required parameter orderShopId was null or undefined when calling ordersServiceCreateOrder.');
-            }
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceCreateOrder.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{order.shop_id}/orders`
-                .replace(`{${"order.shop_id"}}`, encodeURIComponent(String(orderShopId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary CreateShop creates a shop.
-         * @param {Shop} body The shop resource to create.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceCreateShop(body: Shop, options: any = {}): FetchArgs {
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceCreateShop.');
-            }
-            const localVarPath = `/ordersapi/v1/shops`;
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} shopId The Shopify Store.
-         * @param {string} customerId The resource id of the customer to be deleted.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceDeleteCustomer(shopId: string, customerId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'shopId' is not null or undefined
-            if (shopId === null || shopId === undefined) {
-                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceDeleteCustomer.');
-            }
-            // verify required parameter 'customerId' is not null or undefined
-            if (customerId === null || customerId === undefined) {
-                throw new RequiredError('customerId','Required parameter customerId was null or undefined when calling ordersServiceDeleteCustomer.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/customers/{customer_id}`
-                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
-                .replace(`{${"customer_id"}}`, encodeURIComponent(String(customerId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary DeleteFulfillment deletes a fulfillment.
-         * @param {string} shopId The Shopify Store.
-         * @param {string} fulfillmentId The resource id of the fulfillment to be deleted.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceDeleteFulfillment(shopId: string, fulfillmentId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'shopId' is not null or undefined
-            if (shopId === null || shopId === undefined) {
-                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceDeleteFulfillment.');
-            }
-            // verify required parameter 'fulfillmentId' is not null or undefined
-            if (fulfillmentId === null || fulfillmentId === undefined) {
-                throw new RequiredError('fulfillmentId','Required parameter fulfillmentId was null or undefined when calling ordersServiceDeleteFulfillment.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/fulfillments/{fulfillment_id}`
-                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
-                .replace(`{${"fulfillment_id"}}`, encodeURIComponent(String(fulfillmentId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} shopId The Shopify Store.
-         * @param {string} lineItemId The resource id of the line_item to be deleted.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceDeleteLineItem(shopId: string, lineItemId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'shopId' is not null or undefined
-            if (shopId === null || shopId === undefined) {
-                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceDeleteLineItem.');
-            }
-            // verify required parameter 'lineItemId' is not null or undefined
-            if (lineItemId === null || lineItemId === undefined) {
-                throw new RequiredError('lineItemId','Required parameter lineItemId was null or undefined when calling ordersServiceDeleteLineItem.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/lineitems/{line_item_id}`
-                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
-                .replace(`{${"line_item_id"}}`, encodeURIComponent(String(lineItemId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary DeleteOrder deletes an order.
-         * @param {string} shopId The Shopify Store.
-         * @param {string} orderId The resource id of the order to be deleted.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceDeleteOrder(shopId: string, orderId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'shopId' is not null or undefined
-            if (shopId === null || shopId === undefined) {
-                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceDeleteOrder.');
-            }
-            // verify required parameter 'orderId' is not null or undefined
-            if (orderId === null || orderId === undefined) {
-                throw new RequiredError('orderId','Required parameter orderId was null or undefined when calling ordersServiceDeleteOrder.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/orders/{order_id}`
-                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
-                .replace(`{${"order_id"}}`, encodeURIComponent(String(orderId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary DeleteShop deletes a shop.
-         * @param {string} shopId The resource id of the shop to be deleted.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceDeleteShop(shopId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'shopId' is not null or undefined
-            if (shopId === null || shopId === undefined) {
-                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceDeleteShop.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}`
-                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
         /**
          * 
          * @param {string} shopId The Shopify Store.
@@ -1303,200 +855,9 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (customerId === null || customerId === undefined) {
                 throw new RequiredError('customerId','Required parameter customerId was null or undefined when calling ordersServiceGetCustomer.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/customers/{customer_id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/customers/{customer_id}`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
                 .replace(`{${"customer_id"}}`, encodeURIComponent(String(customerId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary GetFulfillment returns a fulfillment.
-         * @param {string} shopId The Shopify Store.
-         * @param {string} fulfillmentId The field will contain id of fulfillment.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetFulfillment(shopId: string, fulfillmentId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'shopId' is not null or undefined
-            if (shopId === null || shopId === undefined) {
-                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceGetFulfillment.');
-            }
-            // verify required parameter 'fulfillmentId' is not null or undefined
-            if (fulfillmentId === null || fulfillmentId === undefined) {
-                throw new RequiredError('fulfillmentId','Required parameter fulfillmentId was null or undefined when calling ordersServiceGetFulfillment.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/fulfillments/{fulfillment_id}`
-                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
-                .replace(`{${"fulfillment_id"}}`, encodeURIComponent(String(fulfillmentId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} shopId The Shopify Store.
-         * @param {string} lineItemId The field will contain id of the resource requested.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetLineItem(shopId: string, lineItemId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'shopId' is not null or undefined
-            if (shopId === null || shopId === undefined) {
-                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceGetLineItem.');
-            }
-            // verify required parameter 'lineItemId' is not null or undefined
-            if (lineItemId === null || lineItemId === undefined) {
-                throw new RequiredError('lineItemId','Required parameter lineItemId was null or undefined when calling ordersServiceGetLineItem.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/lineitems/{line_item_id}`
-                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
-                .replace(`{${"line_item_id"}}`, encodeURIComponent(String(lineItemId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary GetOrder returns an order.
-         * @param {string} shopId The Shopify Store.
-         * @param {string} orderId The field will contain id of order.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetOrder(shopId: string, orderId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'shopId' is not null or undefined
-            if (shopId === null || shopId === undefined) {
-                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceGetOrder.');
-            }
-            // verify required parameter 'orderId' is not null or undefined
-            if (orderId === null || orderId === undefined) {
-                throw new RequiredError('orderId','Required parameter orderId was null or undefined when calling ordersServiceGetOrder.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/orders/{order_id}`
-                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
-                .replace(`{${"order_id"}}`, encodeURIComponent(String(orderId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary GetShop returns a shop.
-         * @param {string} shopId The field will contain id of shop.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetShop(shopId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'shopId' is not null or undefined
-            if (shopId === null || shopId === undefined) {
-                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceGetShop.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}`
-                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary GetShopByDomain returns a shop by domain.
-         * @param {string} domain The field will contain domain of shop.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetShopByDomain(domain: string, options: any = {}): FetchArgs {
-            // verify required parameter 'domain' is not null or undefined
-            if (domain === null || domain === undefined) {
-                throw new RequiredError('domain','Required parameter domain was null or undefined when calling ordersServiceGetShopByDomain.');
-            }
-            const localVarPath = `/ordersapi/v1/shops:getByDomain/{domain}`
-                .replace(`{${"domain"}}`, encodeURIComponent(String(domain)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary GetTenantByShopDomain returns a tenant by Shopify Store domain.
-         * @param {string} domain The Shopify Store domain.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetTenantByShopDomain(domain: string, options: any = {}): FetchArgs {
-            // verify required parameter 'domain' is not null or undefined
-            if (domain === null || domain === undefined) {
-                throw new RequiredError('domain','Required parameter domain was null or undefined when calling ordersServiceGetTenantByShopDomain.');
-            }
-            const localVarPath = `/ordersapi/v1/tenants:getByShopDomain/{domain}`
-                .replace(`{${"domain"}}`, encodeURIComponent(String(domain)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1525,7 +886,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (shopId === null || shopId === undefined) {
                 throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceListCustomers.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/customers`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/customers`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1539,6 +900,164 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (pageToken !== undefined) {
                 localVarQueryParameter['page_token'] = pageToken;
             }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * CustomersApi - functional programming interface
+ * @export
+ */
+export const CustomersApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} shopId The Shopify Store.
+         * @param {string} customerId The field will contain id of the resource requested.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetCustomer(shopId: string, customerId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Customer> {
+            const localVarFetchArgs = CustomersApiFetchParamCreator(configuration).ordersServiceGetCustomer(shopId, customerId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} shopId The Shopify Store.
+         * @param {number} [pageSize] The maximum number of items to return.
+         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceListCustomers(shopId: string, pageSize?: number, pageToken?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListCustomersResponse> {
+            const localVarFetchArgs = CustomersApiFetchParamCreator(configuration).ordersServiceListCustomers(shopId, pageSize, pageToken, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * CustomersApi - factory interface
+ * @export
+ */
+export const CustomersApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * 
+         * @param {string} shopId The Shopify Store.
+         * @param {string} customerId The field will contain id of the resource requested.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetCustomer(shopId: string, customerId: string, options?: any) {
+            return CustomersApiFp(configuration).ordersServiceGetCustomer(shopId, customerId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} shopId The Shopify Store.
+         * @param {number} [pageSize] The maximum number of items to return.
+         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceListCustomers(shopId: string, pageSize?: number, pageToken?: string, options?: any) {
+            return CustomersApiFp(configuration).ordersServiceListCustomers(shopId, pageSize, pageToken, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * CustomersApi - object-oriented interface
+ * @export
+ * @class CustomersApi
+ * @extends {BaseAPI}
+ */
+export class CustomersApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} shopId The Shopify Store.
+     * @param {string} customerId The field will contain id of the resource requested.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomersApi
+     */
+    public ordersServiceGetCustomer(shopId: string, customerId: string, options?: any) {
+        return CustomersApiFp(this.configuration).ordersServiceGetCustomer(shopId, customerId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} shopId The Shopify Store.
+     * @param {number} [pageSize] The maximum number of items to return.
+     * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomersApi
+     */
+    public ordersServiceListCustomers(shopId: string, pageSize?: number, pageToken?: string, options?: any) {
+        return CustomersApiFp(this.configuration).ordersServiceListCustomers(shopId, pageSize, pageToken, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * FulfillmentsApi - fetch parameter creator
+ * @export
+ */
+export const FulfillmentsApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary GetFulfillment returns a fulfillment.
+         * @param {string} shopId The Shopify Store.
+         * @param {string} fulfillmentId The field will contain id of fulfillment.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetFulfillment(shopId: string, fulfillmentId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'shopId' is not null or undefined
+            if (shopId === null || shopId === undefined) {
+                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceGetFulfillment.');
+            }
+            // verify required parameter 'fulfillmentId' is not null or undefined
+            if (fulfillmentId === null || fulfillmentId === undefined) {
+                throw new RequiredError('fulfillmentId','Required parameter fulfillmentId was null or undefined when calling ordersServiceGetFulfillment.');
+            }
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/fulfillments/{fulfillment_id}`
+                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
+                .replace(`{${"fulfillment_id"}}`, encodeURIComponent(String(fulfillmentId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1564,7 +1083,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (shopId === null || shopId === undefined) {
                 throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceListFulfillments.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/fulfillments`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/fulfillments`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1589,6 +1108,169 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
                 options: localVarRequestOptions,
             };
         },
+    }
+};
+
+/**
+ * FulfillmentsApi - functional programming interface
+ * @export
+ */
+export const FulfillmentsApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary GetFulfillment returns a fulfillment.
+         * @param {string} shopId The Shopify Store.
+         * @param {string} fulfillmentId The field will contain id of fulfillment.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetFulfillment(shopId: string, fulfillmentId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Fulfillment> {
+            const localVarFetchArgs = FulfillmentsApiFetchParamCreator(configuration).ordersServiceGetFulfillment(shopId, fulfillmentId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary ListFulfillments returns paginated list of fulfillments.
+         * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
+         * @param {number} [pageSize] The maximum number of items to return.
+         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceListFulfillments(shopId: string, pageSize?: number, pageToken?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListFulfillmentsResponse> {
+            const localVarFetchArgs = FulfillmentsApiFetchParamCreator(configuration).ordersServiceListFulfillments(shopId, pageSize, pageToken, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * FulfillmentsApi - factory interface
+ * @export
+ */
+export const FulfillmentsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * 
+         * @summary GetFulfillment returns a fulfillment.
+         * @param {string} shopId The Shopify Store.
+         * @param {string} fulfillmentId The field will contain id of fulfillment.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetFulfillment(shopId: string, fulfillmentId: string, options?: any) {
+            return FulfillmentsApiFp(configuration).ordersServiceGetFulfillment(shopId, fulfillmentId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary ListFulfillments returns paginated list of fulfillments.
+         * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
+         * @param {number} [pageSize] The maximum number of items to return.
+         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceListFulfillments(shopId: string, pageSize?: number, pageToken?: string, options?: any) {
+            return FulfillmentsApiFp(configuration).ordersServiceListFulfillments(shopId, pageSize, pageToken, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * FulfillmentsApi - object-oriented interface
+ * @export
+ * @class FulfillmentsApi
+ * @extends {BaseAPI}
+ */
+export class FulfillmentsApi extends BaseAPI {
+    /**
+     * 
+     * @summary GetFulfillment returns a fulfillment.
+     * @param {string} shopId The Shopify Store.
+     * @param {string} fulfillmentId The field will contain id of fulfillment.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FulfillmentsApi
+     */
+    public ordersServiceGetFulfillment(shopId: string, fulfillmentId: string, options?: any) {
+        return FulfillmentsApiFp(this.configuration).ordersServiceGetFulfillment(shopId, fulfillmentId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary ListFulfillments returns paginated list of fulfillments.
+     * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
+     * @param {number} [pageSize] The maximum number of items to return.
+     * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FulfillmentsApi
+     */
+    public ordersServiceListFulfillments(shopId: string, pageSize?: number, pageToken?: string, options?: any) {
+        return FulfillmentsApiFp(this.configuration).ordersServiceListFulfillments(shopId, pageSize, pageToken, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * LineItemsApi - fetch parameter creator
+ * @export
+ */
+export const LineItemsApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} shopId The Shopify Store.
+         * @param {string} lineItemId The field will contain id of the resource requested.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetLineItem(shopId: string, lineItemId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'shopId' is not null or undefined
+            if (shopId === null || shopId === undefined) {
+                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceGetLineItem.');
+            }
+            // verify required parameter 'lineItemId' is not null or undefined
+            if (lineItemId === null || lineItemId === undefined) {
+                throw new RequiredError('lineItemId','Required parameter lineItemId was null or undefined when calling ordersServiceGetLineItem.');
+            }
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/lineitems/{line_item_id}`
+                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
+                .replace(`{${"line_item_id"}}`, encodeURIComponent(String(lineItemId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {string} shopId The Shopify Store.
@@ -1602,7 +1284,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (shopId === null || shopId === undefined) {
                 throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceListLineItems.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/lineitems`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/lineitems`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1616,6 +1298,164 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (pageToken !== undefined) {
                 localVarQueryParameter['page_token'] = pageToken;
             }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * LineItemsApi - functional programming interface
+ * @export
+ */
+export const LineItemsApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} shopId The Shopify Store.
+         * @param {string} lineItemId The field will contain id of the resource requested.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetLineItem(shopId: string, lineItemId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LineItem> {
+            const localVarFetchArgs = LineItemsApiFetchParamCreator(configuration).ordersServiceGetLineItem(shopId, lineItemId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} shopId The Shopify Store.
+         * @param {number} [pageSize] The maximum number of items to return.
+         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceListLineItems(shopId: string, pageSize?: number, pageToken?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListLineItemsResponse> {
+            const localVarFetchArgs = LineItemsApiFetchParamCreator(configuration).ordersServiceListLineItems(shopId, pageSize, pageToken, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * LineItemsApi - factory interface
+ * @export
+ */
+export const LineItemsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * 
+         * @param {string} shopId The Shopify Store.
+         * @param {string} lineItemId The field will contain id of the resource requested.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetLineItem(shopId: string, lineItemId: string, options?: any) {
+            return LineItemsApiFp(configuration).ordersServiceGetLineItem(shopId, lineItemId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} shopId The Shopify Store.
+         * @param {number} [pageSize] The maximum number of items to return.
+         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceListLineItems(shopId: string, pageSize?: number, pageToken?: string, options?: any) {
+            return LineItemsApiFp(configuration).ordersServiceListLineItems(shopId, pageSize, pageToken, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * LineItemsApi - object-oriented interface
+ * @export
+ * @class LineItemsApi
+ * @extends {BaseAPI}
+ */
+export class LineItemsApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} shopId The Shopify Store.
+     * @param {string} lineItemId The field will contain id of the resource requested.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LineItemsApi
+     */
+    public ordersServiceGetLineItem(shopId: string, lineItemId: string, options?: any) {
+        return LineItemsApiFp(this.configuration).ordersServiceGetLineItem(shopId, lineItemId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} shopId The Shopify Store.
+     * @param {number} [pageSize] The maximum number of items to return.
+     * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LineItemsApi
+     */
+    public ordersServiceListLineItems(shopId: string, pageSize?: number, pageToken?: string, options?: any) {
+        return LineItemsApiFp(this.configuration).ordersServiceListLineItems(shopId, pageSize, pageToken, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * OrdersApi - fetch parameter creator
+ * @export
+ */
+export const OrdersApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary GetOrder returns an order.
+         * @param {string} shopId The Shopify Store.
+         * @param {string} orderId The field will contain id of order.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetOrder(shopId: string, orderId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'shopId' is not null or undefined
+            if (shopId === null || shopId === undefined) {
+                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceGetOrder.');
+            }
+            // verify required parameter 'orderId' is not null or undefined
+            if (orderId === null || orderId === undefined) {
+                throw new RequiredError('orderId','Required parameter orderId was null or undefined when calling ordersServiceGetOrder.');
+            }
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/orders/{order_id}`
+                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)))
+                .replace(`{${"order_id"}}`, encodeURIComponent(String(orderId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -1642,7 +1482,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (shopId === null || shopId === undefined) {
                 throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceListOrders.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop_id}/orders`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}/orders`
                 .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1671,6 +1511,257 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
                 options: localVarRequestOptions,
             };
         },
+    }
+};
+
+/**
+ * OrdersApi - functional programming interface
+ * @export
+ */
+export const OrdersApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary GetOrder returns an order.
+         * @param {string} shopId The Shopify Store.
+         * @param {string} orderId The field will contain id of order.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetOrder(shopId: string, orderId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Order> {
+            const localVarFetchArgs = OrdersApiFetchParamCreator(configuration).ordersServiceGetOrder(shopId, orderId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary ListOrders returns paginated list of orders.
+         * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
+         * @param {number} [pageSize] The maximum number of items to return.
+         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {string} [folderId] The folder_id adds filtering by folder. Optional.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceListOrders(shopId: string, pageSize?: number, pageToken?: string, folderId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListOrdersResponse> {
+            const localVarFetchArgs = OrdersApiFetchParamCreator(configuration).ordersServiceListOrders(shopId, pageSize, pageToken, folderId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * OrdersApi - factory interface
+ * @export
+ */
+export const OrdersApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * 
+         * @summary GetOrder returns an order.
+         * @param {string} shopId The Shopify Store.
+         * @param {string} orderId The field will contain id of order.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetOrder(shopId: string, orderId: string, options?: any) {
+            return OrdersApiFp(configuration).ordersServiceGetOrder(shopId, orderId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary ListOrders returns paginated list of orders.
+         * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
+         * @param {number} [pageSize] The maximum number of items to return.
+         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {string} [folderId] The folder_id adds filtering by folder. Optional.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceListOrders(shopId: string, pageSize?: number, pageToken?: string, folderId?: string, options?: any) {
+            return OrdersApiFp(configuration).ordersServiceListOrders(shopId, pageSize, pageToken, folderId, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * OrdersApi - object-oriented interface
+ * @export
+ * @class OrdersApi
+ * @extends {BaseAPI}
+ */
+export class OrdersApi extends BaseAPI {
+    /**
+     * 
+     * @summary GetOrder returns an order.
+     * @param {string} shopId The Shopify Store.
+     * @param {string} orderId The field will contain id of order.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrdersApi
+     */
+    public ordersServiceGetOrder(shopId: string, orderId: string, options?: any) {
+        return OrdersApiFp(this.configuration).ordersServiceGetOrder(shopId, orderId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary ListOrders returns paginated list of orders.
+     * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
+     * @param {number} [pageSize] The maximum number of items to return.
+     * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+     * @param {string} [folderId] The folder_id adds filtering by folder. Optional.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrdersApi
+     */
+    public ordersServiceListOrders(shopId: string, pageSize?: number, pageToken?: string, folderId?: string, options?: any) {
+        return OrdersApiFp(this.configuration).ordersServiceListOrders(shopId, pageSize, pageToken, folderId, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * ShopsApi - fetch parameter creator
+ * @export
+ */
+export const ShopsApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary CreateShop creates a shop.
+         * @param {Shop} body The shop resource to create.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceCreateShop(body: Shop, options: any = {}): FetchArgs {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceCreateShop.');
+            }
+            const localVarPath = `/api/ordersapi/v1/shops`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary DeleteShop deletes a shop.
+         * @param {string} shopId The resource id of the shop to be deleted.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceDeleteShop(shopId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'shopId' is not null or undefined
+            if (shopId === null || shopId === undefined) {
+                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceDeleteShop.');
+            }
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}`
+                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary GetShop returns a shop.
+         * @param {string} shopId The field will contain id of shop.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetShop(shopId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'shopId' is not null or undefined
+            if (shopId === null || shopId === undefined) {
+                throw new RequiredError('shopId','Required parameter shopId was null or undefined when calling ordersServiceGetShop.');
+            }
+            const localVarPath = `/api/ordersapi/v1/shops/{shop_id}`
+                .replace(`{${"shop_id"}}`, encodeURIComponent(String(shopId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary GetShopByDomain returns a shop by domain.
+         * @param {string} domain The field will contain domain of shop.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetShopByDomain(domain: string, options: any = {}): FetchArgs {
+            // verify required parameter 'domain' is not null or undefined
+            if (domain === null || domain === undefined) {
+                throw new RequiredError('domain','Required parameter domain was null or undefined when calling ordersServiceGetShopByDomain.');
+            }
+            const localVarPath = `/api/ordersapi/v1/shops:getByDomain/{domain}`
+                .replace(`{${"domain"}}`, encodeURIComponent(String(domain)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @summary ListShops returns paginated list of shops.
@@ -1680,7 +1771,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
          * @throws {RequiredError}
          */
         ordersServiceListShops(pageSize?: number, pageToken?: string, options: any = {}): FetchArgs {
-            const localVarPath = `/ordersapi/v1/shops`;
+            const localVarPath = `/api/ordersapi/v1/shops`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1706,180 +1797,6 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {string} customerShopId The Shopify Store to which customer record belongs to.
-         * @param {string} customerId A unique identifier for the customer.
-         * @param {UpdateCustomerRequest} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceUpdateCustomer(customerShopId: string, customerId: string, body: UpdateCustomerRequest, options: any = {}): FetchArgs {
-            // verify required parameter 'customerShopId' is not null or undefined
-            if (customerShopId === null || customerShopId === undefined) {
-                throw new RequiredError('customerShopId','Required parameter customerShopId was null or undefined when calling ordersServiceUpdateCustomer.');
-            }
-            // verify required parameter 'customerId' is not null or undefined
-            if (customerId === null || customerId === undefined) {
-                throw new RequiredError('customerId','Required parameter customerId was null or undefined when calling ordersServiceUpdateCustomer.');
-            }
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceUpdateCustomer.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{customer.shop_id}/customers/{customer.id}`
-                .replace(`{${"customer.shop_id"}}`, encodeURIComponent(String(customerShopId)))
-                .replace(`{${"customer.id"}}`, encodeURIComponent(String(customerId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary UpdateFulfillment updates a fulfillment.
-         * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
-         * @param {string} fulfillmentId The ID for the fulfillment.
-         * @param {UpdateFulfillmentRequest} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceUpdateFulfillment(fulfillmentShopId: string, fulfillmentId: string, body: UpdateFulfillmentRequest, options: any = {}): FetchArgs {
-            // verify required parameter 'fulfillmentShopId' is not null or undefined
-            if (fulfillmentShopId === null || fulfillmentShopId === undefined) {
-                throw new RequiredError('fulfillmentShopId','Required parameter fulfillmentShopId was null or undefined when calling ordersServiceUpdateFulfillment.');
-            }
-            // verify required parameter 'fulfillmentId' is not null or undefined
-            if (fulfillmentId === null || fulfillmentId === undefined) {
-                throw new RequiredError('fulfillmentId','Required parameter fulfillmentId was null or undefined when calling ordersServiceUpdateFulfillment.');
-            }
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceUpdateFulfillment.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments/{fulfillment.id}`
-                .replace(`{${"fulfillment.shop_id"}}`, encodeURIComponent(String(fulfillmentShopId)))
-                .replace(`{${"fulfillment.id"}}`, encodeURIComponent(String(fulfillmentId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} lineItemShopId The Shopify Store to which line_item record belongs to.
-         * @param {string} lineItemId The ID of the line item.
-         * @param {UpdateLineItemRequest} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceUpdateLineItem(lineItemShopId: string, lineItemId: string, body: UpdateLineItemRequest, options: any = {}): FetchArgs {
-            // verify required parameter 'lineItemShopId' is not null or undefined
-            if (lineItemShopId === null || lineItemShopId === undefined) {
-                throw new RequiredError('lineItemShopId','Required parameter lineItemShopId was null or undefined when calling ordersServiceUpdateLineItem.');
-            }
-            // verify required parameter 'lineItemId' is not null or undefined
-            if (lineItemId === null || lineItemId === undefined) {
-                throw new RequiredError('lineItemId','Required parameter lineItemId was null or undefined when calling ordersServiceUpdateLineItem.');
-            }
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceUpdateLineItem.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{line_item.shop_id}/lineitems/{line_item.id}`
-                .replace(`{${"line_item.shop_id"}}`, encodeURIComponent(String(lineItemShopId)))
-                .replace(`{${"line_item.id"}}`, encodeURIComponent(String(lineItemId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary UpdateOrder updates an order.
-         * @param {string} orderShopId The Shopify Store to which order belongs to.
-         * @param {string} orderId The Shopify ID of the order.
-         * @param {UpdateOrderRequest} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceUpdateOrder(orderShopId: string, orderId: string, body: UpdateOrderRequest, options: any = {}): FetchArgs {
-            // verify required parameter 'orderShopId' is not null or undefined
-            if (orderShopId === null || orderShopId === undefined) {
-                throw new RequiredError('orderShopId','Required parameter orderShopId was null or undefined when calling ordersServiceUpdateOrder.');
-            }
-            // verify required parameter 'orderId' is not null or undefined
-            if (orderId === null || orderId === undefined) {
-                throw new RequiredError('orderId','Required parameter orderId was null or undefined when calling ordersServiceUpdateOrder.');
-            }
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceUpdateOrder.');
-            }
-            const localVarPath = `/ordersapi/v1/shops/{order.shop_id}/orders/{order.id}`
-                .replace(`{${"order.shop_id"}}`, encodeURIComponent(String(orderShopId)))
-                .replace(`{${"order.id"}}`, encodeURIComponent(String(orderId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary UpdateShop updates a shop.
          * @param {string} shopId The shop ID.
          * @param {UpdateShopRequest} body 
@@ -1895,7 +1812,7 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceUpdateShop.');
             }
-            const localVarPath = `/ordersapi/v1/shops/{shop.id}`
+            const localVarPath = `/api/ordersapi/v1/shops/{shop.id}`
                 .replace(`{${"shop.id"}}`, encodeURIComponent(String(shopId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
@@ -1920,94 +1837,11 @@ export const OrdersServiceApiFetchParamCreator = function (configuration?: Confi
 };
 
 /**
- * OrdersServiceApi - functional programming interface
+ * ShopsApi - functional programming interface
  * @export
  */
-export const OrdersServiceApiFp = function(configuration?: Configuration) {
+export const ShopsApiFp = function(configuration?: Configuration) {
     return {
-        /**
-         * 
-         * @param {string} customerShopId The Shopify Store to which customer record belongs to.
-         * @param {Customer} body The customer resource to create.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceCreateCustomer(customerShopId: string, body: Customer, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Customer> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceCreateCustomer(customerShopId, body, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @summary CreateFulfillment creates a fulfillment.
-         * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
-         * @param {Fulfillment} body The fulfillment resource to create.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceCreateFulfillment(fulfillmentShopId: string, body: Fulfillment, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Fulfillment> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceCreateFulfillment(fulfillmentShopId, body, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} lineItemShopId The Shopify Store to which line_item record belongs to.
-         * @param {LineItem} body The line_item resource to create.
-         * @param {string} [lineItemId] The line_item id to use for this line_item.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceCreateLineItem(lineItemShopId: string, body: LineItem, lineItemId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LineItem> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceCreateLineItem(lineItemShopId, body, lineItemId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @summary CreateOrder creates an order.
-         * @param {string} orderShopId The Shopify Store to which order belongs to.
-         * @param {CreateOrderRequest} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceCreateOrder(orderShopId: string, body: CreateOrderRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Order> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceCreateOrder(orderShopId, body, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
         /**
          * 
          * @summary CreateShop creates a shop.
@@ -2016,89 +1850,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
          * @throws {RequiredError}
          */
         ordersServiceCreateShop(body: Shop, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Shop> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceCreateShop(body, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} shopId The Shopify Store.
-         * @param {string} customerId The resource id of the customer to be deleted.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceDeleteCustomer(shopId: string, customerId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceDeleteCustomer(shopId, customerId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @summary DeleteFulfillment deletes a fulfillment.
-         * @param {string} shopId The Shopify Store.
-         * @param {string} fulfillmentId The resource id of the fulfillment to be deleted.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceDeleteFulfillment(shopId: string, fulfillmentId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceDeleteFulfillment(shopId, fulfillmentId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} shopId The Shopify Store.
-         * @param {string} lineItemId The resource id of the line_item to be deleted.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceDeleteLineItem(shopId: string, lineItemId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceDeleteLineItem(shopId, lineItemId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @summary DeleteOrder deletes an order.
-         * @param {string} shopId The Shopify Store.
-         * @param {string} orderId The resource id of the order to be deleted.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceDeleteOrder(shopId: string, orderId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceDeleteOrder(shopId, orderId, options);
+            const localVarFetchArgs = ShopsApiFetchParamCreator(configuration).ordersServiceCreateShop(body, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2118,89 +1870,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
          * @throws {RequiredError}
          */
         ordersServiceDeleteShop(shopId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceDeleteShop(shopId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} shopId The Shopify Store.
-         * @param {string} customerId The field will contain id of the resource requested.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetCustomer(shopId: string, customerId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Customer> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceGetCustomer(shopId, customerId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @summary GetFulfillment returns a fulfillment.
-         * @param {string} shopId The Shopify Store.
-         * @param {string} fulfillmentId The field will contain id of fulfillment.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetFulfillment(shopId: string, fulfillmentId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Fulfillment> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceGetFulfillment(shopId, fulfillmentId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} shopId The Shopify Store.
-         * @param {string} lineItemId The field will contain id of the resource requested.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetLineItem(shopId: string, lineItemId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LineItem> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceGetLineItem(shopId, lineItemId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @summary GetOrder returns an order.
-         * @param {string} shopId The Shopify Store.
-         * @param {string} orderId The field will contain id of order.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetOrder(shopId: string, orderId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Order> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceGetOrder(shopId, orderId, options);
+            const localVarFetchArgs = ShopsApiFetchParamCreator(configuration).ordersServiceDeleteShop(shopId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2220,7 +1890,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
          * @throws {RequiredError}
          */
         ordersServiceGetShop(shopId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Shop> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceGetShop(shopId, options);
+            const localVarFetchArgs = ShopsApiFetchParamCreator(configuration).ordersServiceGetShop(shopId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2240,114 +1910,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
          * @throws {RequiredError}
          */
         ordersServiceGetShopByDomain(domain: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Shop> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceGetShopByDomain(domain, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @summary GetTenantByShopDomain returns a tenant by Shopify Store domain.
-         * @param {string} domain The Shopify Store domain.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetTenantByShopDomain(domain: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Tenant> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceGetTenantByShopDomain(domain, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} shopId The Shopify Store.
-         * @param {number} [pageSize] The maximum number of items to return.
-         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceListCustomers(shopId: string, pageSize?: number, pageToken?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListCustomersResponse> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceListCustomers(shopId, pageSize, pageToken, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @summary ListFulfillments returns paginated list of fulfillments.
-         * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
-         * @param {number} [pageSize] The maximum number of items to return.
-         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceListFulfillments(shopId: string, pageSize?: number, pageToken?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListFulfillmentsResponse> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceListFulfillments(shopId, pageSize, pageToken, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} shopId The Shopify Store.
-         * @param {number} [pageSize] The maximum number of items to return.
-         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceListLineItems(shopId: string, pageSize?: number, pageToken?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListLineItemsResponse> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceListLineItems(shopId, pageSize, pageToken, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @summary ListOrders returns paginated list of orders.
-         * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
-         * @param {number} [pageSize] The maximum number of items to return.
-         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-         * @param {string} [folderId] The folder_id adds filtering by folder. Optional.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceListOrders(shopId: string, pageSize?: number, pageToken?: string, folderId?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListOrdersResponse> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceListOrders(shopId, pageSize, pageToken, folderId, options);
+            const localVarFetchArgs = ShopsApiFetchParamCreator(configuration).ordersServiceGetShopByDomain(domain, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2368,93 +1931,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
          * @throws {RequiredError}
          */
         ordersServiceListShops(pageSize?: number, pageToken?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListShopsResponse> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceListShops(pageSize, pageToken, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} customerShopId The Shopify Store to which customer record belongs to.
-         * @param {string} customerId A unique identifier for the customer.
-         * @param {UpdateCustomerRequest} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceUpdateCustomer(customerShopId: string, customerId: string, body: UpdateCustomerRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Customer> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceUpdateCustomer(customerShopId, customerId, body, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @summary UpdateFulfillment updates a fulfillment.
-         * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
-         * @param {string} fulfillmentId The ID for the fulfillment.
-         * @param {UpdateFulfillmentRequest} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceUpdateFulfillment(fulfillmentShopId: string, fulfillmentId: string, body: UpdateFulfillmentRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Fulfillment> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceUpdateFulfillment(fulfillmentShopId, fulfillmentId, body, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} lineItemShopId The Shopify Store to which line_item record belongs to.
-         * @param {string} lineItemId The ID of the line item.
-         * @param {UpdateLineItemRequest} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceUpdateLineItem(lineItemShopId: string, lineItemId: string, body: UpdateLineItemRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LineItem> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceUpdateLineItem(lineItemShopId, lineItemId, body, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-if (options && options.onResponseHeader) options.onResponseHeader(response);
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @summary UpdateOrder updates an order.
-         * @param {string} orderShopId The Shopify Store to which order belongs to.
-         * @param {string} orderId The Shopify ID of the order.
-         * @param {UpdateOrderRequest} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceUpdateOrder(orderShopId: string, orderId: string, body: UpdateOrderRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Order> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceUpdateOrder(orderShopId, orderId, body, options);
+            const localVarFetchArgs = ShopsApiFetchParamCreator(configuration).ordersServiceListShops(pageSize, pageToken, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2475,7 +1952,7 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
          * @throws {RequiredError}
          */
         ordersServiceUpdateShop(shopId: string, body: UpdateShopRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Shop> {
-            const localVarFetchArgs = OrdersServiceApiFetchParamCreator(configuration).ordersServiceUpdateShop(shopId, body, options);
+            const localVarFetchArgs = ShopsApiFetchParamCreator(configuration).ordersServiceUpdateShop(shopId, body, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2491,54 +1968,11 @@ if (options && options.onResponseHeader) options.onResponseHeader(response);
 };
 
 /**
- * OrdersServiceApi - factory interface
+ * ShopsApi - factory interface
  * @export
  */
-export const OrdersServiceApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+export const ShopsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
     return {
-        /**
-         * 
-         * @param {string} customerShopId The Shopify Store to which customer record belongs to.
-         * @param {Customer} body The customer resource to create.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceCreateCustomer(customerShopId: string, body: Customer, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceCreateCustomer(customerShopId, body, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @summary CreateFulfillment creates a fulfillment.
-         * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
-         * @param {Fulfillment} body The fulfillment resource to create.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceCreateFulfillment(fulfillmentShopId: string, body: Fulfillment, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceCreateFulfillment(fulfillmentShopId, body, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} lineItemShopId The Shopify Store to which line_item record belongs to.
-         * @param {LineItem} body The line_item resource to create.
-         * @param {string} [lineItemId] The line_item id to use for this line_item.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceCreateLineItem(lineItemShopId: string, body: LineItem, lineItemId?: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceCreateLineItem(lineItemShopId, body, lineItemId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @summary CreateOrder creates an order.
-         * @param {string} orderShopId The Shopify Store to which order belongs to.
-         * @param {CreateOrderRequest} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceCreateOrder(orderShopId: string, body: CreateOrderRequest, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceCreateOrder(orderShopId, body, options)(fetch, basePath);
-        },
         /**
          * 
          * @summary CreateShop creates a shop.
@@ -2547,49 +1981,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         ordersServiceCreateShop(body: Shop, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceCreateShop(body, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} shopId The Shopify Store.
-         * @param {string} customerId The resource id of the customer to be deleted.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceDeleteCustomer(shopId: string, customerId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceDeleteCustomer(shopId, customerId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @summary DeleteFulfillment deletes a fulfillment.
-         * @param {string} shopId The Shopify Store.
-         * @param {string} fulfillmentId The resource id of the fulfillment to be deleted.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceDeleteFulfillment(shopId: string, fulfillmentId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceDeleteFulfillment(shopId, fulfillmentId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} shopId The Shopify Store.
-         * @param {string} lineItemId The resource id of the line_item to be deleted.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceDeleteLineItem(shopId: string, lineItemId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceDeleteLineItem(shopId, lineItemId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @summary DeleteOrder deletes an order.
-         * @param {string} shopId The Shopify Store.
-         * @param {string} orderId The resource id of the order to be deleted.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceDeleteOrder(shopId: string, orderId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceDeleteOrder(shopId, orderId, options)(fetch, basePath);
+            return ShopsApiFp(configuration).ordersServiceCreateShop(body, options)(fetch, basePath);
         },
         /**
          * 
@@ -2599,49 +1991,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         ordersServiceDeleteShop(shopId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceDeleteShop(shopId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} shopId The Shopify Store.
-         * @param {string} customerId The field will contain id of the resource requested.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetCustomer(shopId: string, customerId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceGetCustomer(shopId, customerId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @summary GetFulfillment returns a fulfillment.
-         * @param {string} shopId The Shopify Store.
-         * @param {string} fulfillmentId The field will contain id of fulfillment.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetFulfillment(shopId: string, fulfillmentId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceGetFulfillment(shopId, fulfillmentId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} shopId The Shopify Store.
-         * @param {string} lineItemId The field will contain id of the resource requested.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetLineItem(shopId: string, lineItemId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceGetLineItem(shopId, lineItemId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @summary GetOrder returns an order.
-         * @param {string} shopId The Shopify Store.
-         * @param {string} orderId The field will contain id of order.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetOrder(shopId: string, orderId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceGetOrder(shopId, orderId, options)(fetch, basePath);
+            return ShopsApiFp(configuration).ordersServiceDeleteShop(shopId, options)(fetch, basePath);
         },
         /**
          * 
@@ -2651,7 +2001,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         ordersServiceGetShop(shopId: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceGetShop(shopId, options)(fetch, basePath);
+            return ShopsApiFp(configuration).ordersServiceGetShop(shopId, options)(fetch, basePath);
         },
         /**
          * 
@@ -2661,64 +2011,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         ordersServiceGetShopByDomain(domain: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceGetShopByDomain(domain, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @summary GetTenantByShopDomain returns a tenant by Shopify Store domain.
-         * @param {string} domain The Shopify Store domain.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceGetTenantByShopDomain(domain: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceGetTenantByShopDomain(domain, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} shopId The Shopify Store.
-         * @param {number} [pageSize] The maximum number of items to return.
-         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceListCustomers(shopId: string, pageSize?: number, pageToken?: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceListCustomers(shopId, pageSize, pageToken, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @summary ListFulfillments returns paginated list of fulfillments.
-         * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
-         * @param {number} [pageSize] The maximum number of items to return.
-         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceListFulfillments(shopId: string, pageSize?: number, pageToken?: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceListFulfillments(shopId, pageSize, pageToken, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} shopId The Shopify Store.
-         * @param {number} [pageSize] The maximum number of items to return.
-         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceListLineItems(shopId: string, pageSize?: number, pageToken?: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceListLineItems(shopId, pageSize, pageToken, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @summary ListOrders returns paginated list of orders.
-         * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
-         * @param {number} [pageSize] The maximum number of items to return.
-         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-         * @param {string} [folderId] The folder_id adds filtering by folder. Optional.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceListOrders(shopId: string, pageSize?: number, pageToken?: string, folderId?: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceListOrders(shopId, pageSize, pageToken, folderId, options)(fetch, basePath);
+            return ShopsApiFp(configuration).ordersServiceGetShopByDomain(domain, options)(fetch, basePath);
         },
         /**
          * 
@@ -2729,53 +2022,7 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         ordersServiceListShops(pageSize?: number, pageToken?: string, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceListShops(pageSize, pageToken, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} customerShopId The Shopify Store to which customer record belongs to.
-         * @param {string} customerId A unique identifier for the customer.
-         * @param {UpdateCustomerRequest} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceUpdateCustomer(customerShopId: string, customerId: string, body: UpdateCustomerRequest, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceUpdateCustomer(customerShopId, customerId, body, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @summary UpdateFulfillment updates a fulfillment.
-         * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
-         * @param {string} fulfillmentId The ID for the fulfillment.
-         * @param {UpdateFulfillmentRequest} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceUpdateFulfillment(fulfillmentShopId: string, fulfillmentId: string, body: UpdateFulfillmentRequest, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceUpdateFulfillment(fulfillmentShopId, fulfillmentId, body, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} lineItemShopId The Shopify Store to which line_item record belongs to.
-         * @param {string} lineItemId The ID of the line item.
-         * @param {UpdateLineItemRequest} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceUpdateLineItem(lineItemShopId: string, lineItemId: string, body: UpdateLineItemRequest, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceUpdateLineItem(lineItemShopId, lineItemId, body, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @summary UpdateOrder updates an order.
-         * @param {string} orderShopId The Shopify Store to which order belongs to.
-         * @param {string} orderId The Shopify ID of the order.
-         * @param {UpdateOrderRequest} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        ordersServiceUpdateOrder(orderShopId: string, orderId: string, body: UpdateOrderRequest, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceUpdateOrder(orderShopId, orderId, body, options)(fetch, basePath);
+            return ShopsApiFp(configuration).ordersServiceListShops(pageSize, pageToken, options)(fetch, basePath);
         },
         /**
          * 
@@ -2786,129 +2033,28 @@ export const OrdersServiceApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         ordersServiceUpdateShop(shopId: string, body: UpdateShopRequest, options?: any) {
-            return OrdersServiceApiFp(configuration).ordersServiceUpdateShop(shopId, body, options)(fetch, basePath);
+            return ShopsApiFp(configuration).ordersServiceUpdateShop(shopId, body, options)(fetch, basePath);
         },
     };
 };
 
 /**
- * OrdersServiceApi - object-oriented interface
+ * ShopsApi - object-oriented interface
  * @export
- * @class OrdersServiceApi
+ * @class ShopsApi
  * @extends {BaseAPI}
  */
-export class OrdersServiceApi extends BaseAPI {
-    /**
-     * 
-     * @param {string} customerShopId The Shopify Store to which customer record belongs to.
-     * @param {Customer} body The customer resource to create.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceCreateCustomer(customerShopId: string, body: Customer, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceCreateCustomer(customerShopId, body, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary CreateFulfillment creates a fulfillment.
-     * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
-     * @param {Fulfillment} body The fulfillment resource to create.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceCreateFulfillment(fulfillmentShopId: string, body: Fulfillment, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceCreateFulfillment(fulfillmentShopId, body, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} lineItemShopId The Shopify Store to which line_item record belongs to.
-     * @param {LineItem} body The line_item resource to create.
-     * @param {string} [lineItemId] The line_item id to use for this line_item.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceCreateLineItem(lineItemShopId: string, body: LineItem, lineItemId?: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceCreateLineItem(lineItemShopId, body, lineItemId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary CreateOrder creates an order.
-     * @param {string} orderShopId The Shopify Store to which order belongs to.
-     * @param {CreateOrderRequest} body 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceCreateOrder(orderShopId: string, body: CreateOrderRequest, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceCreateOrder(orderShopId, body, options)(this.fetch, this.basePath);
-    }
-
+export class ShopsApi extends BaseAPI {
     /**
      * 
      * @summary CreateShop creates a shop.
      * @param {Shop} body The shop resource to create.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersServiceApi
+     * @memberof ShopsApi
      */
     public ordersServiceCreateShop(body: Shop, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceCreateShop(body, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} shopId The Shopify Store.
-     * @param {string} customerId The resource id of the customer to be deleted.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceDeleteCustomer(shopId: string, customerId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceDeleteCustomer(shopId, customerId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary DeleteFulfillment deletes a fulfillment.
-     * @param {string} shopId The Shopify Store.
-     * @param {string} fulfillmentId The resource id of the fulfillment to be deleted.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceDeleteFulfillment(shopId: string, fulfillmentId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceDeleteFulfillment(shopId, fulfillmentId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} shopId The Shopify Store.
-     * @param {string} lineItemId The resource id of the line_item to be deleted.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceDeleteLineItem(shopId: string, lineItemId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceDeleteLineItem(shopId, lineItemId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary DeleteOrder deletes an order.
-     * @param {string} shopId The Shopify Store.
-     * @param {string} orderId The resource id of the order to be deleted.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceDeleteOrder(shopId: string, orderId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceDeleteOrder(shopId, orderId, options)(this.fetch, this.basePath);
+        return ShopsApiFp(this.configuration).ordersServiceCreateShop(body, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -2917,60 +2063,10 @@ export class OrdersServiceApi extends BaseAPI {
      * @param {string} shopId The resource id of the shop to be deleted.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersServiceApi
+     * @memberof ShopsApi
      */
     public ordersServiceDeleteShop(shopId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceDeleteShop(shopId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} shopId The Shopify Store.
-     * @param {string} customerId The field will contain id of the resource requested.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceGetCustomer(shopId: string, customerId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceGetCustomer(shopId, customerId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary GetFulfillment returns a fulfillment.
-     * @param {string} shopId The Shopify Store.
-     * @param {string} fulfillmentId The field will contain id of fulfillment.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceGetFulfillment(shopId: string, fulfillmentId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceGetFulfillment(shopId, fulfillmentId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} shopId The Shopify Store.
-     * @param {string} lineItemId The field will contain id of the resource requested.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceGetLineItem(shopId: string, lineItemId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceGetLineItem(shopId, lineItemId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary GetOrder returns an order.
-     * @param {string} shopId The Shopify Store.
-     * @param {string} orderId The field will contain id of order.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceGetOrder(shopId: string, orderId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceGetOrder(shopId, orderId, options)(this.fetch, this.basePath);
+        return ShopsApiFp(this.configuration).ordersServiceDeleteShop(shopId, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -2979,10 +2075,10 @@ export class OrdersServiceApi extends BaseAPI {
      * @param {string} shopId The field will contain id of shop.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersServiceApi
+     * @memberof ShopsApi
      */
     public ordersServiceGetShop(shopId: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceGetShop(shopId, options)(this.fetch, this.basePath);
+        return ShopsApiFp(this.configuration).ordersServiceGetShop(shopId, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -2991,77 +2087,10 @@ export class OrdersServiceApi extends BaseAPI {
      * @param {string} domain The field will contain domain of shop.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersServiceApi
+     * @memberof ShopsApi
      */
     public ordersServiceGetShopByDomain(domain: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceGetShopByDomain(domain, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary GetTenantByShopDomain returns a tenant by Shopify Store domain.
-     * @param {string} domain The Shopify Store domain.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceGetTenantByShopDomain(domain: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceGetTenantByShopDomain(domain, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} shopId The Shopify Store.
-     * @param {number} [pageSize] The maximum number of items to return.
-     * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceListCustomers(shopId: string, pageSize?: number, pageToken?: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceListCustomers(shopId, pageSize, pageToken, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary ListFulfillments returns paginated list of fulfillments.
-     * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
-     * @param {number} [pageSize] The maximum number of items to return.
-     * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceListFulfillments(shopId: string, pageSize?: number, pageToken?: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceListFulfillments(shopId, pageSize, pageToken, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} shopId The Shopify Store.
-     * @param {number} [pageSize] The maximum number of items to return.
-     * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceListLineItems(shopId: string, pageSize?: number, pageToken?: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceListLineItems(shopId, pageSize, pageToken, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary ListOrders returns paginated list of orders.
-     * @param {string} shopId The shop_id adds filtering by Shopify&#39;s shop.
-     * @param {number} [pageSize] The maximum number of items to return.
-     * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
-     * @param {string} [folderId] The folder_id adds filtering by folder. Optional.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceListOrders(shopId: string, pageSize?: number, pageToken?: string, folderId?: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceListOrders(shopId, pageSize, pageToken, folderId, options)(this.fetch, this.basePath);
+        return ShopsApiFp(this.configuration).ordersServiceGetShopByDomain(domain, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -3071,64 +2100,10 @@ export class OrdersServiceApi extends BaseAPI {
      * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersServiceApi
+     * @memberof ShopsApi
      */
     public ordersServiceListShops(pageSize?: number, pageToken?: string, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceListShops(pageSize, pageToken, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} customerShopId The Shopify Store to which customer record belongs to.
-     * @param {string} customerId A unique identifier for the customer.
-     * @param {UpdateCustomerRequest} body 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceUpdateCustomer(customerShopId: string, customerId: string, body: UpdateCustomerRequest, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceUpdateCustomer(customerShopId, customerId, body, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary UpdateFulfillment updates a fulfillment.
-     * @param {string} fulfillmentShopId The Shopify Store to which fulfillment record belongs to.
-     * @param {string} fulfillmentId The ID for the fulfillment.
-     * @param {UpdateFulfillmentRequest} body 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceUpdateFulfillment(fulfillmentShopId: string, fulfillmentId: string, body: UpdateFulfillmentRequest, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceUpdateFulfillment(fulfillmentShopId, fulfillmentId, body, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} lineItemShopId The Shopify Store to which line_item record belongs to.
-     * @param {string} lineItemId The ID of the line item.
-     * @param {UpdateLineItemRequest} body 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceUpdateLineItem(lineItemShopId: string, lineItemId: string, body: UpdateLineItemRequest, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceUpdateLineItem(lineItemShopId, lineItemId, body, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary UpdateOrder updates an order.
-     * @param {string} orderShopId The Shopify Store to which order belongs to.
-     * @param {string} orderId The Shopify ID of the order.
-     * @param {UpdateOrderRequest} body 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrdersServiceApi
-     */
-    public ordersServiceUpdateOrder(orderShopId: string, orderId: string, body: UpdateOrderRequest, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceUpdateOrder(orderShopId, orderId, body, options)(this.fetch, this.basePath);
+        return ShopsApiFp(this.configuration).ordersServiceListShops(pageSize, pageToken, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -3138,10 +2113,10 @@ export class OrdersServiceApi extends BaseAPI {
      * @param {UpdateShopRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrdersServiceApi
+     * @memberof ShopsApi
      */
     public ordersServiceUpdateShop(shopId: string, body: UpdateShopRequest, options?: any) {
-        return OrdersServiceApiFp(this.configuration).ordersServiceUpdateShop(shopId, body, options)(this.fetch, this.basePath);
+        return ShopsApiFp(this.configuration).ordersServiceUpdateShop(shopId, body, options)(this.fetch, this.basePath);
     }
 
 }

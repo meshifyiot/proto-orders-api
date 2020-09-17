@@ -33,151 +33,145 @@ service OrdersService {
   // ListOrders returns paginated list of orders.
   rpc ListOrders(ListOrdersRequest) returns (ListOrdersResponse) {
     option (google.api.http) = {
-      get : "/ordersapi/v1/shops/{shop_id}/orders"
+      get : "/api/ordersapi/v1/shops/{shop_id}/orders"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Orders"
     };
   }
 
   // GetOrder returns an order.
   rpc GetOrder(GetOrderRequest) returns (Order) {
     option (google.api.http) = {
-      get : "/ordersapi/v1/shops/{shop_id}/orders/{order_id}"
+      get : "/api/ordersapi/v1/shops/{shop_id}/orders/{order_id}"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Orders"
     };
   }
 
   // CreateOrder creates an order.
-  rpc CreateOrder(CreateOrderRequest) returns (Order) {
-    option (google.api.http) = {
-      post : "/ordersapi/v1/shops/{order.shop_id}/orders"
-      body : "*"
-    };
-  }
+  rpc CreateOrder(CreateOrderRequest) returns (Order);
 
   // UpdateOrder updates an order.
-  rpc UpdateOrder(UpdateOrderRequest) returns (Order) {
-    option (google.api.http) = {
-      patch : "/ordersapi/v1/shops/{order.shop_id}/orders/{order.id}"
-      body : "*"
-    };
-  }
+  rpc UpdateOrder(UpdateOrderRequest) returns (Order);
 
   // DeleteOrder deletes an order.
-  rpc DeleteOrder(DeleteOrderRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      delete : "/ordersapi/v1/shops/{shop_id}/orders/{order_id}"
-    };
-  }
+  rpc DeleteOrder(DeleteOrderRequest) returns (google.protobuf.Empty);
 
   // --- Customer API ---
 
   rpc ListCustomers(ListCustomersRequest) returns (ListCustomersResponse) {
     option (google.api.http) = {
-      get: "/ordersapi/v1/shops/{shop_id}/customers"
+      get: "/api/ordersapi/v1/shops/{shop_id}/customers"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Customers"
     };
   }
 
   rpc GetCustomer(GetCustomerRequest) returns (Customer) {
     option (google.api.http) = {
-      get: "/ordersapi/v1/shops/{shop_id}/customers/{customer_id}"
+      get: "/api/ordersapi/v1/shops/{shop_id}/customers/{customer_id}"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Customers"
     };
   }
 
-  rpc CreateCustomer(CreateCustomerRequest) returns (Customer) {
-    option (google.api.http) = {
-      post: "/ordersapi/v1/shops/{customer.shop_id}/customers"
-      body: "customer"
-    };
-  }
+  rpc CreateCustomer(CreateCustomerRequest) returns (Customer);
 
-  rpc UpdateCustomer(UpdateCustomerRequest) returns (Customer) {
-    option (google.api.http) = {
-      patch: "/ordersapi/v1/shops/{customer.shop_id}/customers/{customer.id}"
-      body: "*"
-    };
-  }
+  rpc UpdateCustomer(UpdateCustomerRequest) returns (Customer);
 
-  rpc DeleteCustomer(DeleteCustomerRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      delete: "/ordersapi/v1/shops/{shop_id}/customers/{customer_id}"
-    };
-  }
+  rpc DeleteCustomer(DeleteCustomerRequest) returns (google.protobuf.Empty);
 
   // --- LineItems API ---
 
   rpc ListLineItems(ListLineItemsRequest) returns (ListLineItemsResponse) {
     option (google.api.http) = {
-      get: "/ordersapi/v1/shops/{shop_id}/lineitems"
+      get: "/api/ordersapi/v1/shops/{shop_id}/lineitems"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "LineItems"
     };
   }
 
   rpc GetLineItem(GetLineItemRequest) returns (LineItem) {
     option (google.api.http) = {
-      get: "/ordersapi/v1/shops/{shop_id}/lineitems/{line_item_id}"
+      get: "/api/ordersapi/v1/shops/{shop_id}/lineitems/{line_item_id}"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "LineItems"
     };
   }
 
-  rpc CreateLineItem(CreateLineItemRequest) returns (LineItem) {
-    option (google.api.http) = {
-      post: "/ordersapi/v1/shops/{line_item.shop_id}/lineitems"
-      body: "line_item"
-    };
-  }
+  rpc CreateLineItem(CreateLineItemRequest) returns (LineItem);
 
-  rpc UpdateLineItem(UpdateLineItemRequest) returns (LineItem) {
-    option (google.api.http) = {
-      patch: "/ordersapi/v1/shops/{line_item.shop_id}/lineitems/{line_item.id}"
-      body: "*"
-    };
-  }
+  rpc UpdateLineItem(UpdateLineItemRequest) returns (LineItem);
 
-  rpc DeleteLineItem(DeleteLineItemRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      delete: "/ordersapi/v1/shops/{shop_id}/lineitems/{line_item_id}"
-    };
-  }
+  rpc DeleteLineItem(DeleteLineItemRequest) returns (google.protobuf.Empty);
 
   // --- Shopify Stores API ---
 
   // ListShops returns paginated list of shops.
   rpc ListShops(ListShopsRequest) returns (ListShopsResponse) {
     option (google.api.http) = {
-      get : "/ordersapi/v1/shops"
+      get : "/api/ordersapi/v1/shops"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Shops"
     };
   }
     
   // GetShop returns a shop.
   rpc GetShop(GetShopRequest) returns (Shop) {
     option (google.api.http) = {
-      get : "/ordersapi/v1/shops/{shop_id}"
+      get : "/api/ordersapi/v1/shops/{shop_id}"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Shops"
     };
   }
 
   // GetShopByDomain returns a shop by domain.
   rpc GetShopByDomain(GetShopByDomainRequest) returns (Shop) {
     option (google.api.http) = {
-      get : "/ordersapi/v1/shops:getByDomain/{domain}"
+      get : "/api/ordersapi/v1/shops:getByDomain/{domain}"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Shops"
     };
   }
   
   // CreateShop creates a shop.
   rpc CreateShop(CreateShopRequest) returns (Shop) {
     option (google.api.http) = {
-      post : "/ordersapi/v1/shops"
+      post : "/api/ordersapi/v1/shops"
       body : "shop"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Shops"
     };
   }
 
   // UpdateShop updates a shop.
   rpc UpdateShop(UpdateShopRequest) returns (Shop) {
     option (google.api.http) = {
-      patch : "/ordersapi/v1/shops/{shop.id}"
+      patch : "/api/ordersapi/v1/shops/{shop.id}"
       body : "*"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Shops"
     };
   }
 
   // DeleteShop deletes a shop.
   rpc DeleteShop(DeleteShopRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete : "/ordersapi/v1/shops/{shop_id}"
+      delete : "/api/ordersapi/v1/shops/{shop_id}"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Shops"
     };
   }
 
@@ -186,47 +180,35 @@ service OrdersService {
   // ListFulfillments returns paginated list of fulfillments.
   rpc ListFulfillments(ListFulfillmentsRequest) returns (ListFulfillmentsResponse) {
     option (google.api.http) = {
-      get : "/ordersapi/v1/shops/{shop_id}/fulfillments"
+      get : "/api/ordersapi/v1/shops/{shop_id}/fulfillments"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Fulfillments"
     };
   }
     
   // GetFulfillment returns a fulfillment.
   rpc GetFulfillment(GetFulfillmentRequest) returns (Fulfillment) {
     option (google.api.http) = {
-      get : "/ordersapi/v1/shops/{shop_id}/fulfillments/{fulfillment_id}"
+      get : "/api/ordersapi/v1/shops/{shop_id}/fulfillments/{fulfillment_id}"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Fulfillments"
     };
   }
 
   // CreateFulfillment creates a fulfillment.
-  rpc CreateFulfillment(CreateFulfillmentRequest) returns (Fulfillment) {
-    option (google.api.http) = {
-      post : "/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments"
-      body : "fulfillment"
-    };
-  }
+  rpc CreateFulfillment(CreateFulfillmentRequest) returns (Fulfillment);
 
   // UpdateFulfillment updates a fulfillment.
-  rpc UpdateFulfillment(UpdateFulfillmentRequest) returns (Fulfillment) {
-    option (google.api.http) = {
-      patch : "/ordersapi/v1/shops/{fulfillment.shop_id}/fulfillments/{fulfillment.id}"
-      body : "*"
-    };
-  }
+  rpc UpdateFulfillment(UpdateFulfillmentRequest) returns (Fulfillment);
 
   // DeleteFulfillment deletes a fulfillment.
-  rpc DeleteFulfillment(DeleteFulfillmentRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      delete : "/ordersapi/v1/shops/{shop_id}/fulfillments/{fulfillment_id}"
-    };
-  }
+  rpc DeleteFulfillment(DeleteFulfillmentRequest) returns (google.protobuf.Empty);
 
   // --- Tenants API ---
 
   // GetTenantByShopDomain returns a tenant by Shopify Store domain.
-  rpc GetTenantByShopDomain(GetTenantByShopDomainRequest) returns (Tenant) {
-    option (google.api.http) = {
-      get : "/ordersapi/v1/tenants:getByShopDomain/{domain}"
-    };
-  }
+  rpc GetTenantByShopDomain(GetTenantByShopDomainRequest) returns (Tenant);
 }
 
