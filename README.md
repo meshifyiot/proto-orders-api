@@ -16,6 +16,10 @@ Be warned: this is en experimental repo.
 
 ## SwaggerUI for Gateway
 
-You can see Gateway API documentation by downloading this repo and then run:
+If you are running mac then you can download this repo and then run:
 
     make swagger-ui
+
+I'm sure that docker part will work on linux too, but PR's are welcome!
+
+Another option is to use online swagger editor: https://editor.swagger.io/

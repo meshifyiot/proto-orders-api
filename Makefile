@@ -20,7 +20,7 @@ swagger:
 
 swagger-ui:
 	@echo "If chrome did not open after 2s you can go to http://localhost:${SWAGGER_PORT} to see the docs"
-	@(sleep 2s ; open -a "/Applications/Google Chrome.app" 'http://localhost:${SWAGGER_PORT}') &
+	@(sleep 2s ; open 'http://localhost:${SWAGGER_PORT}') &
 	@docker run -p ${SWAGGER_PORT}:8080 -e SWAGGER_JSON=/tmp/orders-api.swagger.json -v ${SWAGGER_DIR}:/tmp swaggerapi/swagger-ui
 
 typescript:
