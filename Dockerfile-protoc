@@ -7,7 +7,11 @@ RUN mkdir -p $PROJECT_PATH
 COPY go.* $PROJECT_PATH/
 WORKDIR $PROJECT_PATH
 
-RUN go mod download && go install \
-	github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway \
-	github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger \
-	github.com/golang/protobuf/protoc-gen-go
+ENV PROTOC_GEN_GO_VERSION 1.4.2
+ENV PROTOC_GEN_GRPC_GATEWAY_VERSION 1.14.7
+ENV PROTOC_GEN_SWAGGER_VERSION 1.14.7
+
+RUN go mod download && go get \
+	github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway@v$PROTOC_GEN_GRPC_GATEWAY_VERSION \
+	github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger@v$PROTOC_GEN_SWAGGER_VERSION \
+	github.com/golang/protobuf/protoc-gen-go@v$PROTOC_GEN_GO_VERSION
