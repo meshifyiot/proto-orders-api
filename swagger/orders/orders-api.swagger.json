@@ -19,9 +19,10 @@
     "application/json"
   ],
   "paths": {
-    "/v1/shops": {
+    "/api/ordersapi/v1/shops": {
       "get": {
-        "operationId": "ListShops",
+        "summary": "ListShops returns paginated list of shops.",
+        "operationId": "OrdersService_ListShops",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -54,11 +55,12 @@
           }
         ],
         "tags": [
-          "OrdersService"
+          "Shops"
         ]
       },
       "post": {
-        "operationId": "CreateShop",
+        "summary": "CreateShop creates a shop.",
+        "operationId": "OrdersService_CreateShop",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -85,368 +87,14 @@
           }
         ],
         "tags": [
-          "OrdersService"
+          "Shops"
         ]
       }
     },
-    "/v1/shops/{customer.shop_id}/customers": {
-      "post": {
-        "operationId": "CreateCustomer",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/Customer"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "customer.shop_id",
-            "description": "The Shopify Store to which customer record belongs to.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "body",
-            "description": "The customer resource to create.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Customer"
-            }
-          }
-        ],
-        "tags": [
-          "OrdersService"
-        ]
-      }
-    },
-    "/v1/shops/{customer.shop_id}/customers/{customer.id}": {
+    "/api/ordersapi/v1/shops/{shop.id}": {
       "patch": {
-        "operationId": "UpdateCustomer",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/Customer"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "customer.shop_id",
-            "description": "The Shopify Store to which customer record belongs to.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "customer.id",
-            "description": "A unique identifier for the customer.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/UpdateCustomerRequest"
-            }
-          }
-        ],
-        "tags": [
-          "OrdersService"
-        ]
-      }
-    },
-    "/v1/shops/{fulfillment.shop_id}/fulfillments": {
-      "post": {
-        "operationId": "CreateFulfillment",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/Fulfillment"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "fulfillment.shop_id",
-            "description": "The Shopify Store to which fulfillment record belongs to.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "body",
-            "description": "The fulfillment resource to create.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Fulfillment"
-            }
-          }
-        ],
-        "tags": [
-          "OrdersService"
-        ]
-      }
-    },
-    "/v1/shops/{fulfillment.shop_id}/fulfillments/{fulfillment.id}": {
-      "patch": {
-        "operationId": "UpdateFulfillment",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/Fulfillment"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "fulfillment.shop_id",
-            "description": "The Shopify Store to which fulfillment record belongs to.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "fulfillment.id",
-            "description": "The ID for the fulfillment.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/UpdateFulfillmentRequest"
-            }
-          }
-        ],
-        "tags": [
-          "OrdersService"
-        ]
-      }
-    },
-    "/v1/shops/{line_item.shop_id}/line_items": {
-      "post": {
-        "operationId": "CreateLineItem",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/LineItem"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "line_item.shop_id",
-            "description": "The Shopify Store to which line_item record belongs to.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "body",
-            "description": "The line_item resource to create.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/LineItem"
-            }
-          }
-        ],
-        "tags": [
-          "OrdersService"
-        ]
-      }
-    },
-    "/v1/shops/{line_item.shop_id}/line_items/{line_item.id}": {
-      "patch": {
-        "operationId": "UpdateLineItem",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/LineItem"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "line_item.shop_id",
-            "description": "The Shopify Store to which line_item record belongs to.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "line_item.id",
-            "description": "The ID of the line item.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/UpdateLineItemRequest"
-            }
-          }
-        ],
-        "tags": [
-          "OrdersService"
-        ]
-      }
-    },
-    "/v1/shops/{order.shop_id}/orders": {
-      "post": {
-        "operationId": "CreateOrder",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/Order"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "order.shop_id",
-            "description": "The Shopify Store to which order belongs to.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CreateOrderRequest"
-            }
-          }
-        ],
-        "tags": [
-          "OrdersService"
-        ]
-      }
-    },
-    "/v1/shops/{order.shop_id}/orders/{order.id}": {
-      "patch": {
-        "operationId": "UpdateOrder",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/Order"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "order.shop_id",
-            "description": "The Shopify Store to which order belongs to.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "order.id",
-            "description": "The Shopify ID of the order.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/UpdateOrderRequest"
-            }
-          }
-        ],
-        "tags": [
-          "OrdersService"
-        ]
-      }
-    },
-    "/v1/shops/{shop.id}": {
-      "patch": {
-        "operationId": "UpdateShop",
+        "summary": "UpdateShop updates a shop.",
+        "operationId": "OrdersService_UpdateShop",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -480,13 +128,14 @@
           }
         ],
         "tags": [
-          "OrdersService"
+          "Shops"
         ]
       }
     },
-    "/v1/shops/{shop_id}": {
+    "/api/ordersapi/v1/shops/{shop_id}": {
       "get": {
-        "operationId": "GetShop",
+        "summary": "GetShop returns a shop.",
+        "operationId": "OrdersService_GetShop",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -512,11 +161,12 @@
           }
         ],
         "tags": [
-          "OrdersService"
+          "Shops"
         ]
       },
       "delete": {
-        "operationId": "DeleteShop",
+        "summary": "DeleteShop deletes a shop.",
+        "operationId": "OrdersService_DeleteShop",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -542,13 +192,13 @@
           }
         ],
         "tags": [
-          "OrdersService"
+          "Shops"
         ]
       }
     },
-    "/v1/shops/{shop_id}/customers": {
+    "/api/ordersapi/v1/shops/{shop_id}/customers": {
       "get": {
-        "operationId": "ListCustomers",
+        "operationId": "OrdersService_ListCustomers",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -589,13 +239,13 @@
           }
         ],
         "tags": [
-          "OrdersService"
+          "Customers"
         ]
       }
     },
-    "/v1/shops/{shop_id}/customers/{customer_id}": {
+    "/api/ordersapi/v1/shops/{shop_id}/customers/{customer_id}": {
       "get": {
-        "operationId": "GetCustomer",
+        "operationId": "OrdersService_GetCustomer",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -629,51 +279,14 @@
           }
         ],
         "tags": [
-          "OrdersService"
-        ]
-      },
-      "delete": {
-        "operationId": "DeleteCustomer",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "shop_id",
-            "description": "The Shopify Store.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "customer_id",
-            "description": "The resource id of the customer to be deleted.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "OrdersService"
+          "Customers"
         ]
       }
     },
-    "/v1/shops/{shop_id}/fulfillments": {
+    "/api/ordersapi/v1/shops/{shop_id}/fulfillments": {
       "get": {
-        "operationId": "ListFulfillments",
+        "summary": "ListFulfillments returns paginated list of fulfillments.",
+        "operationId": "OrdersService_ListFulfillments",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -714,13 +327,14 @@
           }
         ],
         "tags": [
-          "OrdersService"
+          "Fulfillments"
         ]
       }
     },
-    "/v1/shops/{shop_id}/fulfillments/{fulfillment_id}": {
+    "/api/ordersapi/v1/shops/{shop_id}/fulfillments/{fulfillment_id}": {
       "get": {
-        "operationId": "GetFulfillment",
+        "summary": "GetFulfillment returns a fulfillment.",
+        "operationId": "OrdersService_GetFulfillment",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -754,51 +368,13 @@
           }
         ],
         "tags": [
-          "OrdersService"
-        ]
-      },
-      "delete": {
-        "operationId": "DeleteFulfillment",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "shop_id",
-            "description": "The Shopify Store.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "fulfillment_id",
-            "description": "The resource id of the fulfillment to be deleted.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "OrdersService"
+          "Fulfillments"
         ]
       }
     },
-    "/v1/shops/{shop_id}/line_items": {
+    "/api/ordersapi/v1/shops/{shop_id}/lineitems": {
       "get": {
-        "operationId": "ListLineItems",
+        "operationId": "OrdersService_ListLineItems",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -839,13 +415,13 @@
           }
         ],
         "tags": [
-          "OrdersService"
+          "LineItems"
         ]
       }
     },
-    "/v1/shops/{shop_id}/line_items/{line_item_id}": {
+    "/api/ordersapi/v1/shops/{shop_id}/lineitems/{line_item_id}": {
       "get": {
-        "operationId": "GetLineItem",
+        "operationId": "OrdersService_GetLineItem",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -879,51 +455,14 @@
           }
         ],
         "tags": [
-          "OrdersService"
-        ]
-      },
-      "delete": {
-        "operationId": "DeleteLineItem",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "shop_id",
-            "description": "The Shopify Store.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "line_item_id",
-            "description": "The resource id of the line_item to be deleted.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "OrdersService"
+          "LineItems"
         ]
       }
     },
-    "/v1/shops/{shop_id}/orders": {
+    "/api/ordersapi/v1/shops/{shop_id}/orders": {
       "get": {
-        "operationId": "ListOrders",
+        "summary": "ListOrders returns paginated list of orders.",
+        "operationId": "OrdersService_ListOrders",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -972,13 +511,14 @@
           }
         ],
         "tags": [
-          "OrdersService"
+          "Orders"
         ]
       }
     },
-    "/v1/shops/{shop_id}/orders/{order_id}": {
+    "/api/ordersapi/v1/shops/{shop_id}/orders/{order_id}": {
       "get": {
-        "operationId": "GetOrder",
+        "summary": "GetOrder returns an order.",
+        "operationId": "OrdersService_GetOrder",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1012,51 +552,14 @@
           }
         ],
         "tags": [
-          "OrdersService"
-        ]
-      },
-      "delete": {
-        "operationId": "DeleteOrder",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "shop_id",
-            "description": "The Shopify Store.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "order_id",
-            "description": "The resource id of the order to be deleted.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "OrdersService"
+          "Orders"
         ]
       }
     },
-    "/v1/shops:getByDomain/{domain}": {
+    "/api/ordersapi/v1/shops:getByDomain/{domain}": {
       "get": {
-        "operationId": "GetShopByDomain",
+        "summary": "GetShopByDomain returns a shop by domain.",
+        "operationId": "OrdersService_GetShopByDomain",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1081,38 +584,7 @@
           }
         ],
         "tags": [
-          "OrdersService"
-        ]
-      }
-    },
-    "/v1/tenants:getByShopDomain/{domain}": {
-      "get": {
-        "operationId": "GetTenantByShopDomain",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/Tenant"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "domain",
-            "description": "The Shopify Store domain.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "OrdersService"
+          "Shops"
         ]
       }
     }
@@ -1187,15 +659,6 @@
           "type": "number",
           "format": "double",
           "description": "The longitude of the shipping address."
-        }
-      }
-    },
-    "CreateOrderRequest": {
-      "type": "object",
-      "properties": {
-        "order": {
-          "$ref": "#/definitions/Order",
-          "description": "The order resource to create."
         }
       }
     },
@@ -1633,58 +1096,6 @@
         "name": {
           "type": "string",
           "description": "The name of tenant."
-        }
-      }
-    },
-    "UpdateCustomerRequest": {
-      "type": "object",
-      "properties": {
-        "customer": {
-          "$ref": "#/definitions/Customer",
-          "description": "The customer resource which replaces the resource on the server."
-        },
-        "update_mask": {
-          "$ref": "#/definitions/protobufFieldMask",
-          "title": "The update mask applies to the resource. For the `FieldMask` definition,\nsee https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask"
-        }
-      }
-    },
-    "UpdateFulfillmentRequest": {
-      "type": "object",
-      "properties": {
-        "fulfillment": {
-          "$ref": "#/definitions/Fulfillment",
-          "description": "The fulfillment resource which replaces the resource on the server."
-        },
-        "update_mask": {
-          "$ref": "#/definitions/protobufFieldMask",
-          "title": "The update mask applies to the resource. For the `FieldMask` definition,\nsee\nhttps://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask"
-        }
-      }
-    },
-    "UpdateLineItemRequest": {
-      "type": "object",
-      "properties": {
-        "line_item": {
-          "$ref": "#/definitions/LineItem",
-          "description": "The line_item resource which replaces the resource on the server."
-        },
-        "update_mask": {
-          "$ref": "#/definitions/protobufFieldMask",
-          "title": "The update mask applies to the resource. For the `FieldMask` definition,\nsee https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask"
-        }
-      }
-    },
-    "UpdateOrderRequest": {
-      "type": "object",
-      "properties": {
-        "order": {
-          "$ref": "#/definitions/Order",
-          "description": "The order resource which replaces the resource on the server."
-        },
-        "update_mask": {
-          "$ref": "#/definitions/protobufFieldMask",
-          "title": "The update mask applies to the resource. For the `FieldMask` definition,\nsee\nhttps://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask"
         }
       }
     },
