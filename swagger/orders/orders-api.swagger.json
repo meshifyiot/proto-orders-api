@@ -19,6 +19,312 @@
     "application/json"
   ],
   "paths": {
+    "/api/ordersapi/v1/devices": {
+      "get": {
+        "summary": "ListDevices returns paginated list of devices.",
+        "operationId": "OrdersService_ListDevices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListDevicesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page_size",
+            "description": "The maximum number of items to return.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token value returned from a previous List request, if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Devices"
+        ]
+      },
+      "post": {
+        "summary": "CreateDevice creates a device.",
+        "operationId": "OrdersService_CreateDevice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Device"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "The device resource to create.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Device"
+            }
+          }
+        ],
+        "tags": [
+          "Devices"
+        ]
+      }
+    },
+    "/api/ordersapi/v1/devices/{device.id}": {
+      "patch": {
+        "summary": "UpdateDevice updates a device.",
+        "operationId": "OrdersService_UpdateDevice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Device"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "device.id",
+            "description": "The device ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateDeviceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Devices"
+        ]
+      }
+    },
+    "/api/ordersapi/v1/devices/{device_id}": {
+      "get": {
+        "summary": "GetDevice returns a device.",
+        "operationId": "OrdersService_GetDevice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Device"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "device_id",
+            "description": "The field will contain id of device.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Devices"
+        ]
+      },
+      "delete": {
+        "summary": "DeleteDevice deletes a device.",
+        "operationId": "OrdersService_DeleteDevice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "device_id",
+            "description": "The resource id of the device to be deleted.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Devices"
+        ]
+      }
+    },
+    "/api/ordersapi/v1/devices/{device_id}/actions": {
+      "get": {
+        "summary": "ListDeviceActions returns paginated list of device actions.",
+        "operationId": "OrdersService_ListDeviceActions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListDeviceActionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "device_id",
+            "description": "The Device ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "page_size",
+            "description": "The maximum number of items to return.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_token",
+            "description": "The next_page_token value returned from a previous List request, if any.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DeviceActions"
+        ]
+      },
+      "post": {
+        "summary": "CreateDeviceAction creates a device action.",
+        "operationId": "OrdersService_CreateDeviceAction",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeviceAction"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "device_id",
+            "description": "The Device ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "description": "The device_action resource to create.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeviceAction"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceActions"
+        ]
+      }
+    },
+    "/api/ordersapi/v1/devices/{device_id}/actions/{action_id}": {
+      "get": {
+        "summary": "GetDeviceAction returns a device action.",
+        "operationId": "OrdersService_GetDeviceAction",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeviceAction"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "device_id",
+            "description": "The Device ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "action_id",
+            "description": "The field will contain id of the resource requested.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "DeviceActions"
+        ]
+      }
+    },
     "/api/ordersapi/v1/shops": {
       "get": {
         "summary": "ListShops returns paginated list of shops.",
@@ -715,6 +1021,71 @@
         }
       }
     },
+    "Device": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "The device ID."
+        },
+        "name": {
+          "type": "string",
+          "title": "The name of Device"
+        }
+      }
+    },
+    "DeviceAction": {
+      "type": "object",
+      "properties": {
+        "device_id": {
+          "type": "string",
+          "format": "int64",
+          "description": "The Device to which action belongs to."
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "The ID of the device action."
+        },
+        "kind": {
+          "$ref": "#/definitions/DeviceActionKind",
+          "title": "Action kind or type of action"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Parameters"
+        },
+        "status": {
+          "$ref": "#/definitions/DeviceActionStatus",
+          "title": "Status of action"
+        },
+        "details": {
+          "type": "string",
+          "title": "Details"
+        }
+      }
+    },
+    "DeviceActionKind": {
+      "type": "string",
+      "enum": [
+        "DUMMY"
+      ],
+      "default": "DUMMY"
+    },
+    "DeviceActionStatus": {
+      "type": "string",
+      "enum": [
+        "CREATED",
+        "IN_PROGRESS",
+        "DONE",
+        "ERROR"
+      ],
+      "default": "CREATED"
+    },
     "Fulfillment": {
       "type": "object",
       "properties": {
@@ -834,6 +1205,38 @@
         "next_page_token": {
           "type": "string",
           "description": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+        }
+      }
+    },
+    "ListDeviceActionsResponse": {
+      "type": "object",
+      "properties": {
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeviceAction"
+          },
+          "description": "There will be a maximum number of items returned based on the page_size field in the request."
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+        }
+      }
+    },
+    "ListDevicesResponse": {
+      "type": "object",
+      "properties": {
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Device"
+          },
+          "description": "There will be a maximum number of items returned based on the page_size\nfield in the request."
+        },
+        "next_page_token": {
+          "type": "string",
+          "description": "Token to retrieve the next page of results, or empty if there are no more\nresults in the list."
         }
       }
     },
@@ -1096,6 +1499,19 @@
         "name": {
           "type": "string",
           "description": "The name of tenant."
+        }
+      }
+    },
+    "UpdateDeviceRequest": {
+      "type": "object",
+      "properties": {
+        "device": {
+          "$ref": "#/definitions/Device",
+          "description": "The device resource which replaces the resource on the server."
+        },
+        "update_mask": {
+          "$ref": "#/definitions/protobufFieldMask",
+          "title": "The update mask applies to the resource. For the `FieldMask` definition,\nsee\nhttps://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask"
         }
       }
     },

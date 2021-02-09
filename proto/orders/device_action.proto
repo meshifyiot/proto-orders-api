@@ -1,0 +1,89 @@
+syntax = "proto3";
+option go_package = "github.com/meshifyiot/proto-orders-api/go/orders";
+
+import "google/protobuf/field_mask.proto";
+
+message DeviceAction {
+  // The Device to which action belongs to.
+  int64 device_id = 1;
+
+  // The ID of the device action.
+  int64 id = 2;
+  
+  enum Kind {
+    DUMMY = 0;
+  }
+
+  // Action kind or type of action
+  Kind kind = 3;
+
+  // Parameters
+  map<string, string> parameters = 4;
+
+  enum Status {
+    CREATED = 0;
+    IN_PROGRESS = 1;
+    DONE = 2;
+    ERROR = 3;
+  }
+
+  // Status of action
+  Status status = 5;
+
+  // Details  
+  string details = 6;
+}
+
+// --- DeviceActions API messages ---
+
+message ListDeviceActionsRequest {
+  // The maximum number of items to return.
+  int32 page_size = 1;
+
+  // The next_page_token value returned from a previous List request, if any.
+  string page_token = 2;
+
+  // The Device ID.
+  int64 device_id = 3;
+}
+
+message ListDeviceActionsResponse {
+  // There will be a maximum number of items returned based on the page_size field in the request.
+  repeated DeviceAction actions = 1;
+
+  // Token to retrieve the next page of results, or empty if there are no more results in the list.
+  string next_page_token = 2;
+}
+
+message GetDeviceActionRequest {
+  // The Device ID.
+  int64 device_id = 1;
+
+  // The field will contain id of the resource requested.
+  int64 action_id = 2;
+}
+
+message CreateDeviceActionRequest {
+  // The Device ID.
+  int64 device_id = 1;
+
+  // The device_action resource to create.
+  DeviceAction action = 2;
+}
+
+message UpdateDeviceActionRequest {
+  // The device_action resource which replaces the resource on the server.
+  DeviceAction action = 1;
+
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeleteDeviceActionRequest {
+  // The Device ID.
+  int64 device_id = 1;
+
+  // The resource id of the line_item to be deleted.
+  int64 action_id = 2;
+}
