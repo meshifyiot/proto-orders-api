@@ -9,6 +9,8 @@ message Device {
 
   // The name of Device
   string name = 2;
+
+  
 }
 
 // --- Devices API messages ---

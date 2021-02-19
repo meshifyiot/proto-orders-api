@@ -824,23 +824,11 @@ export interface Order {
      */
     noteAttributes?: Array<NoteAttribute>;
     /**
-     * The order's status in terms of fulfilled line items.
-     * @type {OrderFulfillmentStatus}
+     * 
+     * @type {string}
      * @memberof Order
      */
-    fulfillmentStatus?: OrderFulfillmentStatus;
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum OrderFulfillmentStatus {
-    Fulfilled = 'fulfilled',
-    Null = 'null',
-    Partial = 'partial',
-    Restocked = 'restocked'
+    fulfillmentStatus?: string;
 }
 
 /**
