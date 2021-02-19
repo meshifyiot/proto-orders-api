@@ -1466,9 +1466,23 @@
             "$ref": "#/definitions/NoteAttribute"
           },
           "description": "Extra information that is added to the order. Appears in the Additional\ndetails section of an order details page. Each array entry must contain\na hash with name and value keys."
+        },
+        "fulfillment_status": {
+          "$ref": "#/definitions/OrderFulfillmentStatus",
+          "description": "The order's status in terms of fulfilled line items."
         }
       },
       "description": "An order is a customer's completed request to purchase one or more products\nfrom a shop. An order is created when a customer completes the checkout\nprocess, during which time they provide an email address or phone number,\nbilling address and payment information."
+    },
+    "OrderFulfillmentStatus": {
+      "type": "string",
+      "enum": [
+        "fulfilled",
+        "null",
+        "partial",
+        "restocked"
+      ],
+      "default": "fulfilled"
     },
     "Shop": {
       "type": "object",
