@@ -10,6 +10,8 @@ import "orders/line_item.proto";
 import "orders/customer.proto";
 import "orders/order.proto";
 import "orders/fulfillment.proto";
+import "orders/device.proto";
+import "orders/device_action.proto";
 
 option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
   info : {
@@ -210,5 +212,92 @@ service OrdersService {
 
   // GetTenantByShopDomain returns a tenant by Shopify Store domain.
   rpc GetTenantByShopDomain(GetTenantByShopDomainRequest) returns (Tenant);
+
+  // --- Devices API ---
+
+  // ListDevices returns paginated list of devices.
+  rpc ListDevices(ListDevicesRequest) returns (ListDevicesResponse) {
+    option (google.api.http) = {
+      get : "/api/ordersapi/v1/devices"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Devices"
+    };
+  }
+
+  // GetDevice returns a device.
+  rpc GetDevice(GetDeviceRequest) returns (Device) {
+    option (google.api.http) = {
+      get : "/api/ordersapi/v1/devices/{device_id}"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Devices"
+    };
+  }
+
+  // CreateDevice creates a device.
+  rpc CreateDevice(CreateDeviceRequest) returns (Device) {
+    option (google.api.http) = {
+      post : "/api/ordersapi/v1/devices"
+      body : "device"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Devices"
+    };
+  }
+
+  // UpdateDevice updates a device.
+  rpc UpdateDevice(UpdateDeviceRequest) returns (Device) {
+    option (google.api.http) = {
+      patch : "/api/ordersapi/v1/devices/{device.id}"
+      body : "*"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Devices"
+    };
+  }
+
+  // DeleteDevice deletes a device.
+  rpc DeleteDevice(DeleteDeviceRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete : "/api/ordersapi/v1/devices/{device_id}"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "Devices"
+    };
+  }
+
+  // --- Device Actions API ---
+
+  // ListDeviceActions returns paginated list of device actions.
+  rpc ListDeviceActions(ListDeviceActionsRequest) returns (ListDeviceActionsResponse) {
+    option (google.api.http) = {
+      get : "/api/ordersapi/v1/devices/{device_id}/actions"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "DeviceActions"
+    };
+  }
+
+  // GetDeviceAction returns a device action.
+  rpc GetDeviceAction(GetDeviceActionRequest) returns (DeviceAction) {
+    option (google.api.http) = {
+      get : "/api/ordersapi/v1/devices/{device_id}/actions/{action_id}"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "DeviceActions"
+    };
+  }
+
+  // CreateDeviceAction creates a device action.
+  rpc CreateDeviceAction(CreateDeviceActionRequest) returns (DeviceAction) {
+    option (google.api.http) = {
+      post : "/api/ordersapi/v1/devices/{device_id}/actions"
+      body : "action"
+    };
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      tags: "DeviceActions"
+    };
+  }
 }
 

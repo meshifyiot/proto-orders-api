@@ -40,7 +40,7 @@ export interface FetchAPI {
 }
 
 /**
- *  
+ *
  * @export
  * @interface FetchArgs
  */
@@ -50,7 +50,7 @@ export interface FetchArgs {
 }
 
 /**
- * 
+ *
  * @export
  * @class BaseAPI
  */
@@ -66,7 +66,7 @@ export class BaseAPI {
 };
 
 /**
- * 
+ *
  * @export
  * @class RequiredError
  * @extends {Error}
@@ -259,6 +259,91 @@ export interface Customer {
 /**
  * 
  * @export
+ * @interface Device
+ */
+export interface Device {
+    /**
+     * The device ID.
+     * @type {string}
+     * @memberof Device
+     */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    name?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface DeviceAction
+ */
+export interface DeviceAction {
+    /**
+     * The Device to which action belongs to.
+     * @type {string}
+     * @memberof DeviceAction
+     */
+    deviceId?: string;
+    /**
+     * The ID of the device action.
+     * @type {string}
+     * @memberof DeviceAction
+     */
+    id?: string;
+    /**
+     * 
+     * @type {DeviceActionKind}
+     * @memberof DeviceAction
+     */
+    kind?: DeviceActionKind;
+    /**
+     * 
+     * @type {{ [key: string]: string; }}
+     * @memberof DeviceAction
+     */
+    parameters?: { [key: string]: string; };
+    /**
+     * 
+     * @type {DeviceActionStatus}
+     * @memberof DeviceAction
+     */
+    status?: DeviceActionStatus;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceAction
+     */
+    details?: string;
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum DeviceActionKind {
+    DUMMY = 'DUMMY'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum DeviceActionStatus {
+    CREATED = 'CREATED',
+    INPROGRESS = 'IN_PROGRESS',
+    DONE = 'DONE',
+    ERROR = 'ERROR'
+}
+
+/**
+ * 
+ * @export
  * @interface Fulfillment
  */
 export interface Fulfillment {
@@ -402,6 +487,46 @@ export interface ListCustomersResponse {
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      * @type {string}
      * @memberof ListCustomersResponse
+     */
+    nextPageToken?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ListDeviceActionsResponse
+ */
+export interface ListDeviceActionsResponse {
+    /**
+     * There will be a maximum number of items returned based on the page_size field in the request.
+     * @type {Array<DeviceAction>}
+     * @memberof ListDeviceActionsResponse
+     */
+    actions?: Array<DeviceAction>;
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     * @type {string}
+     * @memberof ListDeviceActionsResponse
+     */
+    nextPageToken?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ListDevicesResponse
+ */
+export interface ListDevicesResponse {
+    /**
+     * There will be a maximum number of items returned based on the page_size field in the request.
+     * @type {Array<Device>}
+     * @memberof ListDevicesResponse
+     */
+    devices?: Array<Device>;
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     * @type {string}
+     * @memberof ListDevicesResponse
      */
     nextPageToken?: string;
 }
@@ -698,6 +823,12 @@ export interface Order {
      * @memberof Order
      */
     noteAttributes?: Array<NoteAttribute>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Order
+     */
+    fulfillmentStatus?: string;
 }
 
 /**
@@ -810,6 +941,26 @@ export interface Tenant {
      * @memberof Tenant
      */
     name?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface UpdateDeviceRequest
+ */
+export interface UpdateDeviceRequest {
+    /**
+     * The device resource which replaces the resource on the server.
+     * @type {Device}
+     * @memberof UpdateDeviceRequest
+     */
+    device?: Device;
+    /**
+     * 
+     * @type {ProtobufFieldMask}
+     * @memberof UpdateDeviceRequest
+     */
+    updateMask?: ProtobufFieldMask;
 }
 
 /**
@@ -1024,6 +1175,705 @@ export class CustomersApi extends BaseAPI {
      */
     public ordersServiceListCustomers(shopId: string, pageSize?: number, pageToken?: string, options?: any) {
         return CustomersApiFp(this.configuration).ordersServiceListCustomers(shopId, pageSize, pageToken, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * DeviceActionsApi - fetch parameter creator
+ * @export
+ */
+export const DeviceActionsApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary CreateDeviceAction creates a device action.
+         * @param {string} deviceId The Device ID.
+         * @param {DeviceAction} body The device_action resource to create.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceCreateDeviceAction(deviceId: string, body: DeviceAction, options: any = {}): FetchArgs {
+            // verify required parameter 'deviceId' is not null or undefined
+            if (deviceId === null || deviceId === undefined) {
+                throw new RequiredError('deviceId','Required parameter deviceId was null or undefined when calling ordersServiceCreateDeviceAction.');
+            }
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceCreateDeviceAction.');
+            }
+            const localVarPath = `/api/ordersapi/v1/devices/{device_id}/actions`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary GetDeviceAction returns a device action.
+         * @param {string} deviceId The Device ID.
+         * @param {string} actionId The field will contain id of the resource requested.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetDeviceAction(deviceId: string, actionId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'deviceId' is not null or undefined
+            if (deviceId === null || deviceId === undefined) {
+                throw new RequiredError('deviceId','Required parameter deviceId was null or undefined when calling ordersServiceGetDeviceAction.');
+            }
+            // verify required parameter 'actionId' is not null or undefined
+            if (actionId === null || actionId === undefined) {
+                throw new RequiredError('actionId','Required parameter actionId was null or undefined when calling ordersServiceGetDeviceAction.');
+            }
+            const localVarPath = `/api/ordersapi/v1/devices/{device_id}/actions/{action_id}`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"action_id"}}`, encodeURIComponent(String(actionId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary ListDeviceActions returns paginated list of device actions.
+         * @param {string} deviceId The Device ID.
+         * @param {number} [pageSize] The maximum number of items to return.
+         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceListDeviceActions(deviceId: string, pageSize?: number, pageToken?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'deviceId' is not null or undefined
+            if (deviceId === null || deviceId === undefined) {
+                throw new RequiredError('deviceId','Required parameter deviceId was null or undefined when calling ordersServiceListDeviceActions.');
+            }
+            const localVarPath = `/api/ordersapi/v1/devices/{device_id}/actions`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['page_size'] = pageSize;
+            }
+
+            if (pageToken !== undefined) {
+                localVarQueryParameter['page_token'] = pageToken;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * DeviceActionsApi - functional programming interface
+ * @export
+ */
+export const DeviceActionsApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary CreateDeviceAction creates a device action.
+         * @param {string} deviceId The Device ID.
+         * @param {DeviceAction} body The device_action resource to create.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceCreateDeviceAction(deviceId: string, body: DeviceAction, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<DeviceAction> {
+            const localVarFetchArgs = DeviceActionsApiFetchParamCreator(configuration).ordersServiceCreateDeviceAction(deviceId, body, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary GetDeviceAction returns a device action.
+         * @param {string} deviceId The Device ID.
+         * @param {string} actionId The field will contain id of the resource requested.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetDeviceAction(deviceId: string, actionId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<DeviceAction> {
+            const localVarFetchArgs = DeviceActionsApiFetchParamCreator(configuration).ordersServiceGetDeviceAction(deviceId, actionId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary ListDeviceActions returns paginated list of device actions.
+         * @param {string} deviceId The Device ID.
+         * @param {number} [pageSize] The maximum number of items to return.
+         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceListDeviceActions(deviceId: string, pageSize?: number, pageToken?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListDeviceActionsResponse> {
+            const localVarFetchArgs = DeviceActionsApiFetchParamCreator(configuration).ordersServiceListDeviceActions(deviceId, pageSize, pageToken, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * DeviceActionsApi - factory interface
+ * @export
+ */
+export const DeviceActionsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * 
+         * @summary CreateDeviceAction creates a device action.
+         * @param {string} deviceId The Device ID.
+         * @param {DeviceAction} body The device_action resource to create.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceCreateDeviceAction(deviceId: string, body: DeviceAction, options?: any) {
+            return DeviceActionsApiFp(configuration).ordersServiceCreateDeviceAction(deviceId, body, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary GetDeviceAction returns a device action.
+         * @param {string} deviceId The Device ID.
+         * @param {string} actionId The field will contain id of the resource requested.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetDeviceAction(deviceId: string, actionId: string, options?: any) {
+            return DeviceActionsApiFp(configuration).ordersServiceGetDeviceAction(deviceId, actionId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary ListDeviceActions returns paginated list of device actions.
+         * @param {string} deviceId The Device ID.
+         * @param {number} [pageSize] The maximum number of items to return.
+         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceListDeviceActions(deviceId: string, pageSize?: number, pageToken?: string, options?: any) {
+            return DeviceActionsApiFp(configuration).ordersServiceListDeviceActions(deviceId, pageSize, pageToken, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * DeviceActionsApi - object-oriented interface
+ * @export
+ * @class DeviceActionsApi
+ * @extends {BaseAPI}
+ */
+export class DeviceActionsApi extends BaseAPI {
+    /**
+     * 
+     * @summary CreateDeviceAction creates a device action.
+     * @param {string} deviceId The Device ID.
+     * @param {DeviceAction} body The device_action resource to create.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DeviceActionsApi
+     */
+    public ordersServiceCreateDeviceAction(deviceId: string, body: DeviceAction, options?: any) {
+        return DeviceActionsApiFp(this.configuration).ordersServiceCreateDeviceAction(deviceId, body, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary GetDeviceAction returns a device action.
+     * @param {string} deviceId The Device ID.
+     * @param {string} actionId The field will contain id of the resource requested.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DeviceActionsApi
+     */
+    public ordersServiceGetDeviceAction(deviceId: string, actionId: string, options?: any) {
+        return DeviceActionsApiFp(this.configuration).ordersServiceGetDeviceAction(deviceId, actionId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary ListDeviceActions returns paginated list of device actions.
+     * @param {string} deviceId The Device ID.
+     * @param {number} [pageSize] The maximum number of items to return.
+     * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DeviceActionsApi
+     */
+    public ordersServiceListDeviceActions(deviceId: string, pageSize?: number, pageToken?: string, options?: any) {
+        return DeviceActionsApiFp(this.configuration).ordersServiceListDeviceActions(deviceId, pageSize, pageToken, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * DevicesApi - fetch parameter creator
+ * @export
+ */
+export const DevicesApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary CreateDevice creates a device.
+         * @param {Device} body The device resource to create.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceCreateDevice(body: Device, options: any = {}): FetchArgs {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceCreateDevice.');
+            }
+            const localVarPath = `/api/ordersapi/v1/devices`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary DeleteDevice deletes a device.
+         * @param {string} deviceId The resource id of the device to be deleted.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceDeleteDevice(deviceId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'deviceId' is not null or undefined
+            if (deviceId === null || deviceId === undefined) {
+                throw new RequiredError('deviceId','Required parameter deviceId was null or undefined when calling ordersServiceDeleteDevice.');
+            }
+            const localVarPath = `/api/ordersapi/v1/devices/{device_id}`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary GetDevice returns a device.
+         * @param {string} deviceId The field will contain id of device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetDevice(deviceId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'deviceId' is not null or undefined
+            if (deviceId === null || deviceId === undefined) {
+                throw new RequiredError('deviceId','Required parameter deviceId was null or undefined when calling ordersServiceGetDevice.');
+            }
+            const localVarPath = `/api/ordersapi/v1/devices/{device_id}`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary ListDevices returns paginated list of devices.
+         * @param {number} [pageSize] The maximum number of items to return.
+         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceListDevices(pageSize?: number, pageToken?: string, options: any = {}): FetchArgs {
+            const localVarPath = `/api/ordersapi/v1/devices`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['page_size'] = pageSize;
+            }
+
+            if (pageToken !== undefined) {
+                localVarQueryParameter['page_token'] = pageToken;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary UpdateDevice updates a device.
+         * @param {string} deviceId The device ID.
+         * @param {UpdateDeviceRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceUpdateDevice(deviceId: string, body: UpdateDeviceRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'deviceId' is not null or undefined
+            if (deviceId === null || deviceId === undefined) {
+                throw new RequiredError('deviceId','Required parameter deviceId was null or undefined when calling ordersServiceUpdateDevice.');
+            }
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling ordersServiceUpdateDevice.');
+            }
+            const localVarPath = `/api/ordersapi/v1/devices/{device.id}`
+                .replace(`{${"device.id"}}`, encodeURIComponent(String(deviceId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * DevicesApi - functional programming interface
+ * @export
+ */
+export const DevicesApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary CreateDevice creates a device.
+         * @param {Device} body The device resource to create.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceCreateDevice(body: Device, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Device> {
+            const localVarFetchArgs = DevicesApiFetchParamCreator(configuration).ordersServiceCreateDevice(body, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary DeleteDevice deletes a device.
+         * @param {string} deviceId The resource id of the device to be deleted.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceDeleteDevice(deviceId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
+            const localVarFetchArgs = DevicesApiFetchParamCreator(configuration).ordersServiceDeleteDevice(deviceId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary GetDevice returns a device.
+         * @param {string} deviceId The field will contain id of device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetDevice(deviceId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Device> {
+            const localVarFetchArgs = DevicesApiFetchParamCreator(configuration).ordersServiceGetDevice(deviceId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary ListDevices returns paginated list of devices.
+         * @param {number} [pageSize] The maximum number of items to return.
+         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceListDevices(pageSize?: number, pageToken?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ListDevicesResponse> {
+            const localVarFetchArgs = DevicesApiFetchParamCreator(configuration).ordersServiceListDevices(pageSize, pageToken, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary UpdateDevice updates a device.
+         * @param {string} deviceId The device ID.
+         * @param {UpdateDeviceRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceUpdateDevice(deviceId: string, body: UpdateDeviceRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Device> {
+            const localVarFetchArgs = DevicesApiFetchParamCreator(configuration).ordersServiceUpdateDevice(deviceId, body, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+if (options && options.onResponseHeader) options.onResponseHeader(response);
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * DevicesApi - factory interface
+ * @export
+ */
+export const DevicesApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * 
+         * @summary CreateDevice creates a device.
+         * @param {Device} body The device resource to create.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceCreateDevice(body: Device, options?: any) {
+            return DevicesApiFp(configuration).ordersServiceCreateDevice(body, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary DeleteDevice deletes a device.
+         * @param {string} deviceId The resource id of the device to be deleted.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceDeleteDevice(deviceId: string, options?: any) {
+            return DevicesApiFp(configuration).ordersServiceDeleteDevice(deviceId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary GetDevice returns a device.
+         * @param {string} deviceId The field will contain id of device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceGetDevice(deviceId: string, options?: any) {
+            return DevicesApiFp(configuration).ordersServiceGetDevice(deviceId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary ListDevices returns paginated list of devices.
+         * @param {number} [pageSize] The maximum number of items to return.
+         * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceListDevices(pageSize?: number, pageToken?: string, options?: any) {
+            return DevicesApiFp(configuration).ordersServiceListDevices(pageSize, pageToken, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary UpdateDevice updates a device.
+         * @param {string} deviceId The device ID.
+         * @param {UpdateDeviceRequest} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ordersServiceUpdateDevice(deviceId: string, body: UpdateDeviceRequest, options?: any) {
+            return DevicesApiFp(configuration).ordersServiceUpdateDevice(deviceId, body, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * DevicesApi - object-oriented interface
+ * @export
+ * @class DevicesApi
+ * @extends {BaseAPI}
+ */
+export class DevicesApi extends BaseAPI {
+    /**
+     * 
+     * @summary CreateDevice creates a device.
+     * @param {Device} body The device resource to create.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public ordersServiceCreateDevice(body: Device, options?: any) {
+        return DevicesApiFp(this.configuration).ordersServiceCreateDevice(body, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary DeleteDevice deletes a device.
+     * @param {string} deviceId The resource id of the device to be deleted.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public ordersServiceDeleteDevice(deviceId: string, options?: any) {
+        return DevicesApiFp(this.configuration).ordersServiceDeleteDevice(deviceId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary GetDevice returns a device.
+     * @param {string} deviceId The field will contain id of device.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public ordersServiceGetDevice(deviceId: string, options?: any) {
+        return DevicesApiFp(this.configuration).ordersServiceGetDevice(deviceId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary ListDevices returns paginated list of devices.
+     * @param {number} [pageSize] The maximum number of items to return.
+     * @param {string} [pageToken] The next_page_token value returned from a previous List request, if any.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public ordersServiceListDevices(pageSize?: number, pageToken?: string, options?: any) {
+        return DevicesApiFp(this.configuration).ordersServiceListDevices(pageSize, pageToken, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary UpdateDevice updates a device.
+     * @param {string} deviceId The device ID.
+     * @param {UpdateDeviceRequest} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public ordersServiceUpdateDevice(deviceId: string, body: UpdateDeviceRequest, options?: any) {
+        return DevicesApiFp(this.configuration).ordersServiceUpdateDevice(deviceId, body, options)(this.fetch, this.basePath);
     }
 
 }

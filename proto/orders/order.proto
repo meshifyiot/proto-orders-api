@@ -135,6 +135,9 @@ message Order {
   // details section of an order details page. Each array entry must contain
   // a hash with name and value keys.
   repeated NoteAttribute note_attributes = 80;
+  
+  // The order's status in terms of fulfilled line items. [fulfilled,null,partial,restocked]
+  string fulfillment_status = 81;
 }
 
 // --- Orders API messages ---

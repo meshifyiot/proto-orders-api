@@ -1,0 +1,65 @@
+syntax = "proto3";
+option go_package = "github.com/meshifyiot/proto-orders-api/go/orders";
+
+import "google/protobuf/field_mask.proto";
+
+message Device {
+  // The device ID.
+  int64 id = 1;
+
+  // The name of Device
+  string name = 2;
+
+  
+}
+
+// --- Devices API messages ---
+
+// ListDevicesRequest
+//
+// All filter fields applied with AND operator.
+// Zero value in filter (by default) means no filtering.
+//
+message ListDevicesRequest {
+  // The maximum number of items to return.
+  int32 page_size = 1;
+
+  // The next_page_token value returned from a previous List request, if any.
+  string page_token = 2;
+}
+
+message ListDevicesResponse {
+  // There will be a maximum number of items returned based on the page_size
+  // field in the request.
+  repeated Device devices = 1;
+  
+  // Token to retrieve the next page of results, or empty if there are no more
+  // results in the list.
+  string next_page_token = 2;
+}
+
+message GetDeviceRequest {
+  // The field will contain id of device.
+  int64 device_id = 1;
+}
+
+message CreateDeviceRequest {
+  // The device resource to create.
+  Device device = 3;
+}
+
+message UpdateDeviceRequest {
+  // The device resource which replaces the resource on the server.
+  Device device = 1;
+
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see
+  // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeleteDeviceRequest {
+  // The resource id of the device to be deleted.
+  int64 device_id = 1;
+}
+
